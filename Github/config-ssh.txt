@@ -1,0 +1,5 @@
+# SSH - KEY - Mac
+ssh-keygen -t rsa
+pbcopy < ~/.ssh/id_rsa.pub
+github.com -> usuarios-> settings -> SSH and GPG keys ->
+SSH keys -> New SSH key -> colar chave e nomea-la
