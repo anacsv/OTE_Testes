@@ -1,7 +1,7 @@
 class PessoaFisica:
 
-    def __init__(self, rg, cpf):
-        super().__init__()
+    def __init__(self, id, nome, data, rg, cpf):
+        super().__init__(id, nome, data)
         self.__rg = rg
         self.__cpf = cpf
 
