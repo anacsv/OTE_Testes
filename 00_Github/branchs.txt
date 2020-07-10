@@ -1,0 +1,8 @@
+******* ------ Criação de branch
+git branch 'nome_da_branch'
+git checkout 'nome_da_branch'
+git push -u origin 'nome_da_branch'
+---- alterações
+git add .
+git commit -m 'frase de commit'
+git push
