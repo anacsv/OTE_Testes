@@ -1,0 +1,9 @@
+Testes 8 partes
+1- Sem uso de framework
+2- Com uso de framework
+3- Cobertura de testes
+4- MOCKs 
+5- TDD
+6- TDD com Django
+7- Integração Continua, Jenkins
+8- Selenium, behave
