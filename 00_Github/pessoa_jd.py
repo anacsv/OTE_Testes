@@ -1,10 +1,13 @@
 class PessoaJuridica(): 
-    def __init__(self, CNPJ, nome, idade):
-        super().__init__(nome, idade)
-        self.CNPJ = CNPJ
-     
-    def getCNPJ(self):
-        return self.CNPJ
-     
-    def setCNPJ(self, CNPJ):
-        self.CNPJ = CNPJ
+    def __init__(self, id, nome, data, cnpj):
+        super().__init__(id, nome, data)
+        self.cnpj = cnpj
+
+    @property 
+    def CNPJ(self):
+        return self.__cnpj
+
+    @cnpj.setter
+    def CNPJ(self, cnpj):
+        self.__cnpj = cnpj    
+
