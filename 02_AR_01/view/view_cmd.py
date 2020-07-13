@@ -1,3 +1,7 @@
+import sys
+import os.path
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from model.pessoa_fisica import PessoaFisica
 from dao.pessoa_fisica_dao import PessoaFisicaDao
 
