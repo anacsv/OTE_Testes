@@ -1,1 +1,2 @@
 Commiting the new branch
+Testing the merge
