@@ -1,0 +1,11 @@
+Cada um criar uma classe em seu branch separado
+1 - Criar classe pessoa
+    - Id
+    - Nome Completo
+    - Data nascimento
+2 - Criar classe pessoa fisica
+    - Rg
+    - Cpf
+3 - Criar classe pessoa juridica
+    - Inscrição estadual
+    - Cnpj
