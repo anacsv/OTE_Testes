@@ -1,0 +1,8 @@
+#----- Primeiro PR
+https://jira-olist.atlassian.net/wiki/spaces/OP/pages/523632642/Seu+primeiro+PR
+
+#----- Code Review
+https://jira-olist.atlassian.net/wiki/spaces/OP/pages/180486220/Code+review+no+Olist
+
+#----- Aguardando Code Review
+https://jira-olist.atlassian.net/wiki/spaces/OP/pages/70714035/O+que+fazer+enquanto+aguarda+code+review
