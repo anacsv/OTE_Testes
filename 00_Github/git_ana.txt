@@ -1,0 +1,12 @@
+#comando para ver como está o link, se estiver com https vai ficar pedindo senha nos commit
+MacBook-Air-de-Ana:OTE_Testes olist_ana$ git remote -v 
+origin	https://github.com/anacsv/OTE_Testes.git (fetch)
+origin	https://github.com/anacsv/OTE_Testes.git (push)
+
+#para setar o link correto:
+git remote set-url origin git@github.com:anacsv/OTE_Testes.git
+
+#visualizando no terminal se ficou ok:
+MacBook-Air-de-Ana:OTE_Testes olist_ana$ git remote -v 
+origin	git@github.com:anacsv/OTE_Testes.git (fetch)
+origin	git@github.com:anacsv/OTE_Testes.git (push)
