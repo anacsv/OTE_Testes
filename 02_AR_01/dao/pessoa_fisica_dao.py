@@ -10,8 +10,7 @@ class PessoaFisicaDao:
         #---- salvando a pessoa_fisica
         # logica de persistencia da pessoa fisica
         with open('pessoa_fisica.txt','a') as file :
-            file.write(pessoa_fisica.nome)
-            file.close()
+            file.write(pessoa_fisica.nome+"\n")
         
         return 'salvo'
 
