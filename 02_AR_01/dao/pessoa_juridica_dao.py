@@ -21,4 +21,4 @@ class PessoaJuridicaDao:
 
     def delete(self):
          #---- deletando a pessoa_juridica
-        return 'excluído'
+         return 'excluido'
