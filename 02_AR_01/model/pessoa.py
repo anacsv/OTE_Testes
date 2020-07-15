@@ -4,4 +4,3 @@ class Pessoa:
         self.id = id
         self.nome = nome
         self.data = data
-
