@@ -16,7 +16,13 @@ class PessoaFisicaDao:
 
     def read(self, id):
          #---- listando uma pessoa_fisica
-        return 'lido'
+        with open('pessoa_fisica.txt', 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                if line == id:
+                    return line
+
+        return 'nao encontrado'
 
     def read_all(self):
          #---- listando uma lista pessoa_fisica
