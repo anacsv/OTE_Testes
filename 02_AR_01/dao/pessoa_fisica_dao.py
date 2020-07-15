@@ -28,9 +28,7 @@ class PessoaFisicaDao:
          #---- listando uma lista pessoa_fisica
         lista = []
         with open('pessoa_fisica.txt', 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                lista.append(line)
+            lista = list(file)
 
         return lista
 
