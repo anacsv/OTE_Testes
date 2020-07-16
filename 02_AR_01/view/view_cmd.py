@@ -15,10 +15,12 @@ pjd = PessoaJuridicaDao()
 pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
 pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
 
-# print(pfd.create(pf))
-# print(pfd.read_all())
-# print(pfd.read('maykon\n'))
+#print(pfd.create(pf))
 
-print(pjd.create(pj))
-print(pjd.read('matheus\n'))
-print(pjd.read_all())
+#print(pfd.delete(pf))
+
+pjd = PessoaJuridicaDao()
+
+pj = PessoaJuridica(1,'maykon','05-11-86','55555555555')
+
+print(pjd.delete(pj))
