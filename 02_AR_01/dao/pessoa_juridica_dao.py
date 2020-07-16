@@ -5,6 +5,9 @@ class PessoaJuridicaDao:
     def create(self, pessoa_juridica:PessoaJuridica):
         #---- salvando a pessoa_juridica
         # logica de persistencia da pessoa juridica
+        with open('pessoa_juridica.txt', 'a') as file:
+            file.write(pessoa_juridica.nome+"\n")
+
         return 'salvo'
 
     def read(self, id):
