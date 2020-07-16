@@ -9,9 +9,6 @@ from model.pessoa_juridica import PessoaJuridica
 from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.pessoa_juridica_dao import PessoaJuridicaDao
 
-from model.pessoa_juridica import PessoaJuridica
-from dao.pessoa_juridica_dao import PessoaJuridicaDao
-
 pfd = PessoaFisicaDao()
 pjd = PessoaJuridicaDao()
 
