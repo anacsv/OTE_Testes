@@ -21,4 +21,4 @@ pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
 
 print(pjd.create(pj))
 # print(pjd.read_all())
-# print(pjd.read('maykon\n'))
+print(pjd.read('matheus\n'))
