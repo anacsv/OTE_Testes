@@ -19,6 +19,23 @@ class PessoaJuridicaDao:
          #---- alterando a pessoa_juridica
         return 'alterado'
 
-    def delete(self):
+    def delete(self, pessoa_juridica:PessoaJuridica):
          #---- deletando a pessoa_juridica
-        return 'excluído'
+        file = open('pessoa_juridica.txt', "r")
+
+        lines = file.readlines()
+        file.close()
+        
+        new_file = open('pessoa_juridica.txt', "w")
+        found = False
+        for line in lines:
+            if not line == pessoa_juridica.nome+'\n':
+                new_file.write(line)
+            else:    
+                 found = True
+        
+        new_file.close()       
+        if not found:
+           return 'Item não encontrado.' 
+        else:
+           return 'Item deletado.'
