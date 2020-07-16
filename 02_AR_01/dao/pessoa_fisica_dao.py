@@ -32,8 +32,18 @@ class PessoaFisicaDao:
 
         return lista
 
-    def update(self):
+    def update(self, name, pessoa_fisica: PessoaFisica):
          #---- alterando a pessoa_fisica
+        with open('pessoa_fisica.txt', 'r+') as file:
+            names = file.readlines()
+            index = names.index(f'{pessoa_fisica.nome}\n')
+            names.remove(f'{pessoa_fisica.nome}\n')
+            names.insert(index, f'{name}\n')
+
+            file.seek(0)
+            file.truncate()
+            file.writelines(names)
+
         return 'alterado'
 
     def delete(self, pessoa_fisica: PessoaFisica):
