@@ -22,7 +22,11 @@ class PessoaJuridicaDao:
 
     def read_all(self):
          #---- listando uma lista pessoa_juridica
-        return 'listar todos'
+        lista = []
+        with open('pessoa_juridica.txt', 'r') as file:
+            lista = list(file)
+
+        return lista
 
     def update(self):
          #---- alterando a pessoa_juridica
