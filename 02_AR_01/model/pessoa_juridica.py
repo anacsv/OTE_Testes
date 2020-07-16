@@ -13,3 +13,6 @@ class PessoaJuridica(Pessoa):
     def cnpj(self, cnpj):
         self.__cnpj = cnpj    
 
+    def __str__(self):
+        # interpolação de strings
+        return f'{self.id};{self.nome};{self.data};{self.cnpj}'
