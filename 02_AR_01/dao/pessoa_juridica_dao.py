@@ -1,13 +1,13 @@
 from model.pessoa_juridica import PessoaJuridica
+from dao.base_dao import BaseDao
 
-class PessoaJuridicaDao:
+class PessoaJuridicaDao(BaseDao):
     # --- CRUD 
-    def create(self, pessoa_juridica:PessoaJuridica):
+    def create(self, model:PessoaJuridica):
         #---- salvando a pessoa_juridica
         # logica de persistencia da pessoa juridica
-        with open('pessoa_juridica.txt', 'a') as file:
-            file.write(pessoa_juridica.nome+"\n")
-
+        
+        super().create(model)
         return 'salvo'
 
     def read(self, id):

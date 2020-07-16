@@ -22,6 +22,8 @@ ud = UsuarioDao()
 
 print(ud.create(u) )
 
+#print(pjd.create(pj))
+
 #print(pfd.create(pf))
 
 # #print(pfd.delete(pf))
