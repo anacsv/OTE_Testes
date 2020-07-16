@@ -12,3 +12,5 @@ pfd = PessoaFisicaDao()
 pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
 
 print(pfd.create(pf))
+
+#print(pfd.delete(pf))
