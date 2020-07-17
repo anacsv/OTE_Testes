@@ -3,15 +3,15 @@
 # Data -> Object | Object -> Data
 
 from model.pessoa_fisica import PessoaFisica
+from dao.base_dao import BaseDao
 
-class PessoaFisicaDao:
+class PessoaFisicaDao(BaseDao):
     # --- CRUD 
-    def create(self, pessoa_fisica:PessoaFisica):
+    def create(self, model:PessoaFisica):
         #---- salvando a pessoa_fisica
         # logica de persistencia da pessoa fisica
-        with open('pessoa_fisica.txt','a') as file :
-            file.write(str(pessoa_fisica)+"\n")
         
+        super().create(model)
         return 'salvo'
 
     def read(self, id):
