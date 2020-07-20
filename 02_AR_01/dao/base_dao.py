@@ -1,8 +1,7 @@
 
 class BaseDao:  
     def __init__(self, classe):
-        self.__classe = classe
-        self.__caminho_arquivo = f'02_AR_01/dao/db/{self.__classe.__name__}.txt'
+        self.__caminho_arquivo = f'02_AR_01/dao/db/{classe.__name__}.txt'
 
     # --- CRUD
     def create(self, model):
