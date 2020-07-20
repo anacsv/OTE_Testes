@@ -9,8 +9,7 @@ class PessoaFisicaDao(BaseDao):
     # --- CRUD 
     def create(self, model:PessoaFisica):
         #---- salvando a pessoa_fisica
-        # logica de persistencia da pessoa fisica
-        
+        # logica de persistencia da pessoa fisica        
         super().create(model)
         return 'salvo'
 

@@ -24,9 +24,9 @@ pjd = PessoaJuridicaDao()
 ud = UsuarioDao()
 pd = ProdutoDao()
 
-print(pd.create(p))
+#print(pd.create(p))
 
-print(ud.create(u) )
+#print(ud.create(u) )
 
 #print(pjd.create(pj))
 

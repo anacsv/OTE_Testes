@@ -1,3 +1,0 @@
-<model.pessoa_fisica.PessoaFisica object at 0x101294cc0>
-<class 'model.pessoa_fisica.PessoaFisica'>object at4444277896
-1;maykon;05-11-86;44444444;55555555555
