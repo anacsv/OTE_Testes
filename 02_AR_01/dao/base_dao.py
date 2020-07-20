@@ -17,6 +17,6 @@ class BaseDao:
             lines = file.readlines()
             for line in lines:
                 if line.split(';')[0] == id:
-                    return line.strip('\n')
+                    return line.strip()
 
         return 'nao encontrado'
