@@ -13,15 +13,9 @@ class PessoaFisicaDao(BaseDao):
         super().create(model)
         return 'salvo'
 
-    def read(self, id):
+    def read_id(self, id):
          #---- listando uma pessoa_fisica
-        with open('pessoa_fisica.txt', 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                if line == id:
-                    return line
-
-        return 'nao encontrado'
+        return super.read_by_id(id)       
 
     def read_all(self):
          #---- listando uma lista pessoa_fisica
