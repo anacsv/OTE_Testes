@@ -16,7 +16,7 @@ class BaseDao:
         with open(self.__caminho_arquivo, 'r') as file:
             lines = file.readlines()
             for line in lines:
-                if line == id:
+                if line.strip(';')[0] == id:
                     return line
 
         return 'nao encontrado'

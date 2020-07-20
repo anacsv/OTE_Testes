@@ -25,7 +25,7 @@ p = Produto('mouse', 100.0, 'mouse de plastico', 1)
 pd = ProdutoDao()
 
 print(pd.create(p))
-print(pd.read_by_id('matheus\n'))
+print(pd.read_by_id('1'))
 
 #print(ud.create(u) )
 
