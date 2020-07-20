@@ -7,4 +7,4 @@ class ProdutoDao(BaseDao):
         super().__init__(Produto)
 
     def create(self, produto: Produto):
-        super().create(produto)
+        return super().create(produto)
