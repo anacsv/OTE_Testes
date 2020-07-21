@@ -11,13 +11,17 @@ class BaseDao:
         return 'salvo'
 
     #read_by_id
-    def read_by_id(self, id):
+    def read(self, id=None):
         with open(self.__caminho_arquivo, 'r') as file:
             lines = file.readlines()
+            formated = []
             for line in lines:
-                if line.split(';')[0] == id:
-                    return line.strip()
-        return 'nao encontrado'
+                if id != None:
+                    if line.split(';')[0] == id:
+                        return line.strip()
+                else:
+                    formated.append(line.strip())
+                    return formated
 
     #read_all
     def read_all(self):

@@ -2,8 +2,12 @@ from model.pessoa_juridica import PessoaJuridica
 from dao.base_dao import BaseDao
 
 class PessoaJuridicaDao(BaseDao):
-    # --- CRUD 
-    def create(self, model:PessoaJuridica):
+    # --- CRUD
+
+    def __init__(self):
+        super().__init__(PessoaJuridica)
+     
+    def create(self, model: PessoaJuridica):
         #---- salvando a pessoa_juridica
         # logica de persistencia da pessoa juridica
         
@@ -12,13 +16,8 @@ class PessoaJuridicaDao(BaseDao):
 
     def read(self, id):
          #---- listando uma pessoa_juridica
-        with open('pessoa_juridica.txt', 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                if line == id:
-                    return line
-
-        return 'nao encontrado'
+        super().read(id=None)
+        return 'lido'
 
     def read_all(self):
          #---- listando uma lista pessoa_juridica

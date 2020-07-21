@@ -20,11 +20,13 @@ u = Usuario('mdg@zuplae.com','123456',10)
 p = Produto('mouse', 100.0, 'mouse de plastico', 1)
 
 # pfd = PessoaFisicaDao()
-# pjd = PessoaJuridicaDao()
+pjd = PessoaJuridicaDao()
 # ud = UsuarioDao()
-pd = ProdutoDao()
+# pd = ProdutoDao()
 
-pd.read_all()
+
+pjd.read(None)
+# pd.read()
 #print(pd.create(p))
 #print(pd.read_by_id('1'))
 
