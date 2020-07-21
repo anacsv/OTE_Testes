@@ -20,11 +20,16 @@ u = Usuario('mdg@zuplae.com','123456',10)
 p = Produto('mouse', 100.0, 'mouse de plastico', 1)
 
 # pfd = PessoaFisicaDao()
-# pjd = PessoaJuridicaDao()
+# pjd = PessoaJuridicaDao(PessoaJuridica)  ---> ????
 # ud = UsuarioDao()
-pd = ProdutoDao()
+# pd = ProdutoDao()
 
-pd.read_all()
+
+# print(pd.create(p))
+# print(pd.read_by_id('1'))
+ 
+# print(pjd.read_by_id('1'))
+#pd.read_all()
 #print(pd.create(p))
 #print(pd.read_by_id('1'))
 
@@ -36,8 +41,3 @@ pd.read_all()
 
 # #print(pfd.delete(pf))
 
-# pjd = PessoaJuridicaDao()
-
-# pj = PessoaJuridica(1,'maykon','05-11-86','55555555555')
-
-# print(pjd.delete(pj))
