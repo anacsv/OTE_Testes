@@ -7,18 +7,14 @@ class PessoaJuridicaDao(BaseDao):
         #---- salvando a pessoa_juridica
         # logica de persistencia da pessoa juridica
         
-        super().create(model)
-        return 'salvo'
+        return super().create(model)
+        
 
-    def read(self, id):
+    def read_by_id(self, id):
          #---- listando uma pessoa_juridica
-        with open('pessoa_juridica.txt', 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                if line == id:
-                    return line
-
-        return 'nao encontrado'
+        
+        return super().read_by_id(id)
+        
 
     def read_all(self):
          #---- listando uma lista pessoa_juridica
