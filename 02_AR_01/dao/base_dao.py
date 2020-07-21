@@ -12,10 +12,19 @@ class BaseDao:
 
     #read_by_id
     def __read_by_id(self, id, lines):
+        item = self.__find_by_id(self, id, lines)
+        if item:
+            return item
+        return 'nao encontrado'
+
+    def __find_by_id(self, id, lines, model=None):
+        
         for line in lines:
             if line.split(';')[0] == id:
-                return line.strip()
-        return 'nao encontrado'
+                if model:
+                    line = str(model)+"\n"
+                    return lines
+            return line.strip()
 
     #read_all
     def __read_all(self, lines) -> list:
@@ -26,16 +35,52 @@ class BaseDao:
 
     #read
     def read(self, id = None):
-        with open(self.__caminho_arquivo, 'r') as file:
-            lines = file.readlines()
-            if id:
-                return self.__read_by_id(id, lines)
-            return self.__read_all(lines)
+        lines = self.__read_file()
+        if id:
+            return self.__read_by_id(id, lines)
+        return self.__read_all(lines)
 
     #update
     def update(self, model):
-        pass
+        lines = self.__read_file()
+        lines = self.__find_by_id(model.id, lines, model)
+        with open(self.__caminho_arquivo,'w') as file :
+            file.writelines(lines)
+        return "alterado com sucesso"
+
+    
+    
+
+    # def update_m(self, pessoa_fisica: PessoaFisica):
+    #     with open('pessoa_fisica.txt', 'r+') as file:
+    #         names = file.readlines()
+    #         index = names.index(f'{pessoa_fisica.nome}\n')
+    #         names.remove(f'{pessoa_fisica.nome}\n')
+    #         names.insert(index, f'{name}\n')
+
+    #         file.seek(0)
+    #         file.truncate()
+    #         file.writelines(names)
+
+    #     return 'alterado'
+
+    # def update(self, pessoa_fisica:PessoaFisica):
+    #     with open('pessoa_fisica.txt', 'r+') as file:
+    #         file.readline()
+    #         for nome in file:
+    #             if nome == pessoa_fisica.nome:
+    #                 file.seek(0, 0)
+    #                 file.write(name_updated)
+    #                 file.truncate()
+    #                 return 'alterado'
+    #             else:
+    #                 return 'This name doesn´t exist!'
 
     #delete
     def delete(self, id):
         pass
+
+    def __read_file(self):
+        with open(self.__caminho_arquivo, 'r') as file:
+            lines = file.readlines()
+            return lines 

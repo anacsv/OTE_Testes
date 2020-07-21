@@ -30,33 +30,7 @@ class PessoaFisicaDao(BaseDao):
         return lista
 
 
-    def update_m(self, name, pessoa_fisica: PessoaFisica):
-         #---- alterando a pessoa_fisica
-        with open('pessoa_fisica.txt', 'r+') as file:
-            names = file.readlines()
-            index = names.index(f'{pessoa_fisica.nome}\n')
-            names.remove(f'{pessoa_fisica.nome}\n')
-            names.insert(index, f'{name}\n')
-
-            file.seek(0)
-            file.truncate()
-            file.writelines(names)
-
-        return 'alterado'
-
-    def update(self, name_updated, pessoa_fisica:PessoaFisica):
-        #---- alterando a pessoa_fisica
-        # enum = 1
-        with open('pessoa_fisica.txt', 'r+') as file:
-            for nome in file:
-                file.readline()
-                if nome == pessoa_fisica.nome:
-                    file.seek(0, 0)
-                    file.write(name_updated)
-                    file.truncate()
-                    return 'alterado'
-                else:
-                    return 'This name doesn´t exist!'
+    
 
 
     def delete(self, pessoa_fisica: PessoaFisica):

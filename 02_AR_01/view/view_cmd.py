@@ -16,14 +16,14 @@ from dao.produto_dao import ProdutoDao
 
 pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
 
-pfd = PessoaFisicaDao()
+#pfd = PessoaFisicaDao()
 #print(pfd.create(pf))
 
 
-print(pfd.update('paulo', pf))
-pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
-u = Usuario('mdg@zuplae.com','123456',10)
-p = Produto('mouse', 100.0, 'mouse de plastico', 1)
+# print(pfd.update('paulo', pf))
+# pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
+# u = Usuario('mdg@zuplae.com','123456',10)
+p = Produto('mouse_tita', 102.0, 'mouse de titanum', 2)
 
 #teste p/ pessoa fisica
 #pfd = PessoaFisicaDao(PessoaFisica)
@@ -34,12 +34,13 @@ p = Produto('mouse', 100.0, 'mouse de plastico', 1)
 # pfd = PessoaFisicaDao()
 # pjd = PessoaJuridicaDao(PessoaJuridica)  ---> ????
 # ud = UsuarioDao()
-# pd = ProdutoDao()
+pd = ProdutoDao()
 
-print(pd.read())
 #print(pd.create(p))
+print(pd.read())
 #print(pd.read_by_id('1'))
-
+pd.update(p)
+print(pd.read())
 
 # print(pd.create(p))
 # print(pd.read_by_id('1'))
@@ -48,7 +49,7 @@ print(pd.read())
 #pd.read_all()
 
 #print(pd.create(p))
-print(pd.read_by_id('1'))
+#print(pd.read_by_id('1'))
 #print(ud.create(u) )
 #print(pjd.create(pj))
 
