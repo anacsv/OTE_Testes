@@ -10,25 +10,18 @@ class BaseDao:
             file.write(str(model)+"\n")        
         return 'salvo'
 
-    #read_by_id
-    def read_by_id(self, id):
+    #read_all
+    def read_by_id(self, id=None):
         with open(self.__caminho_arquivo, 'r') as file:
+            formated = []
             lines = file.readlines()
             for line in lines:
                 if line.split(';')[0] == id:
                     return line.strip()
-        return 'nao encontrado'
-
-    #read_all
-    def read_all(self):
-        with open(self.__caminho_arquivo, 'r') as file:
-            lines = file.readlines()
-            formated = []
-            for line in lines:
                 formated.append(line.strip())
             return formated
+        return 'nao encontrado'
         
-
     #update
     def update(self, model):
         pass
