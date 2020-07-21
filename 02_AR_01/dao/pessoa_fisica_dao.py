@@ -13,7 +13,7 @@ class PessoaFisicaDao(BaseDao):
         super().create(model)
         return 'salvo'
 
-    def read_id(self, id):
+    def read_by_id(self, id):
          #---- listando uma pessoa_fisica
         return super.read_by_id(id)       
 
