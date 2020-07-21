@@ -25,13 +25,24 @@ p = Produto('mouse', 100.0, 'mouse de plastico', 1)
 #print(pfd.read_by_id('1'))
 #print(pfd.delete(pf))
 
-
+# pfd = PessoaFisicaDao()
+# pjd = PessoaJuridicaDao(PessoaJuridica)  ---> ????
 # ud = UsuarioDao()
-pd = ProdutoDao()
+# pd = ProdutoDao()
+
+
+# print(pd.create(p))
+# print(pd.read_by_id('1'))
+ 
+# print(pjd.read_by_id('1'))
+#pd.read_all()
+
 #print(pd.create(p))
 print(pd.read_by_id('1'))
 #print(ud.create(u) )
 #print(pjd.create(pj))
-# pjd = PessoaJuridicaDao()
-# pj = PessoaJuridica(1,'maykon','05-11-86','55555555555')
+
+
+#print(pfd.create(pf))
+#print(pfd.delete(pf))
 
