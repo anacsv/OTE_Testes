@@ -15,6 +15,12 @@ from dao.usuario_dao import UsuarioDao
 from dao.produto_dao import ProdutoDao
 
 pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
+
+pfd = PessoaFisicaDao()
+#print(pfd.create(pf))
+
+
+print(pfd.update('paulo', pf))
 pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
 u = Usuario('mdg@zuplae.com','123456',10)
 p = Produto('mouse', 100.0, 'mouse de plastico', 1)
@@ -49,4 +55,5 @@ print(pd.read_by_id('1'))
 
 #print(pfd.create(pf))
 #print(pfd.delete(pf))
+
 

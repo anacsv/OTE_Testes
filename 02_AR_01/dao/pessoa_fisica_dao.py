@@ -1,7 +1,11 @@
 # DAO
 # Data Access Object
 # Data -> Object | Object -> Data
-
+import sys
+import os.path
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+)
 from model.pessoa_fisica import PessoaFisica
 from dao.base_dao import BaseDao
 
@@ -25,13 +29,22 @@ class PessoaFisicaDao(BaseDao):
 
         return lista
 
-    def update(self):
-         #---- alterando a pessoa_fisica
-        return 'alterado'
+    def update(self, name_updated, pessoa_fisica:PessoaFisica):
+        #---- alterando a pessoa_fisica
+        # enum = 1
+        with open('pessoa_fisica.txt', 'r+') as file:
+            for nome in file:
+                file.readline()
+                if nome == pessoa_fisica.nome:
+                    file.seek(0, 0)
+                    file.write(name_updated)
+                    file.truncate()
+                    return 'alterado'
+                else:
+                    return 'This name doesn´t exist!'
 
     def delete(self, pessoa_fisica: PessoaFisica):
          #---- deletando a pessoa_fisica
-        
         file = open('pessoa_fisica.txt', "r")
 
         lines = file.readlines()
@@ -50,4 +63,3 @@ class PessoaFisicaDao(BaseDao):
            return 'Item não encontrado.' 
         else:
            return 'Item deletado.'
-                
