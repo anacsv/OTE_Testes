@@ -11,14 +11,14 @@ class BaseDao:
         return 'salvo'
 
     #read_by_id
-    def read_by_id(self, id, lines):
+    def __read_by_id(self, id, lines):
         for line in lines:
             if line.split(';')[0] == id:
                 return line.strip()
         return 'nao encontrado'
 
     #read_all
-    def read_all(self, lines):
+    def __read_all(self, lines) -> list:
         formated = []
         for line in lines:
             formated.append(line.strip())
@@ -29,8 +29,8 @@ class BaseDao:
         with open(self.__caminho_arquivo, 'r') as file:
             lines = file.readlines()
             if id:
-                return self.read_by_id(id, lines)
-            return self.read_all(lines)
+                return self.__read_by_id(id, lines)
+            return self.__read_all(lines)
 
     #update
     def update(self, model):
