@@ -7,25 +7,27 @@ sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 )
 from model.pessoa_fisica import PessoaFisica
+from dao.base_dao import BaseDao
 
-class PessoaFisicaDao:
+class PessoaFisicaDao(BaseDao):
     # --- CRUD 
-    def create(self, pessoa_fisica:PessoaFisica):
+    def create(self, model:PessoaFisica):
         #---- salvando a pessoa_fisica
-        # logica de persistencia da pessoa fisica
-        with open('pessoa_fisica.txt','a') as file :
-            file.write(pessoa_fisica.nome)
-            file.close()
-        
+        # logica de persistencia da pessoa fisica        
+        super().create(model)
         return 'salvo'
 
-    def read(self, id):
+    def read_by_id(self, id):
          #---- listando uma pessoa_fisica
-        return 'lido'
+        return super.read_by_id(id)       
 
     def read_all(self):
          #---- listando uma lista pessoa_fisica
-        return 'listar todos'
+        lista = []
+        with open('pessoa_fisica.txt', 'r') as file:
+            lista = list(file)
+
+        return lista
 
     def update(self, name_updated, pessoa_fisica:PessoaFisica):
         #---- alterando a pessoa_fisica
@@ -41,7 +43,23 @@ class PessoaFisicaDao:
                 else:
                     return 'This name doesn´t exist!'
 
-    def delete(self):
+    def delete(self, pessoa_fisica: PessoaFisica):
          #---- deletando a pessoa_fisica
-        return 'excluído'
+        file = open('pessoa_fisica.txt', "r")
 
+        lines = file.readlines()
+        file.close()
+        
+        new_file = open('pessoa_fisica.txt', "w")
+        found = False
+        for line in lines:
+            if not line == pessoa_fisica.nome+'\n':
+                new_file.write(line)
+            else:    
+                 found = True
+        
+        new_file.close()       
+        if not found:
+           return 'Item não encontrado.' 
+        else:
+           return 'Item deletado.'

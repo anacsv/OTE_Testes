@@ -1,4 +1,4 @@
-from pessoa import Pessoa
+from .pessoa import Pessoa
 
 class PessoaJuridica(Pessoa): 
     def __init__(self, id, nome, data, cnpj):
@@ -13,3 +13,6 @@ class PessoaJuridica(Pessoa):
     def cnpj(self, cnpj):
         self.__cnpj = cnpj    
 
+    def __str__(self):
+        # interpolação de strings
+        return f'{self.id};{self.nome};{self.data};{self.cnpj}'
