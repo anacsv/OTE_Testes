@@ -20,16 +20,16 @@ u = Usuario('mdg@zuplae.com','123456',10)
 p = Produto('mouse', 100.0, 'mouse de plastico', 1)
 
 #teste p/ pessoa fisica
-pfd = PessoaFisicaDao(PessoaFisica)
-print(pfd.create(pf))
-print(pfd.read_by_id('1'))
+#pfd = PessoaFisicaDao(PessoaFisica)
+#print(pfd.create(pf))
+#print(pfd.read_by_id('1'))
 #print(pfd.delete(pf))
 
 
 # ud = UsuarioDao()
-#pd = ProdutoDao()
+pd = ProdutoDao()
 #print(pd.create(p))
-#print(pd.read_by_id('1'))
+print(pd.read_by_id('1'))
 #print(ud.create(u) )
 #print(pjd.create(pj))
 # pjd = PessoaJuridicaDao()
