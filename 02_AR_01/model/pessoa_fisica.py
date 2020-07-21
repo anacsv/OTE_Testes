@@ -22,3 +22,7 @@ class PessoaFisica(Pessoa):
     @cpf.setter
     def cpf(self, cpf):
         self.__cpf = cpf
+
+    def __str__(self):
+        # interpolação de strings
+        return f'{self.id};{self.nome};{self.data};{self.rg};{self.cpf}'

@@ -1,24 +1,20 @@
 from model.pessoa_juridica import PessoaJuridica
+from dao.base_dao import BaseDao
 
-class PessoaJuridicaDao:
+class PessoaJuridicaDao(BaseDao):
     # --- CRUD 
-    def create(self, pessoa_juridica:PessoaJuridica):
+    def create(self, model:PessoaJuridica):
         #---- salvando a pessoa_juridica
         # logica de persistencia da pessoa juridica
-        with open('pessoa_juridica.txt', 'a') as file:
-            file.write(pessoa_juridica.nome+"\n")
+        
+        return super().create(model)
+        
 
-        return 'salvo'
-
-    def read(self, id):
+    def read_by_id(self, id):
          #---- listando uma pessoa_juridica
-        with open('pessoa_juridica.txt', 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                if line == id:
-                    return line
-
-        return 'nao encontrado'
+        
+        return super().read_by_id(id)
+        
 
     def read_all(self):
          #---- listando uma lista pessoa_juridica
@@ -32,6 +28,24 @@ class PessoaJuridicaDao:
          #---- alterando a pessoa_juridica
         return 'alterado'
 
-    def delete(self):
+    def delete(self, pessoa_juridica:PessoaJuridica):
          #---- deletando a pessoa_juridica
-        return 'excluído'
+
+        file = open('pessoa_juridica.txt', "r")
+
+        lines = file.readlines()
+        file.close()
+        
+        new_file = open('pessoa_juridica.txt', "w")
+        found = False
+        for line in lines:
+            if not line == pessoa_juridica.nome+'\n':
+                new_file.write(line)
+            else:    
+                 found = True
+        
+        new_file.close()       
+        if not found:
+           return 'Item não encontrado.' 
+        else:
+           return 'Item deletado.'
