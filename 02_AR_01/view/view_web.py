@@ -11,5 +11,8 @@ def inicio():
 def usuario():
     return "Usuario"
 
+@app.route('/produto')
+def produto():
+    return "Produto"
     
 app.run()
