@@ -11,6 +11,10 @@ def inicio():
 def usuario():
     return "Usuario"
 
+@app.route('/pessoa_juridica')
+def pessoa_juridica():
+    return "Pessoa Juridica"
+
 @app.route('/produto')
 def produto():
     return "Produto"
