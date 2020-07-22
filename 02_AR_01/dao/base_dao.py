@@ -12,22 +12,19 @@ class BaseDao:
 
     #read_by_id
     def __read_by_id(self, id, lines):
-        item = self.__find_by_id(id, lines)
-        if item:
-            return item
+        index = self.__find_by_id(id, lines)
+        if index:
+            item = lines[index]
+            return item.strip()
         return 'nao encontrado'
-
+    
+    #-- busca um elemento pelo id e retorna o elemento ou uma lista
     def __find_by_id(self, id, lines, model=None):
         for line in lines:
             line_id = line.split(';')[0]
             if line_id == str(id):
-                if model:
-                    index = lines.index(line)
-                    lines.remove(line)
-                    line = str(model)+"\n"
-                    lines.insert(index, line)
-                    return lines
-            return line.strip()
+                index = lines.index(line)
+                return index
 
     #read_all
     def __read_all(self, lines) -> list:
@@ -46,41 +43,28 @@ class BaseDao:
     #update
     def update(self, model):
         lines = self.__read_file()
-        lines = self.__find_by_id(model.id, lines, model)
         if lines:
-            with open(self.__caminho_arquivo,'w') as file :
-                file.writelines(lines)
-                return "alterado com sucesso"
+            index = self.__find_by_id(model.id, lines, model)
+            lines.pop(index)
+            line = str(model)+"\n"
+            lines.insert(index, line)
+            self.__rewrite_file(lines)
+            return "alterado com sucesso"
         return 'documento vazio'
-
-    # def update_m(self, pessoa_fisica: PessoaFisica):
-    #     with open('pessoa_fisica.txt', 'r+') as file:
-    #         names = file.readlines()
-    #         index = names.index(f'{pessoa_fisica.nome}\n')
-    #         names.remove(f'{pessoa_fisica.nome}\n')
-    #         names.insert(index, f'{name}\n')
-
-    #         file.seek(0)
-    #         file.truncate()
-    #         file.writelines(names)
-
-    #     return 'alterado'
-
-    # def update(self, pessoa_fisica:PessoaFisica):
-    #     with open('pessoa_fisica.txt', 'r+') as file:
-    #         file.readline()
-    #         for nome in file:
-    #             if nome == pessoa_fisica.nome:
-    #                 file.seek(0, 0)
-    #                 file.write(name_updated)
-    #                 file.truncate()
-    #                 return 'alterado'
-    #             else:
-    #                 return 'This name doesn´t exist!'
 
     #delete
     def delete(self, id):
-        pass
+        lines = self.__read_file()
+        if lines:
+            index = self.__find_by_id(id, lines)
+            lines.pop(index)
+            self.__rewrite_file(lines)
+            return "deletado com sucesso"
+        return 'documento vazio'
+
+    def __rewrite_file(self,lines):
+        with open(self.__caminho_arquivo,'w') as file :
+                file.writelines(lines)
 
     def __read_file(self):
         with open(self.__caminho_arquivo, 'r') as file:
