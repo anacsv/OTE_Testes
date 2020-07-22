@@ -13,7 +13,7 @@ def usuario():
 
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    return "pessoa_fisica"
+    rreturn render_template('pessoa_fisica.html')
 
 @app.route('/pessoa_juridica')
 def pessoa_juridica():
