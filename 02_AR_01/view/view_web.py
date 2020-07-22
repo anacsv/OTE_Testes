@@ -1,4 +1,12 @@
+import sys
+import os.path
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+)
 from flask import Flask, render_template
+
+from model.usuario import Usuario
+from dao.usuario_dao import UsuarioDao
 
 # -- criação de um objeto flask
 app = Flask(__name__)
@@ -9,11 +17,13 @@ def inicio():
 
 @app.route('/usuario')
 def usuario():
-    return "Usuario"
+    dao = UsuarioDao()
+    lista = dao.read()
+    return render_template("usuario.html", usuarios=lista )
 
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    rreturn render_template('pessoa_fisica.html')
+    return render_template('pessoa_fisica.html')
 
 @app.route('/pessoa_juridica')
 def pessoa_juridica():

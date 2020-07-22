@@ -22,7 +22,8 @@ pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
 
 # print(pfd.update('paulo', pf))
 # pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
-# u = Usuario('mdg@zuplae.com','123456',10)
+u = Usuario('mdg@olist.com','444444',1)
+
 p = Produto('mouse', 10.0, 'mouse do chines ', 2)
 
 #teste p/ pessoa fisica
@@ -33,12 +34,12 @@ p = Produto('mouse', 10.0, 'mouse do chines ', 2)
 
 # pfd = PessoaFisicaDao()
 # pjd = PessoaJuridicaDao(PessoaJuridica)  ---> ????
-# ud = UsuarioDao()
+ud = UsuarioDao()
 pd = ProdutoDao()
 
 #print(pd.create(p))
-print(pd.delete(2))
-print(pd.read())
+#print(pd.delete(2))
+#print(pd.read())
 #print(pd.read_by_id('1'))
 #pd.update(p)
 #print(pd.read())
@@ -51,7 +52,7 @@ print(pd.read())
 
 #print(pd.create(p))
 #print(pd.read_by_id('1'))
-#print(ud.create(u) )
+print(ud.create(u) )
 #print(pjd.create(pj))
 
 

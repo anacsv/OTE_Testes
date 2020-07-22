@@ -3,7 +3,7 @@ from model.usuario import Usuario
 from dao.base_dao import BaseDao
 
 class UsuarioDao(BaseDao):
-    def create(self, model:Usuario):
-        super().create(model)
+    def __init__(self):
+        super().__init__(Usuario)
 
     
