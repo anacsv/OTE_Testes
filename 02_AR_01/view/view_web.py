@@ -21,7 +21,7 @@ def pessoa_juridica():
 
 @app.route('/produto')
 def produto():
-    return "Produto"
+    return render_template('produto.html')
 
     
 app.run()
