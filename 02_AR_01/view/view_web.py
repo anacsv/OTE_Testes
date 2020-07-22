@@ -17,11 +17,10 @@ def pessoa_fisica():
 
 @app.route('/pessoa_juridica')
 def pessoa_juridica():
-    return "Pessoa Juridica"
+    return render_template('pessoa_juridica.html')
 
 @app.route('/produto')
 def produto():
     return "Produto"
-
     
 app.run()
