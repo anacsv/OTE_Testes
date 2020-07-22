@@ -12,17 +12,20 @@ class BaseDao:
 
     #read_by_id
     def __read_by_id(self, id, lines):
-        item = self.__find_by_id(self, id, lines)
+        item = self.__find_by_id(id, lines)
         if item:
             return item
         return 'nao encontrado'
 
     def __find_by_id(self, id, lines, model=None):
-        
         for line in lines:
-            if line.split(';')[0] == id:
+            line_id = line.split(';')[0]
+            if line_id == str(id):
                 if model:
+                    index = lines.index(line)
+                    lines.remove(line)
                     line = str(model)+"\n"
+                    lines.insert(index, line)
                     return lines
             return line.strip()
 
@@ -44,12 +47,11 @@ class BaseDao:
     def update(self, model):
         lines = self.__read_file()
         lines = self.__find_by_id(model.id, lines, model)
-        with open(self.__caminho_arquivo,'w') as file :
-            file.writelines(lines)
-        return "alterado com sucesso"
-
-    
-    
+        if lines:
+            with open(self.__caminho_arquivo,'w') as file :
+                file.writelines(lines)
+                return "alterado com sucesso"
+        return 'documento vazio'
 
     # def update_m(self, pessoa_fisica: PessoaFisica):
     #     with open('pessoa_fisica.txt', 'r+') as file:
@@ -83,4 +85,4 @@ class BaseDao:
     def __read_file(self):
         with open(self.__caminho_arquivo, 'r') as file:
             lines = file.readlines()
-            return lines 
+            return lines
