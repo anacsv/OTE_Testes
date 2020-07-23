@@ -1,13 +1,32 @@
-<html>
-    <head>
-
-    </head>
-    <body>
-        <h1>Produtos</h1>
-        <ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preco</th>
+                <th>Descricao</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for p in produtos %}
-                <li>{{ p }}</li>
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.preco }}</td>
+                <td>{{ p.descricao }}</td>
+                <td><a href="/produto/produto_edit?id={{p.id}}">Editar</a></td>
+            </tr>
             {% endfor %}
-        </ul>
-    </body>
+        </tbody>
+    </table>
+</body>
 </html>
