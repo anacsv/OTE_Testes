@@ -4,5 +4,10 @@
     </head>
     <body>
         <h1>Produtos</h1>
+        <ul>
+            {% for p in produtos %}
+                <li>{{ p }}</li>
+            {% endfor %}
+        </ul>
     </body>
 </html>
