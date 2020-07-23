@@ -7,6 +7,7 @@ from flask import Flask, render_template
 
 from model.usuario import Usuario
 from dao.usuario_dao import UsuarioDao
+from dao.pessoa_juridica_dao import PessoaJuridicaDao
 
 # -- criação de um objeto flask
 app = Flask(__name__)
@@ -27,7 +28,9 @@ def pessoa_fisica():
 
 @app.route('/pessoa_juridica')
 def pessoa_juridica():
-    return render_template('pessoa_juridica.html')
+    dao = PessoaJuridicaDao()
+    lista = dao.read()
+    return render_template('pessoa_juridica.html', pessoa_juridica=lista)
 
 @app.route('/produto')
 def produto():
