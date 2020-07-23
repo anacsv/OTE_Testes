@@ -7,10 +7,26 @@
 </head>
 <body>
     Usuarios
-    <ul>
-        {% for u in usuarios %}
-            <li>{{u}}</li>    
-        {% endfor %}
-    </ul>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>senha</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.senha}}</td>
+                <td><a href="/usuario/usuario_edit?id={{u.id}}">Editar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

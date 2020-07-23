@@ -13,7 +13,7 @@ class BaseDao:
     #read_by_id
     def __read_by_id(self, id, lines):
         index = self.__find_by_id(id, lines)
-        if index:
+        if index >= 0:
             item = lines[index]
             return item.strip()
         return 'nao encontrado'

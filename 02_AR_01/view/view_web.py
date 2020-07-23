@@ -3,7 +3,7 @@ import os.path
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 )
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 from model.usuario import Usuario
 from model.produto import Produto
@@ -21,12 +21,21 @@ app = Flask(__name__)
 def inicio():
     return render_template('index.html')
 
+#----------- usuarios 
 @app.route('/usuario')
 def usuario():
     dao = UsuarioDao()
     lista = dao.read()
     return render_template("usuario.html", usuarios=lista )
 
+@app.route('/usuario/usuario_edit')
+def usuario_edit():
+    # lendo parametros get(url)
+    id = request.args.get('id')
+    dao = UsuarioDao()
+    u = dao.read(id)
+    return render_template("usuario_edit.html", usuario = u ) 
+#----------- usuarios fim
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
     dao = PessoaFisicaDao()
