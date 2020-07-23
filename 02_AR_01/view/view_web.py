@@ -48,10 +48,19 @@ def pessoa_juridica():
     lista = dao.read()
     return render_template('pessoa_juridica.html', pessoa_juridica=lista)
 
+#----------- produtos
 @app.route('/produto')
 def produto():
     dao = ProdutoDao()
     lista = dao.read()
     return render_template('produto.html', produtos=lista)
+
+@app.route('/produto/produto_edit')
+def produto_edit():
+    id = request.args.get('id')
+    dao = ProdutoDao()
+    p = dao.read(id)
+    return render_template('produto_edit.html', produto = p)
+#----------- produtos fim
     
 app.run()
