@@ -1,8 +1,16 @@
-<html>
-    <head>
-
-    </head>
-    <body>
-        <h1>Bem vindo Pessoa Fisica</h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Pessoa Fisica
+    <ul>
+        {% for u in pessoa_fisica %}
+            <li>{{ pf }}</li>    
+        {% endfor %}
+    </ul>
+</body>
 </html>

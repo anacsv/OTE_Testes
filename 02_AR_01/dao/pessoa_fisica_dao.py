@@ -11,7 +11,12 @@ from dao.base_dao import BaseDao
 
 class PessoaFisicaDao(BaseDao):
     # --- CRUD 
-    def create(self, model:PessoaFisica):
+    
+        def __init__(self):
+            super().__init__(PessoaFisica)    
+    
+    
+"""     def create(self, model:PessoaFisica):
         #---- salvando a pessoa_fisica
         # logica de persistencia da pessoa fisica        
         super().create(model)
@@ -28,9 +33,6 @@ class PessoaFisicaDao(BaseDao):
             lista = list(file)
 
         return lista
-
-
-    
 
 
     def delete(self, pessoa_fisica: PessoaFisica):
@@ -52,4 +54,4 @@ class PessoaFisicaDao(BaseDao):
         if not found:
            return 'Item não encontrado.' 
         else:
-           return 'Item deletado.'
+           return 'Item deletado.' """

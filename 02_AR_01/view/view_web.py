@@ -8,6 +8,8 @@ from flask import Flask, render_template
 from model.usuario import Usuario
 from model.produto import Produto
 from dao.usuario_dao import UsuarioDao
+from model.pessoa_fisica import PessoaFisica
+from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.produto_dao import ProdutoDao
 from dao.pessoa_juridica_dao import PessoaJuridicaDao
 
@@ -27,7 +29,9 @@ def usuario():
 
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    return render_template('pessoa_fisica.html')
+    dao = PessoaFisicaDao()
+    lista = dao.read()
+    return render_template("pessoa_fisica.html", pessoa_fisica=lista)
 
 @app.route('/pessoa_juridica')
 def pessoa_juridica():
