@@ -39,6 +39,12 @@ def pessoa_juridica():
     lista = dao.read()
     return render_template('pessoa_juridica.html', pessoa_juridica=lista)
 
+@app.route('/pessoa_juridica/id')
+def pessoa_juridica_edit():
+    dao = PessoaJuridicaDao
+    pjd = dao.read(id)
+    return render_template('pessoa_juridica)_edit.html', pessoa_juridica = id)
+
 @app.route('/produto')
 def produto():
     dao = ProdutoDao()
