@@ -52,7 +52,7 @@ pd = ProdutoDao()
 
 #print(pd.create(p))
 #print(pd.read_by_id('1'))
-print(ud.create(u) )
+print(ud.read())
 #print(pjd.create(pj))
 
 
