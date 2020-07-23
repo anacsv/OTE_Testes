@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    {{produto.id}}
+    ID:
+    <input type="text" name="id" id="id" value="{{produto.id}}" readonly>
+    Nome:
+    <input type="text" name="nome" id="nome" value="{{produto.nome}}">
+    Preco:
+    <input type="number" name="preco" id="preco" value="{{produto.preco}}">
+    Descricao: 
+    <textarea type="text" name="descricao" id="descricao">{{produto.descricao}}</textarea>
 </body>
 </html>
