@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pessoa Jurídica - Editar</title>
 </head>
 <body>
-    Pessoa Juridica
-    <ul>
-        {% for u in pessoa_juridica_edit %}
-            <li>{{u}}</li>    
-        {% endfor %}
-    </ul>
+    id: <input type="text" name="id" id="id" value="{{pessoa_juridica.id}}">
+    nome: <input type="text" name="nome" id="nome" value="{{pessoa_juridica.nome}}">
+    data: <input type="text" name="data" id="data" value="{{pessoa_juridica.data}}">
+    data: <input type="text" name="cnpj" id="cnpj" value="{{pessoa_juridica.cnpj}}">
 </body>
 </html>
