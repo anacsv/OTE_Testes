@@ -7,7 +7,7 @@ class PessoaJuridicaDao(BaseDao):
     def __init__(self):
         super().__init__(PessoaJuridica)
 
-    def read(self, id = None, nome=None, data=None, cnpj=None):
+    def read(self, id = None):
         result = super().read(id)
         if type(result) == list:
             lista_pessoa_juridica = []
