@@ -34,4 +34,4 @@ class Produto(Base):
         self.__descricao = descricao
 
     def __str__(self):
-        return f'{self.__id};{self.__nome};{self.__preco};{self.__descricao}'
+        return f'{self.id};{self.nome};{self.preco};{self.descricao}'
