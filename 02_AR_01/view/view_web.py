@@ -12,6 +12,7 @@ from model.pessoa_fisica import PessoaFisica
 from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.produto_dao import ProdutoDao
 from dao.pessoa_juridica_dao import PessoaJuridicaDao
+from model.pessoa_juridica import PessoaJuridica
 
 
 # -- criação de um objeto flask
@@ -74,20 +75,52 @@ def pessoa_fisica():
 
 #----------- pessoa física fim
 
-#-----------pessoa juridica
+#------------------------------------------- pessoa juridica
+# ----- Listar
 @app.route('/pessoa_juridica')
 def pessoa_juridica():
+    msg_pjd = request.args.get('msg_pjd')
+    if not msg_pjd:
+        msg_pjd = ''
     dao = PessoaJuridicaDao()
     lista_pessoa_juridica = dao.read()
-    return render_template('pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica)
+    return render_template('pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica, msg_pjd=msg_pjd)
 
-@app.route('/pessoa_juridica/pessoa_juridica_edit')
-def pessoa_juridica_edit():
+# ----- Editar
+@app.route('/pessoa_juridica/read')
+def pessoa_juridica_read():
+    # lendo parametros get(url)
     id = request.args.get('id')
     dao = PessoaJuridicaDao()
     pjd = dao.read(id)
-    return render_template('pessoa_juridica_edit.html', pessoa_juridica=pjd)
-#-----------pessoa juridica fim
+    return render_template("pessoa_juridica_read.html", pessoa_juridica = pjd ) 
+
+
+@app.route('/pessoa_juridica/pessoa_juridica_edit')
+def pessoa_juridica_edit():
+    pjd = PessoaJuridica()
+    pjd.id = request.args.get('id')
+    pjd.nome = request.args.get('nome')
+    pjd.data = request.args.get('data')
+    pjd.cnpj = request.args.get('cnpj')
+    dao = PessoaJuridicaDao()
+    result = dao.update(pjd)
+    return render_template('pessoa_juridica_read.html', pessoa_juridica=pjd, msg_pjd = result)
+# ----- Fim Editar
+
+# ----- Criar
+# ----- Fim Criar
+
+# ----- Deletar 
+@app.route('/pessoa_juridica/delete')
+def pessoa_juridica_delete():
+    # lendo parametros get(url)
+    id = request.args.get('id')
+    dao = PessoaJuridicaDao()
+    result = dao.delete(id)
+    return redirect(f'/pessoa_juridica?msg={result}')
+
+#------------------------------------------- pessoa juridica fim
 
 #----------- produtos
 
