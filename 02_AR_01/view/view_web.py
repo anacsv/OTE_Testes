@@ -66,12 +66,44 @@ def delete():
     result = dao.delete(id)
     return redirect(f'/usuario?msg={result}')
 #------------------------------------------- usuarios fim
+
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
+    msg = request.args.get('msg')
+    if not msg:
+        msg = ''
     dao = PessoaFisicaDao()
     lista = dao.read()
-    return render_template("pessoa_fisica.html", pessoa_fisica=lista)
+    return render_template("pessoa_fisica.html", pessoa_fisica = lista, msg = msg)
 
+@app.route('/pessoa_fisica/read')
+def pessoa_fisicia_read():
+    #lendo parametros get(url)
+    id = request.args.get('id')
+    dao = PessoaFisicaDao()
+    pf = dao.read(id)
+    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf)
+
+@app.route('/pessoa_fisica/pessoa_fisica_read')
+def pessoa_fisica_edit():
+    #lendo parametros get(url)
+    pf = PessoaFisica
+    pf.id = request.args.get('id')
+    pf.nome = request.args.get('nome')
+    pf.data = request.args.get('data')
+    pf.rg = request.args.get('rg')
+    pf.cpf = request.args.get('cpf')
+    dao = PessoaFisicaDao()
+    result = dao.update(pf)
+    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg = result)
+
+@app.route('/pessoa_fisica/delete')
+def pessoa_fisica_delete():
+    #lendo parametros get(url)
+    id = request.args.get('id')
+    dao = PessoaFisicaDao()
+    result = dao.delete(id)
+    return redirect(f'/pessoa_fisica?msg={result}')
 #----------- pessoa física fim
 
 #-----------pessoa juridica

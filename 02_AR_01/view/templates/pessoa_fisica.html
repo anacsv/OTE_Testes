@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    Pessoa Fisica
+    <h1>Pessoa Fisica - Cadastrados </h1>
+    <h4>{{msg}}</h4>
     <table>
         <thead>
             <tr>
@@ -26,7 +27,8 @@
                 <td>{{pf.data}}</td>
                 <td>{{pf.rg}}</td>
                 <td>{{pf.cpf}}</td>
-                <td><a href="/pessoa_fisica/pessoa_fisica_edit?id={{u.id}}">Editar</a></td>
+                <td><a href="/pessoa_fisica/read?id={{pf.id}}">Editar</a></td>
+                <td><a href="/pessoa_fisica/delete?id={{pf.id}}">Deletar</a></td>
             </tr>
             {% endfor %}
         </tbody>

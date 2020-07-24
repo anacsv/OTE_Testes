@@ -1,15 +1,13 @@
 from .pessoa import Pessoa
 
 class PessoaFisica(Pessoa):
-    def __init__(self, nome='', data, rg='', cpf='', id=None):
-        self.__id = id
-        self.__nome = nome
-        self.__data = data
+    def __init__(self, nome:str = "", data:str = "", rg:str = "", cpf:str = "", id:int = 0):
         self.__rg = rg
         self.__cpf = cpf
+        super().__init__(nome, data, id)
 
 #inicio id
-    @property
+"""    
     def id(self):
         return self.__id
 
@@ -34,25 +32,25 @@ class PessoaFisica(Pessoa):
     @data.setter
     def data(self, data):
         self.__data = data
-
+"""
 #inicio RG
     @property
-    def rg(self):
+    def rg(self)->str:
         return self.__rg
 
     @rg.setter
-    def rg(self, rg):
+    def rg(self, rg:str):
         self.__rg = rg
 
 #inicio CPF
     @property
-    def cpf(self):
+    def cpf(self)->str:
         return self.__cpf
     
     @cpf.setter
-    def cpf(self, cpf):
+    def cpf(self, cpf:str):
         self.__cpf = cpf
 
+#interpolação de strings
     def __str__(self):
-        # interpolação de strings
         return f'{self.id};{self.nome};{self.data};{self.rg};{self.cpf}'
