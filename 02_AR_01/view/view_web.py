@@ -36,11 +36,22 @@ def usuario_edit():
     u = dao.read(id)
     return render_template("usuario_edit.html", usuario = u ) 
 #----------- usuarios fim
+
+#----------- Pessoa Fisica
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
     dao = PessoaFisicaDao()
     lista = dao.read()
     return render_template("pessoa_fisica.html", pessoa_fisica=lista)
+
+@app.route('/pessoa_fisica/pessoa_fisica_edit')   
+def pessoa_fisica_edit():
+    #lendo parametros get(url)
+    id = request.args.get('id')
+    dao = PessoaFisicaDao()
+    pf = dao.read(id)
+    return render_template("pessoa_fisica_edit.html", pessoa_fisica = pf)
+#----------- Pessoa fisica fim
 
 @app.route('/pessoa_juridica')
 def pessoa_juridica():

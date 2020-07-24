@@ -7,10 +7,29 @@
 </head>
 <body>
     Pessoa Fisica
-    <ul>
-        {% for u in pessoa_fisica %}
-            <li>{{ pf }}</li>    
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nome</th>
+                <th>data</th>
+                <th>rg</th>
+                <th>cpf</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pf in pessoa_fisica %}
+            <tr>
+                <td>{{pf.id}}</td>
+                <td>{{pf.nome}}</td>
+                <td>{{pf.data}}</td>
+                <td>{{pf.rg}}</td>
+                <td>{{pf.cpf}}</td>
+                <td><a href="/pessoa_fisica/pessoa_fisica_edit?id={{u.id}}">Editar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

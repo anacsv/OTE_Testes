@@ -14,12 +14,6 @@ from dao.pessoa_juridica_dao import PessoaJuridicaDao
 from dao.usuario_dao import UsuarioDao
 from dao.produto_dao import ProdutoDao
 
-pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
-
-#pfd = PessoaFisicaDao()
-#print(pfd.create(pf))
-
-
 # print(pfd.update('paulo', pf))
 # pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
 u = Usuario('mdg@olist.com','444444',1)
@@ -27,8 +21,9 @@ u = Usuario('mdg@olist.com','444444',1)
 p = Produto('mouse', 10.0, 'mouse do chines ', 2)
 
 #teste p/ pessoa fisica
-#pfd = PessoaFisicaDao(PessoaFisica)
-#print(pfd.create(pf))
+pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
+pfd = PessoaFisicaDao(PessoaFisica)
+print(pfd.create(pf))
 #print(pfd.read_by_id('1'))
 #print(pfd.delete(pf))
 
