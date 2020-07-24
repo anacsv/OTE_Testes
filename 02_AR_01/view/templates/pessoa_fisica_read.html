@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pessoa Fisica - Editar</title>
+</head>
+<body>
+    <h1>Edição de Pessoa Fisica</h1>
+    <h4>{{msg}}</h4>    
+    <form action="/usuario/usuario_edit">
+        id: <input type="text" name="id" id="id" value="{{usuario.id}}" readonly>
+        nome: <input type="nome" name="nome" id="nome" value="{{usuario.nome}}">
+        data: <input type="date" name="data" id="data" value="{{usuario.data}}">
+        rg: <input type="rg" name="rg" id="rg" value="{{usuario.rg}}">
+        cpf: <input type="cpf" name="cpf" id="cpf" value="{{usuario.cpf}}">        
+        <button type="submit">Salvar</button>
+    </form>
+    <br>
+    <a href="/pessoa_fisica">Voltar a listagem</a>
+
+
+    
+
+</body>
+</html>
