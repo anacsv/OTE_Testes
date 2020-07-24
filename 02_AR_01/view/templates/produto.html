@@ -6,7 +6,8 @@
     <title>Produtos</title>
 </head>
 <body>
-    <h1>Produtos</h1>
+    <h1>Produtos cadastrados</h1>
+    <h4>{{msg}}</h4>
     <table>
         <thead>
             <tr>
@@ -24,6 +25,7 @@
                 <td>{{ p.preco }}</td>
                 <td>{{ p.descricao }}</td>
                 <td><a href="/produto/read?id={{p.id}}">Editar</a></td>
+                <td><a href="/produto/delete?id={{p.id}}">Deletar</a></td>
             </tr>
             {% endfor %}
         </tbody>

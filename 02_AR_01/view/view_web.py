@@ -94,9 +94,12 @@ def pessoa_juridica_edit():
 # '-'*10 Listar
 @app.route('/produto')
 def produto():
+    msg = request.args.get('msg')
+    if not msg:
+        msg = ''
     dao = ProdutoDao()
     lista = dao.read()
-    return render_template('produto.html', produtos=lista)
+    return render_template('produto.html', produtos = lista, msg = msg)
 
 # '-'*10 Fim Listar
 
@@ -126,7 +129,12 @@ def produto_edit():
 # '-'*10 Fim Criar
 
 # '-'*10 Deletar
-
+@app.route('/produto/delete')
+def produto_delete():
+    id = request.args.get('id')
+    dao = ProdutoDao()
+    result = dao.delete(id)
+    return redirect(f'/produto?msg={result}')
 # '-'*10 Fim Deletar
 #------------------------------------------- produtos fim
     
