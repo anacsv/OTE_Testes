@@ -1,46 +1,17 @@
 from .pessoa import Pessoa
 
-class PessoaJuridica(): 
-    def __init__(self, nome='', data='', cnpj='', id=None):
-        self.__nome = nome
-        self.__data = data
+class PessoaJuridica(Pessoa): 
+    def __init__(self, nome:str = '', data:str = '', cnpj:str = '', id:int = 0):
         self.__cnpj = cnpj
-        self.__id = id
-    
-    #------__id
-    @property 
-    def id(self):
-        return self.__id
-
-    @id.setter
-    def id(self, id):
-        self.__id = id 
-    
-    #-------__nome
-    @property 
-    def nome(self):
-        return self.__nome
-
-    @nome.setter
-    def nome(self, nome):
-        self.__nome = nome
-    
-    #--------__data
-    @property 
-    def data(self):
-        return self.__data
-
-    @data.setter
-    def data(self, data):
-        self.__data = data
-    
+        super().__init__(nome, data, id)
+       
     #--------__cnpj
     @property 
-    def cnpj(self):
+    def cnpj(self)->str:
         return self.__cnpj
 
     @cnpj.setter
-    def cnpj(self, cnpj):
+    def cnpj(self, cnpj:str):
         self.__cnpj = cnpj    
 
     #-----------interpolação de strings
