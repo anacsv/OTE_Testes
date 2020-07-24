@@ -8,11 +8,12 @@
 <body>
     <h1>Edição de Pessoa Jurídica</h1>
     <h4>{{msg_pjd}}</h4>
-    <form action="/pessoa_juridica/pessoa_juridica_edit">
+    <form action="/pessoa_juridica/pessoa_juridica_edit" method="POST">
         id: <input type="text" name="id" id="id" value="{{pessoa_juridica.id}}">
         nome: <input type="text" name="nome" id="nome" value="{{pessoa_juridica.nome}}">
         data: <input type="text" name="data" id="data" value="{{pessoa_juridica.data}}">
-        data: <input type="text" name="cnpj" id="cnpj" value="{{pessoa_juridica.cnpj}}">
+        cnpj: <input type="text" name="cnpj" id="cnpj" value="{{pessoa_juridica.cnpj}}">
+        <button type="submit">Salvar</button>
     </form>
     <br>
     <a href="/pessoa_juridica">Voltar a Listagem</a>

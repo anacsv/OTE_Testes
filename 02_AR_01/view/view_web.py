@@ -107,20 +107,34 @@ def pessoa_juridica_read():
     return render_template("pessoa_juridica_read.html", pessoa_juridica = pjd ) 
 
 
-@app.route('/pessoa_juridica/pessoa_juridica_edit')
+@app.route('/pessoa_juridica/pessoa_juridica_edit', methods=["post"])
 def pessoa_juridica_edit():
     pjd = PessoaJuridica()
-    pjd.id = request.args.get('id')
-    pjd.nome = request.args.get('nome')
-    pjd.data = request.args.get('data')
-    pjd.cnpj = request.args.get('cnpj')
+    pjd.id = request.form.get('id')
+    pjd.nome = request.form.get('nome')
+    pjd.data = request.form.get('data')
+    pjd.cnpj = request.form.get('cnpj')
     dao = PessoaJuridicaDao()
     result = dao.update(pjd)
     return render_template('pessoa_juridica_read.html', pessoa_juridica=pjd, msg_pjd = result)
 # ----- Fim Editar
 
 # ----- Criar
+@app.route('/pessoa_juridica/create')
+def pessoa_juridica_create():
+    return render_template('pessoa_juridica_create.html')
+
 # ----- Fim Criar
+@app.route('/pessoa_juridica/salvar', methods =["post"])
+def pessoa_juridica_salvar():
+    pjd = PessoaJuridica()
+    pjd.id = request.form.get('id')
+    pjd.nome = request.form.get('nome')
+    pjd.data = request.form.get('data')
+    pjd.cnpj = request.form.get('cnpj')
+    dao = PessoaJuridicaDao()
+    result = dao.create(pjd)
+    return render_template('pessoa_juridica_create.html', msg_pjd = result)
 
 # ----- Deletar 
 @app.route('/pessoa_juridica/delete')
@@ -149,4 +163,4 @@ def produto_edit():
     return render_template('produto_edit.html', produto = p)
 #----------- produtos fim
     
-app.run(debug=True)
+app.run()
