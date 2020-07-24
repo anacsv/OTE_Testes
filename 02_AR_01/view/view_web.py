@@ -122,13 +122,13 @@ def produto_read():
     p = dao.read(id)
     return render_template('produto_read.html', produto = p)
 
-@app.route('/produto/edit')
+@app.route('/produto/edit', methods = ['post'])
 def produto_edit():
     p = Produto()
-    p.id = request.args.get('id')
-    p.nome = request.args.get('nome')
-    p.preco = request.args.get('preco')
-    p.descricao = request.args.get('descricao')
+    p.id = request.form.get('id')
+    p.nome = request.form.get('nome')
+    p.preco = request.form.get('preco')
+    p.descricao = request.form.get('descricao')
     dao = ProdutoDao()
     result = dao.update(p)
     return render_template('produto_read.html', produto = p, msg = result)
