@@ -1,0 +1,37 @@
+/* Cache Killer plugin chrome */
+/* 
+    Padrão de cores Olist
+    Blue: #0C29D0 
+    Green: #0DC78B 
+    Purple: #6A00A3 
+    Yellow: #EDAD00 
+    Red: #E64C2D
+ */
+html, body, header, div{
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+header{
+    background: #0c29d0;
+    height: 80px;
+    width: 100%;
+}
+body{
+    background-color: #f8f8f8;
+    color:#000;
+
+}
+#conteudo{
+    width: 90%;
+    height: 100px;
+    border:1px solid #f00;
+}
+a{
+    color:#0DC78B;
+    text-transform: uppercase;
+}
+h1{
+    color:#0c29d0;
+}

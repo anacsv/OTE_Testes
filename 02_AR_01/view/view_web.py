@@ -209,4 +209,4 @@ def produto_delete():
 # '-'*10 Fim Deletar
 #------------------------------------------- produtos fim
     
-app.run()
+app.run(debug=True)
