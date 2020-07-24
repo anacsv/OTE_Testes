@@ -2,34 +2,35 @@ from .base_model import Base
 
 class Produto(Base):
 
-    def __init__(self, nome = '', preco = 0.0, descricao = '', id:int = 0):
+    def __init__(self, nome: str = '', preco: float = 0.0,
+                descricao: str = '', id:int = 0):
         self.__nome = nome
         self.__preco = preco
         self.__descricao = descricao
         super().__init__(id)
 
     @property
-    def nome(self):
+    def nome(self) -> str:
         return self.__nome
 
     @nome.setter
-    def nome(self, nome):
+    def nome(self, nome: str) -> None:
         self.__nome = nome
 
     @property
-    def preco(self):
+    def preco(self) -> float:
         return self.__preco
 
     @preco.setter
-    def preco(self, preco):
+    def preco(self, preco: float) -> None:
         self.__preco = preco
 
     @property
-    def descricao(self):
+    def descricao(self) -> str:
         return self.__descricao
 
     @descricao.setter
-    def descricao(self, descricao):
+    def descricao(self, descricao: str) -> None:
         self.__descricao = descricao
 
     def __str__(self):
