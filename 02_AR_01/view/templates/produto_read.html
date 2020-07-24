@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edição de Produto</h1>
+    <h4>{{msg}}</h4>
+    <form action="/produto/edit" method="POST">
+        ID:
+        <input type="text" name="id" id="id" value="{{produto.id}}" readonly><br>
+        Nome:
+        <input type="text" name="nome" id="nome" value="{{produto.nome}}"><br>
+        Preco:
+        <input type="number" name="preco" id="preco" value="{{produto.preco}}"><br>
+        Descricao: 
+        <textarea type="text" name="descricao" id="descricao">{{produto.descricao}}</textarea><br>
+        <button type="submit">Salvar</button>
+    </form>
+    <br>
+    <a href="/produto">Voltar a listagem</a>
+</body>
+</html>
