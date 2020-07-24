@@ -22,3 +22,4 @@ class Pessoa(Base):
     @data.setter
     def data(self, data:str):
         self.__data = data
+
