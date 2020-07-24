@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Usuario</title>
+</head>
+<body>
+    <h1>Novo Usuário</h1>
+    <h4>{{msg}}</h4>
+    <form action="/usuario/salvar" method="POST">
+        id: <input type="text" name="id" id="id"> <br />
+        email: <input type="email" name="email" id="email" > <br />
+        senha: <input type="password" name="senha" id="senha"> <br />
+        <button type="submit">Salvar</button>
+        <button type="reset">Limpar</button>
+    </form>
+    <br>
+    <a href="/usuario"> Voltar para listagem</a>
+</body>
+</html>
