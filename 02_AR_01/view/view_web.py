@@ -136,7 +136,20 @@ def produto_edit():
 # '-'*10 Fim Editar
 
 # '-'*10 Criar
+@app.route('/produto/create')
+def produto_create():
+    return render_template('produto_create.html')
 
+@app.route('/produto/salvar', methods = ['post'])
+def produto_salvar():
+    p = Produto()
+    p.id = request.form.get('id')
+    p.nome = request.form.get('nome')
+    p.preco = request.form.get('preco')
+    p.descricao = request.form.get('descricao')
+    dao = ProdutoDao()
+    result = dao.create(p)
+    return render_template('produto_create.html', msg = result)
 # '-'*10 Fim Criar
 
 # '-'*10 Deletar
