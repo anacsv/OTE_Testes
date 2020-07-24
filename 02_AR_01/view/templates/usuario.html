@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    Usuarios
-    
+    <h1>Usuários cadastrados</h1>
+    <h4>{{msg}}</h4>
     <table>
         <thead>
             <tr>
@@ -23,7 +23,8 @@
                 <td>{{u.id}}</td>
                 <td>{{u.email}}</td>
                 <td>{{u.senha}}</td>
-                <td><a href="/usuario/usuario_edit?id={{u.id}}">Editar</a></td>
+                <td><a href="/usuario/read?id={{u.id}}">Editar</a></td>
+                <td><a href="/usuario/delete?id={{u.id}}">Deletar</a></td>
             </tr>
             {% endfor %}
         </tbody>

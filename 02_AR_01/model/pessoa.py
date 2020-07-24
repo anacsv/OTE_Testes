@@ -1,4 +1,4 @@
-from base_model import Base
+from .base_model import Base
 
 class Pessoa(Base):
 
@@ -22,3 +22,4 @@ class Pessoa(Base):
     @data.setter
     def data(self, data:str):
         self.__data = data
+

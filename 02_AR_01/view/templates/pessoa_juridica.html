@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pessoa Jurídica</title>
+    <title>Document</title>
 </head>
 <body>
     Pessoa Jurídica
-    <ul>
-        {% for u in pessoa_juridica %}
-            <li>{{u}}</li>    
-        {% endfor %}
-    </ul>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nome</th>
+                <th>data</th>
+                <th>cnpj</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pjd in pessoas_juridicas %}
+            <tr>
+                <td>{{pjd.id}}</td>
+                <td>{{pjd.nome}}</td>
+                <td>{{pjd.data}}</td>
+                <td>{{pjd.cnpj}}</td>
+                <td><a href="/pessoa_juridica/pessoa_juridica_edit?id={{pjd.id}}">Editar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

@@ -3,7 +3,7 @@ import os.path
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 )
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 from model.usuario import Usuario
 from model.produto import Produto
@@ -21,43 +21,75 @@ app = Flask(__name__)
 def inicio():
     return render_template('index.html')
 
-#----------- usuarios 
+#------------------------------------------- usuarios 
+# ----- Listar
 @app.route('/usuario')
 def usuario():
+    msg = request.args.get('msg')
+    if not msg:
+        msg = ''
     dao = UsuarioDao()
     lista = dao.read()
-    return render_template("usuario.html", usuarios=lista )
+    return render_template("usuario.html", usuarios=lista, msg=msg )
 
-@app.route('/usuario/usuario_edit')
-def usuario_edit():
+# ----- Editar
+@app.route('/usuario/read')
+def read():
     # lendo parametros get(url)
     id = request.args.get('id')
     dao = UsuarioDao()
     u = dao.read(id)
-    return render_template("usuario_edit.html", usuario = u ) 
-#----------- usuarios fim
+    return render_template("usuario_read.html", usuario = u ) 
 
-#----------- Pessoa Fisica
+@app.route('/usuario/usuario_edit')
+def usuario_edit():
+    # lendo parametros get(url)
+    u = Usuario()
+    u.id = request.args.get('id')
+    u.email = request.args.get('email')
+    u.senha = request.args.get('senha')
+    dao = UsuarioDao()
+    result = dao.update(u)
+    return render_template("usuario_read.html", usuario = u,  msg = result ) 
+
+# ----- Fim Editar
+
+# ----- Criar
+# ----- Fim Criar
+
+# ----- Deletar 
+@app.route('/usuario/delete')
+def delete():
+    # lendo parametros get(url)
+    id = request.args.get('id')
+    dao = UsuarioDao()
+    result = dao.delete(id)
+    return redirect(f'/usuario?msg={result}')
+#------------------------------------------- usuarios fim
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
     dao = PessoaFisicaDao()
     lista = dao.read()
     return render_template("pessoa_fisica.html", pessoa_fisica=lista)
 
-@app.route('/pessoa_fisica/pessoa_fisica_edit')   
-def pessoa_fisica_edit():
-    #lendo parametros get(url)
-    id = request.args.get('id')
-    dao = PessoaFisicaDao()
-    pf = dao.read(id)
-    return render_template("pessoa_fisica_edit.html", pessoa_fisica = pf)
-#----------- Pessoa fisica fim
+#----------- pessoa física fim
 
+#-----------pessoa juridica
 @app.route('/pessoa_juridica')
 def pessoa_juridica():
     dao = PessoaJuridicaDao()
-    lista = dao.read()
-    return render_template('pessoa_juridica.html', pessoa_juridica=lista)
+    lista_pessoa_juridica = dao.read()
+    return render_template('pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica)
+
+@app.route('/pessoa_juridica/pessoa_juridica_edit')
+def pessoa_juridica_edit():
+    id = request.args.get('id')
+    dao = PessoaJuridicaDao()
+    pjd = dao.read(id)
+    return render_template('pessoa_juridica_edit.html', pessoa_juridica=pjd)
+#-----------pessoa juridica fim
+
+#----------- produtos
 
 @app.route('/produto')
 def produto():
