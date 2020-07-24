@@ -1,10 +1,12 @@
-class Produto:
+from base_model import Base
 
-    def __init__(self, nome = '', preco = 0.0, descricao = '', id = None):
-        self.__id = id
+class Produto(Base):
+
+    def __init__(self, nome = '', preco = 0.0, descricao = '', id:int = 0):
         self.__nome = nome
         self.__preco = preco
         self.__descricao = descricao
+        super().__init__(id)
 
     @property
     def nome(self):
@@ -29,14 +31,6 @@ class Produto:
     @descricao.setter
     def descricao(self, descricao):
         self.__descricao = descricao
-
-    @property
-    def id(self):
-        return self.__id
-
-    @id.setter
-    def id(self, id):
-        self.__id = id
 
     def __str__(self):
         return f'{self.__id};{self.__nome};{self.__preco};{self.__descricao}'
