@@ -6,13 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    ID:
-    <input type="text" name="id" id="id" value="{{produto.id}}" readonly>
-    Nome:
-    <input type="text" name="nome" id="nome" value="{{produto.nome}}">
-    Preco:
-    <input type="number" name="preco" id="preco" value="{{produto.preco}}">
-    Descricao: 
-    <textarea type="text" name="descricao" id="descricao">{{produto.descricao}}</textarea>
+    <h1>Edição de Produto</h1>
+    <h4>{{msg}}</h4>
+    <form action="/produto/edit">
+        ID:
+        <input type="text" name="id" id="id" value="{{produto.id}}" readonly>
+        Nome:
+        <input type="text" name="nome" id="nome" value="{{produto.nome}}">
+        Preco:
+        <input type="number" name="preco" id="preco" value="{{produto.preco}}">
+        Descricao: 
+        <textarea type="text" name="descricao" id="descricao">{{produto.descricao}}</textarea>
+        <button type="submit">Salvar</button>
+    </form>
+    <br>
+    <a href="/produto">Voltar a listagem</a>
 </body>
 </html>

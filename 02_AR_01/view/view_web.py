@@ -108,6 +108,17 @@ def produto_read():
     p = dao.read(id)
     return render_template('produto_read.html', produto = p)
 
+@app.route('/produto/edit')
+def produto_edit():
+    p = Produto()
+    p.id = request.args.get('id')
+    p.nome = request.args.get('nome')
+    p.preco = request.args.get('preco')
+    p.descricao = request.args.get('descricao')
+    dao = ProdutoDao()
+    result = dao.update(p)
+    return render_template('produto_read.html', produto = p, msg = result)
+
 # '-'*10 Fim Editar
 
 # '-'*10 Criar

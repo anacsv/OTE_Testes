@@ -1,2 +1,2 @@
-1;mouse plastico;10.0;mouse de plastico
-2;mouse chines;100.0;mouse do chines
+1;mouse plastico;100.0;mouse de plastico
+2;mouse china;100.0;mouse gamer do chines
