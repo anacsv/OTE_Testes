@@ -89,20 +89,34 @@ def pessoa_juridica_edit():
     return render_template('pessoa_juridica_edit.html', pessoa_juridica=pjd)
 #-----------pessoa juridica fim
 
-#----------- produtos
+#------------------------------------------- produtos
 
+# '-'*10 Listar
 @app.route('/produto')
 def produto():
     dao = ProdutoDao()
     lista = dao.read()
     return render_template('produto.html', produtos=lista)
 
-@app.route('/produto/produto_edit')
-def produto_edit():
+# '-'*10 Fim Listar
+
+# '-'*10 Editar
+@app.route('/produto/read')
+def produto_read():
     id = request.args.get('id')
     dao = ProdutoDao()
     p = dao.read(id)
-    return render_template('produto_edit.html', produto = p)
-#----------- produtos fim
+    return render_template('produto_read.html', produto = p)
+
+# '-'*10 Fim Editar
+
+# '-'*10 Criar
+
+# '-'*10 Fim Criar
+
+# '-'*10 Deletar
+
+# '-'*10 Fim Deletar
+#------------------------------------------- produtos fim
     
 app.run()
