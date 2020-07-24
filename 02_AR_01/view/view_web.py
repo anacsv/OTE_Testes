@@ -41,13 +41,13 @@ def read():
     u = dao.read(id)
     return render_template("usuario_read.html", usuario = u ) 
 
-@app.route('/usuario/usuario_edit')
+@app.route('/usuario/usuario_edit', methods=['post'])
 def usuario_edit():
     # lendo parametros get(url)
     u = Usuario()
-    u.id = request.args.get('id')
-    u.email = request.args.get('email')
-    u.senha = request.args.get('senha')
+    u.id = request.form.get('id')
+    u.email = request.form.get('email')
+    u.senha = request.form.get('senha')
     dao = UsuarioDao()
     result = dao.update(u)
     return render_template("usuario_read.html", usuario = u,  msg = result ) 
@@ -55,8 +55,19 @@ def usuario_edit():
 # ----- Fim Editar
 
 # ----- Criar
+@app.route('/usuario/create')
+def usuario_create():
+    return render_template("usuario_create.html")
 # ----- Fim Criar
-
+@app.route('/usuario/salvar', methods=['post'])
+def usuario_salvar():
+    u = Usuario()
+    u.id = request.form.get('id')
+    u.email = request.form.get('email')
+    u.senha = request.form.get('senha')
+    dao = UsuarioDao()
+    result = dao.create(u)
+    return render_template("usuario_create.html", msg = result)
 # ----- Deletar 
 @app.route('/usuario/delete')
 def delete():
@@ -96,7 +107,7 @@ def produto():
     dao = ProdutoDao()
     lista = dao.read()
     return render_template('produto.html', produtos=lista)
-
+  
 @app.route('/produto/produto_edit')
 def produto_edit():
     id = request.args.get('id')
@@ -105,4 +116,4 @@ def produto_edit():
     return render_template('produto_edit.html', produto = p)
 #----------- produtos fim
     
-app.run()
+app.run(debug=True)
