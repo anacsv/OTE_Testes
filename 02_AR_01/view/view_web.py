@@ -41,7 +41,7 @@ def read():
     u = dao.read(id)
     return render_template("usuario_read.html", usuario = u ) 
 
-@app.route('/usuario/usuario_edit', methods=['post'])
+@app.route('/usuario/usuario_edit', methods=["post"])
 def usuario_edit():
     # lendo parametros get(url)
     u = Usuario()
@@ -88,7 +88,7 @@ def pessoa_fisica():
     return render_template("pessoa_fisica.html", pessoa_fisica = lista, msg = msg)
 
 @app.route('/pessoa_fisica/read')
-def pessoa_fisicia_read():
+def pessoa_fisica_read():
     #lendo parametros get(url)
     id = request.args.get('id')
     dao = PessoaFisicaDao()
@@ -98,7 +98,7 @@ def pessoa_fisicia_read():
 @app.route('/pessoa_fisica/pessoa_fisica_read')
 def pessoa_fisica_edit():
     #lendo parametros get(url)
-    pf = PessoaFisica
+    pf = PessoaFisica()
     pf.id = request.args.get('id')
     pf.nome = request.args.get('nome')
     pf.data = request.args.get('data')
@@ -106,7 +106,7 @@ def pessoa_fisica_edit():
     pf.cpf = request.args.get('cpf')
     dao = PessoaFisicaDao()
     result = dao.update(pf)
-    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg = result)
+    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg_pf = result)
 
 @app.route('/pessoa_fisica/delete')
 def pessoa_fisica_delete():
@@ -115,6 +115,24 @@ def pessoa_fisica_delete():
     dao = PessoaFisicaDao()
     result = dao.delete(id)
     return redirect(f'/pessoa_fisica?msg={result}')
+
+@app.route('pessoa_fisica/create')
+def pessoa_fisica_create():
+    return render_template('pessoa_fisica_create.htlm')
+
+@app.route('/pessoa_fisica/salvar', methods = ["post"])
+def pessoa_fisica_save():
+    pf = PessoaFisica()
+    pf.id = request.args.get('id')
+    pf.nome = request.args.get('nome')
+    pf.data = request.args.get('data')
+    pf.rg = request.args.get('rg')
+    pf.cpf = request.args.get('cpf')
+    dao = PessoaFisicaDao()
+    result = dao.create(pf)
+    return render_template('pessoa_fisica_create.html', msg_pf = result)
+
+
 #----------- pessoa física fim
 
 #-----------pessoa juridica

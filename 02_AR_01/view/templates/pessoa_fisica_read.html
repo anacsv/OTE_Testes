@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Edição de Pessoa Fisica</h1>
-    <h4>{{msg}}</h4>    
-    <form action="/usuario/usuario_edit">
+    <h4>{{msg_pf}}</h4>    
+    <form action="/usuario/usuario_edit" method="POST">
         id: <input type="text" name="id" id="id" value="{{usuario.id}}" readonly>
         nome: <input type="nome" name="nome" id="nome" value="{{usuario.nome}}">
         data: <input type="date" name="data" id="data" value="{{usuario.data}}">
