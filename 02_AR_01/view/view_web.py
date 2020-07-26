@@ -116,7 +116,7 @@ def pessoa_fisica_delete():
     result = dao.delete(id)
     return redirect(f'/pessoa_fisica?msg={result}')
 
-@app.route('pessoa_fisica/create')
+@app.route('/pessoa_fisica/create')
 def pessoa_fisica_create():
     return render_template('pessoa_fisica_create.htlm')
 

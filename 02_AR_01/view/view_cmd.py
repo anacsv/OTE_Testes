@@ -24,7 +24,7 @@ p = Produto('mouse', 10.0, 'mouse do chines ', 2)
 pf = PessoaFisica(1,'maykon','05-11-86','44444444','55555555555')
 pfd = PessoaFisicaDao()
 #print(pfd.create(pf))
-print(pfd.read_by_id())
+#print(pfd.read_by_id())
 #print(pfd.delete(pf))
 
 # pfd = PessoaFisicaDao()
