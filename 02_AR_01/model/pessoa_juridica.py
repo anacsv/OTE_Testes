@@ -16,4 +16,4 @@ class PessoaJuridica(Pessoa):
 
     #-----------interpolação de strings
     def __str__(self):
-        return f'{self.__id};{self.__nome};{self.__data};{self.__cnpj}'
+        return f'{self.id};{self.nome};{self.data};{self.cnpj}'

@@ -6,8 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    Pessoa Jurídica
-    
+    <h1>Pessoas Jurídicas Cadastradas</h1>
+    <h4>{{msg_pjd}}</h4>
+    <br>
+    <a href="/pessoa_juridica/create">Novo</a> 
     <table>
         <thead>
             <tr>
@@ -25,7 +27,8 @@
                 <td>{{pjd.nome}}</td>
                 <td>{{pjd.data}}</td>
                 <td>{{pjd.cnpj}}</td>
-                <td><a href="/pessoa_juridica/pessoa_juridica_edit?id={{pjd.id}}">Editar</a></td>
+                <td><a href="/pessoa_juridica/read?id={{pjd.id}}">Editar</a></td>
+                <td><a href="/pessoa_juridica/delete?id={{pjd.id}}">Deletar</a></td>
             </tr>
             {% endfor %}
         </tbody>
