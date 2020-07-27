@@ -3,19 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <title>Novo Usuario</title>
 </head>
 <body>
-    <h1>Novo Usuário</h1>
-    <h4>{{msg}}</h4>
-    <form action="/usuario/salvar" method="POST">
-        id: <input type="text" name="id" id="id"> <br />
-        email: <input type="email" name="email" id="email" > <br />
-        senha: <input type="password" name="senha" id="senha"> <br />
-        <button type="submit">Salvar</button>
-        <button type="reset">Limpar</button>
-    </form>
-    <br>
-    <a href="/usuario"> Voltar para listagem</a>
+    <header>
+        <div id='logo'>
+            <a href="/">
+                <h2>Olist</h2>
+            </a>
+        </div>
+        <div id='menu'>
+            <ul>
+                <li><a href="/usuario">Usuários</a></li>
+                <li><a href="/pessoa_fisica">Pessoa Física</a></li>
+                <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
+                <li><a href="/produto">Produto</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="conteudo">
+        <h3>Novo Usuário</h3>
+        <div class="msg">
+            <h6>{{msg}}</h6>
+        </div>
+        <form action="/usuario/salvar" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id">
+            <label for="email">email:</label><input type="email" name="email" id="email">
+            <label for="senha">senha:</label><input type="password" name="senha" id="senha">
+            <div class='buttons'>
+                <button type="submit" class="salvar">Salvar</button>
+                <button type="reset" class="limpar">Limpar</button>
+            </div>
+        </form>
+        <div class="btn-listagem">
+            <a href="/usuario"> Voltar para listagem</a>
+        </div>
+    </div>
 </body>
 </html>
