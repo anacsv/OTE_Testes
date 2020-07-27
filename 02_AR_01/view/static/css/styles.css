@@ -141,7 +141,7 @@ form{
     border: 1px solid #1fe6a8;
     padding: 1em 2em;
 }
-form input{
+form input, form textarea{
     display: inline-block;
     border: 1px solid #1fe6a8;
     width: 40%;
