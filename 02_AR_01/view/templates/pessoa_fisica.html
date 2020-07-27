@@ -7,11 +7,30 @@
     <title>Pessoa_fisica_inicio</title>
 </head>
 <body>
-    <h1>Pessoa Fisica - Cadastrados </h1>
-    <h4>{{msg_pf}}</h4>
-    <br> 
-    <a href="/pessoa_fisica/create">Novo</a>
-    <table>
+    <header>
+        <div id='logo'>
+            <a href="/">
+                <h2>Olist</h2>
+            </a>
+        </div>  
+        <div id='menu'>
+            <ul>
+                <li><a href="/usuario">Usuários</a></li>
+                <li><a href="/pessoa_fisica">Pessoa Física</a></li>
+                <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
+                <li><a href="/produto">Produto</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id='conteudo'>
+    <h3>Pessoa Fisica - Cadastrados </h3>
+    <div class="msg">
+        <h6>{{msg_pf}}</h6>
+    </div>
+    <div id='novo'>
+       <a href="/pessoa_fisica/create">Novo</a>
+    </div>
+        <table>
         <thead>
             <tr>
                 <th>id</th>
@@ -22,19 +41,22 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+            <tbody>
             {% for pf in pessoa_fisica %}
-            <tr>
-                <td>{{pf.id}}</td>
-                <td>{{pf.nome}}</td>
-                <td>{{pf.data}}</td>
-                <td>{{pf.rg}}</td>
-                <td>{{pf.cpf}}</td>
-                <td><a href="/pessoa_fisica/read?id={{pf.id}}">Editar</a></td>
-                <td><a href="/pessoa_fisica/delete?id={{pf.id}}">Deletar</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                <tr>
+                    <td>{{pf.id}}</td>
+                    <td>{{pf.nome}}</td>
+                    <td>{{pf.data}}</td>
+                    <td>{{pf.rg}}</td>
+                    <td>{{pf.cpf}}</td>
+                    <td>
+                        <a href="/pessoa_fisica/read?id={{pf.id}}">Editar</a> |
+                        <a href="/pessoa_fisica/delete?id={{pf.id}}">Deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
