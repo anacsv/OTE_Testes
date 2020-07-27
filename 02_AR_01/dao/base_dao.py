@@ -1,5 +1,5 @@
+class BaseDao:
 
-class BaseDao:  
     def __init__(self, classe):
         self.__caminho_arquivo = f'02_AR_01/dao/db/{classe.__name__}.txt'
 
@@ -7,7 +7,7 @@ class BaseDao:
     #create
     def create(self, model):
         fields_missing = self.__validate_fields(model)
-        if fields_missing:
+        if len(fields_missing) > 0:
             return fields_missing
         with open(self.__caminho_arquivo, 'a') as file:
             file.write(str(model)+"\n")        
