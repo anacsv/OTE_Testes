@@ -142,12 +142,14 @@ form{
     padding: 1em 2em;
 }
 form input, form textarea{
+    vertical-align: top;
     display: inline-block;
     border: 1px solid #1fe6a8;
     width: 40%;
     font-size: 12px;
 }
 form label{
+    vertical-align: top;
     text-align: right;
     display: inline-block;
     width: 35%;
