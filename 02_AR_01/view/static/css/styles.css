@@ -127,12 +127,24 @@ header #menu ul li :hover a{
     cursor: pointer;
     border:1px solid #fff;
 }
+
+/* ******************* Messages ********************* */
+
 .msg {
     width: 50%;
     margin: 1em auto;
     text-align:center;
+}
+.msg.success{
     color:#0DC78B;
 }
+.msg.alert{
+    color:#EDAD00;
+}
+.msg.error{
+    color:#E64C2D;
+}
+
 /* ******************* Form ********************* */
 
 form{
