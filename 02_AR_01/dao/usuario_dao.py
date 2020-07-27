@@ -1,4 +1,3 @@
-
 from model.usuario import Usuario
 from dao.base_dao import BaseDao
 

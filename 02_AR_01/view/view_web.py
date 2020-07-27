@@ -42,7 +42,7 @@ def read():
     u = dao.read(id)
     return render_template("usuario_read.html", usuario = u ) 
 
-@app.route('/usuario/usuario_edit', methods=['post'])
+@app.route('/usuario/usuario_edit', methods=["post"])
 def usuario_edit():
     # lendo parametros get(url)
     u = Usuario()
@@ -78,11 +78,61 @@ def delete():
     result = dao.delete(id)
     return redirect(f'/usuario?msg={result}')
 #------------------------------------------- usuarios fim
+
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    dao = PessoaFisicaDao()
-    lista = dao.read()
-    return render_template("pessoa_fisica.html", pessoa_fisica=lista)
+    msg_pf = request.args.get('msg_pf')
+    if not msg_pf:
+        msg_pf = ''
+    dao_pf = PessoaFisicaDao()
+    lista_pf = dao_pf.read()
+    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg_pf = msg_pf)
+
+@app.route('/pessoa_fisica/read')
+def pessoa_fisica_read():
+    #lendo parametros get(url)
+    id = request.args.get('id')
+    dao_pf = PessoaFisicaDao()
+    pf = dao_pf.read(id)
+    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf)
+
+@app.route('/pessoa_fisica/pessoa_fisica_edit', methods = ["POST"])
+def pessoa_fisica_edit():
+    #lendo parametros get(url)
+    pf = PessoaFisica()
+    pf.id = request.form.get('id')
+    pf.nome = request.form.get('nome')
+    pf.data = request.form.get('data')
+    pf.rg = request.form.get('rg')
+    pf.cpf = request.form.get('cpf')
+    dao_pf = PessoaFisicaDao()
+    result_pf = dao_pf.update(pf)
+    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg_pf = result_pf)
+
+@app.route('/pessoa_fisica/delete')
+def pessoa_fisica_delete():
+    #lendo parametros get(url)
+    id = request.args.get('id')
+    dao_pf = PessoaFisicaDao()
+    result_pf = dao_pf.delete(id)
+    return redirect(f'/pessoa_fisica?msg_pf={result_pf}')
+
+@app.route('/pessoa_fisica/create')
+def pessoa_fisica_create():
+    return render_template('pessoa_fisica_create.html')
+
+@app.route('/pessoa_fisica/salvar', methods = ["POST"])
+def pessoa_fisica_save():
+    pf = PessoaFisica()
+    pf.id = request.form.get('id')
+    pf.nome = request.form.get('nome')
+    pf.data = request.form.get('data')
+    pf.rg = request.form.get('rg')
+    pf.cpf = request.form.get('cpf')
+    dao_pf = PessoaFisicaDao()
+    result_pf = dao_pf.create(pf)
+    return render_template('pessoa_fisica_create.html', msg_pf = result_pf)
+
 
 #----------- pessoa física fim
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Usuario Pessoa Fisica</title>
+</head>
+<body>
+    <h1>Pessoa Fisica - Novo Usuário</h1>
+    <h4>{{msg_pf}}</h4>
+    <form action="/pessoa_fisica/salvar" method="POST">
+        id: <input type="text" name="id" id="id"> <br />
+        nome: <input type="text" name="nome" id="nome" > <br />
+        data: <input type="text" name="data" id="data"> <br />
+        rg: <input type="text" name="rg" id="rg"> <br />
+        cpf: <input type="text" name="cpf" id="cpf"> <br />
+        <button type="submit">Salvar</button>
+        <button type="reset">Limpar</button>
+    </form>
+    <br>
+    <a href="/pessoa_fisica"> Voltar para listagem</a>
+</body>
+</html>
