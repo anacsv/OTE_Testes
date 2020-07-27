@@ -22,4 +22,5 @@ class UsuarioDao(BaseDao):
         usuario.email = obj_array[1]
         usuario.senha = obj_array[2]
         return usuario
+
     

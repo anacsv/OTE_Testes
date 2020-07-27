@@ -9,3 +9,21 @@ Cada um criar uma classe em seu branch separado
 3 - Criar classe pessoa juridica
     - Inscrição estadual
     - Cnpj
+
+
+27/07 - Mensagens
+Ana
+    1-Criacao message_type_dao
+    2-Teste de dao na view_cmd
+    3-Criacao do CRUD web, criando a logica e os endpoints(rotas view_web)
+    4-Templates (html com css)
+Paulo
+    1-Criacao message_dao
+    2-Teste de dao na view_cmd
+    3-Criacao do CRUD web, criando a logica e os endpoints(rotas view_web)
+    4-Templates (html com css)
+Matheus
+    1-Validaçao dos campos obrigatórios de forma genérica no base_dao
+    2-Utilizar as mensagens para retornar erro ou sucesso
+    3-implementar no produto a visualizaçao da mensagem
+    4-Estilizar a mensagem de acordo com o tipo (erro/sucesso/alerta) (class css)
