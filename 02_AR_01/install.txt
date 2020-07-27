@@ -1,0 +1,12 @@
+---------------------------- Mysql conector
+no terminal do mac:
+1-entrar como admin: sudo su 
+2-digitar senha de admin do sistema
+3-digitar comando de instalação do conector mysql
+    pip3 install mysql-connector-python
+4-dados de acesso a base:
+    hostname = 'mysql.padawans.dev' 
+    username = 'padawans' 
+    password = 'OTE2020' 
+    database = 'padawans' 
+--------------------------- Mysql conector
