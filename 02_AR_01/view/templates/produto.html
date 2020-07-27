@@ -3,33 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <title>Produtos</title>
 </head>
 <body>
-    <h1>Produtos cadastrados</h1>
-    <h4>{{msg}}</h4>
-    <a href="/produto/create">Novo</a> 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Preco</th>
-                <th>Descricao</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for p in produtos %}
-            <tr>
-                <td>{{ p.id }}</td>
-                <td>{{ p.nome }}</td>
-                <td>{{ p.preco }}</td>
-                <td>{{ p.descricao }}</td>
-                <td><a href="/produto/read?id={{p.id}}">Editar</a></td>
-                <td><a href="/produto/delete?id={{p.id}}">Deletar</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <header>
+        <div id='logo'>
+            <a href="/">
+                <h2>Olist</h2>
+            </a>
+        </div>
+        <div id='menu'>
+            <ul>
+                <li><a href="/usuario">Usuários</a></li>
+                <li><a href="/pessoa_fisica">Pessoa Física</a></li>
+                <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
+                <li><a href="/produto">Produto</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="conteudo">
+        <h3>Produtos cadastrados</h3>
+        <div class="msg">
+            <h6>{{msg}}</h6>
+        </div>
+        <div id="novo">
+            <a href="/produto/create">Novo</a> 
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preco</th>
+                    <th>Descricao</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in produtos %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nome }}</td>
+                    <td>{{ p.preco }}</td>
+                    <td>{{ p.descricao }}</td>
+                    <td>
+                        <a href="/produto/read?id={{p.id}}">Editar</a> |
+                        <a href="/produto/delete?id={{p.id}}">Deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
