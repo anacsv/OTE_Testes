@@ -8,12 +8,12 @@
 <body>
     <h1>Edição de Pessoa Fisica</h1>
     <h4>{{msg_pf}}</h4>    
-    <form action="/usuario/usuario_edit" method="POST">
-        id: <input type="text" name="id" id="id" value="{{usuario.id}}" readonly>
-        nome: <input type="nome" name="nome" id="nome" value="{{usuario.nome}}">
-        data: <input type="date" name="data" id="data" value="{{usuario.data}}">
-        rg: <input type="rg" name="rg" id="rg" value="{{usuario.rg}}">
-        cpf: <input type="cpf" name="cpf" id="cpf" value="{{usuario.cpf}}">        
+    <form action="/pessoa_fisica/pessoa_fisica_edit" method="POST">
+        id: <input type="text" name="id" id="id" value="{{pessoa_fisica.id}}" readonly>
+        nome: <input type="text" name="nome" id="nome" value="{{pessoa_fisica.nome}}">
+        data: <input type="text" name="data" id="data" value="{{pessoa_fisica.data}}">
+        rg: <input type="text" name="rg" id="rg" value="{{pessoa_fisica.rg}}">
+        cpf: <input type="text" name="cpf" id="cpf" value="{{pessoa_fisica.cpf}}">        
         <button type="submit">Salvar</button>
     </form>
     <br>

@@ -81,57 +81,57 @@ def delete():
 
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    msg = request.args.get('msg')
-    if not msg:
-        msg = ''
-    dao = PessoaFisicaDao()
-    lista = dao.read()
-    return render_template("pessoa_fisica.html", pessoa_fisica = lista, msg = msg)
+    msg_pf = request.args.get('msg_pf')
+    if not msg_pf:
+        msg_pf = ''
+    dao_pf = PessoaFisicaDao()
+    lista_pf = dao_pf.read()
+    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg_pf = msg_pf)
 
 @app.route('/pessoa_fisica/read')
 def pessoa_fisica_read():
     #lendo parametros get(url)
     id = request.args.get('id')
-    dao = PessoaFisicaDao()
-    pf = dao.read(id)
+    dao_pf = PessoaFisicaDao()
+    pf = dao_pf.read(id)
     return render_template("pessoa_fisica_read.html", pessoa_fisica = pf)
 
-@app.route('/pessoa_fisica/pessoa_fisica_read')
+@app.route('/pessoa_fisica/pessoa_fisica_edit', methods = ["POST"])
 def pessoa_fisica_edit():
     #lendo parametros get(url)
     pf = PessoaFisica()
-    pf.id = request.args.get('id')
-    pf.nome = request.args.get('nome')
-    pf.data = request.args.get('data')
-    pf.rg = request.args.get('rg')
-    pf.cpf = request.args.get('cpf')
-    dao = PessoaFisicaDao()
-    result = dao.update(pf)
-    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg_pf = result)
+    pf.id = request.form.get('id')
+    pf.nome = request.form.get('nome')
+    pf.data = request.form.get('data')
+    pf.rg = request.form.get('rg')
+    pf.cpf = request.form.get('cpf')
+    dao_pf = PessoaFisicaDao()
+    result_pf = dao_pf.update(pf)
+    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg_pf = result_pf)
 
 @app.route('/pessoa_fisica/delete')
 def pessoa_fisica_delete():
     #lendo parametros get(url)
     id = request.args.get('id')
-    dao = PessoaFisicaDao()
-    result = dao.delete(id)
-    return redirect(f'/pessoa_fisica?msg={result}')
+    dao_pf = PessoaFisicaDao()
+    result_pf = dao_pf.delete(id)
+    return redirect(f'/pessoa_fisica?msg_pf={result_pf}')
 
 @app.route('/pessoa_fisica/create')
 def pessoa_fisica_create():
-    return render_template('pessoa_fisica_create.htlm')
+    return render_template('pessoa_fisica_create.html')
 
-@app.route('/pessoa_fisica/salvar', methods = ["post"])
+@app.route('/pessoa_fisica/salvar', methods = ["POST"])
 def pessoa_fisica_save():
     pf = PessoaFisica()
-    pf.id = request.args.get('id')
-    pf.nome = request.args.get('nome')
-    pf.data = request.args.get('data')
-    pf.rg = request.args.get('rg')
-    pf.cpf = request.args.get('cpf')
-    dao = PessoaFisicaDao()
-    result = dao.create(pf)
-    return render_template('pessoa_fisica_create.html', msg_pf = result)
+    pf.id = request.form.get('id')
+    pf.nome = request.form.get('nome')
+    pf.data = request.form.get('data')
+    pf.rg = request.form.get('rg')
+    pf.cpf = request.form.get('cpf')
+    dao_pf = PessoaFisicaDao()
+    result_pf = dao_pf.create(pf)
+    return render_template('pessoa_fisica_create.html', msg_pf = result_pf)
 
 
 #----------- pessoa física fim
