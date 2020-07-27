@@ -6,7 +6,10 @@ class BaseDao:
     # --- CRUD ----------------------
     #create
     def create(self, model):
-        with open(self.__caminho_arquivo,'a') as file :
+        fields_missing = self.__validate_fields(model)
+        if fields_missing:
+            return fields_missing
+        with open(self.__caminho_arquivo, 'a') as file:
             file.write(str(model)+"\n")        
         return 'salvo'
 
@@ -63,10 +66,24 @@ class BaseDao:
         return 'documento vazio'
 
     def __rewrite_file(self,lines):
-        with open(self.__caminho_arquivo,'w') as file :
-                file.writelines(lines)
+        with open(self.__caminho_arquivo, 'w') as file:
+            file.writelines(lines)
 
     def __read_file(self):
         with open(self.__caminho_arquivo, 'r') as file:
             lines = file.readlines()
             return lines
+
+    def __to_dict(self, model) -> dict:
+        model_dict = dict((name, getattr(model, name)) 
+            for name in dir(model) if not name.startswith('_'))
+        return model_dict
+
+    def __validate_fields(self, model) -> list:
+        model_dict = self.__to_dict(model)
+        fields_empty = []
+        for key, value in model_dict.items():
+            if not value:
+                fields_empty.append(key)
+
+        return fields_empty
