@@ -3,19 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <title>Pessoa Jurídica - Editar</title>
 </head>
 <body>
-    <h1>Edição de Pessoa Jurídica</h1>
-    <h4>{{msg_pjd}}</h4>
-    <form action="/pessoa_juridica/pessoa_juridica_edit" method="POST">
-        id: <input type="text" name="id" id="id" value="{{pessoa_juridica.id}}">
-        nome: <input type="text" name="nome" id="nome" value="{{pessoa_juridica.nome}}">
-        data: <input type="text" name="data" id="data" value="{{pessoa_juridica.data}}">
-        cnpj: <input type="text" name="cnpj" id="cnpj" value="{{pessoa_juridica.cnpj}}">
-        <button type="submit">Salvar</button>
-    </form>
-    <br>
-    <a href="/pessoa_juridica">Voltar a Listagem</a>
+    <header>
+        <div id='logo'>
+            <a href="/">
+                <h2>Olist</h2>
+            </a>
+        </div>
+        <div id='menu'>
+            <ul>
+                <li><a href="/usuario">Usuários</a></li>
+                <li><a href="/pessoa_fisica">Pessoa Física</a></li>
+                <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
+                <li><a href="/produto">Produto</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="conteudo">
+        <h3>Edição de Pessoa Jurídica</h3>
+        <div class="msg">
+            <h6>{{msg_pjd}}</h6>
+        </div>
+
+        <form action="/pessoa_juridica/pessoa_juridica_edit" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id" value="{{pessoa_juridica.id}}">
+            <label for="nome">nome:</label><input type="text" name="nome" id="nome" value="{{pessoa_juridica.nome}}">
+            <label for="data">data:</label><input type="text" name="data" id="data" value="{{pessoa_juridica.data}}">
+            <label for="cnpj">cnpj:</label><input type="text" name="cnpj" id="cnpj" value="{{pessoa_juridica.cnpj}}">
+            <div class='buttons'>
+                <button type="submit">Salvar</button>
+            </div>
+        </form>
+        <div class="btn-listagem">
+            <a href="/pessoa_juridica">Voltar a Listagem</a>
+        </div>
+    </div>
 </body>
 </html>
