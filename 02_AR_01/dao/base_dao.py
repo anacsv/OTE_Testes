@@ -11,10 +11,16 @@ class BaseDao:
     def create(self, model):
         fields_missing = self.__validate_fields(model)
         if len(fields_missing) > 0:
-            return self.__create_message('Preencha todos os campos', 'error')
+            return self.__create_message(fields_missing, 'error')
         with open(self.__caminho_arquivo, 'a') as file:
             file.write(str(model)+"\n")        
         return self.__create_message('Salvo', 'success')
+    
+    def __create_message_text_from_list(self, fields):
+        message_text = 'Faltam os seguintes campos: '
+        for field in fields:
+            message_text += f";{field}"
+        return message_text
 
     #read_by_id
     def __read_by_id(self, id, lines):
@@ -94,5 +100,7 @@ class BaseDao:
     def __create_message(self, message_text, message_type):
         code = 1
         msg_type = MessageType(f'Message {message_type}', message_type)
+        if type(message_text) == list:
+            message_text = self.__create_message_text_from_list(message_text)
         message = Message(code, message_text, msg_type)
         return message

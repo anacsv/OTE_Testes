@@ -25,11 +25,13 @@
     </header>
     <div id="conteudo">
         <h3>Novo Produto</h3>
+        {% autoescape false %}
         {% if msg %}
         <div class="msg {{msg.message_type.description}}">
-            <h6>{{msg.text_message}}</h6>
+            <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
         </div>
         {% endif %}
+        {% endautoescape %}
         <form action="/produto/salvar" method="POST">
             <label for="id">ID:</label>
             <input type="text" name="id" id="id">
