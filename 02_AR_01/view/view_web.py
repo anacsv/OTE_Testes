@@ -70,13 +70,8 @@ def usuario_salvar():
     u.id = request.form.get('id')
     u.email = request.form.get('email')
     u.senha = request.form.get('senha')
-    type_msg = 'success'
-    if u.id or u.email or u.senha :
-        result = 'todos os campos devem estar preenchidos!'
-        type_msg = 'error'
-    else:
-        dao = UsuarioDao()
-        result = dao.create(u)
+    dao = UsuarioDao()
+    result = dao.create(u)
     return render_template("usuario_create.html", msg = result)
 # ----- Deletar 
 @app.route('/usuario/delete')

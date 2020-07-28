@@ -25,9 +25,13 @@
     </header>
     <div id="conteudo">
         <h3>Novo Usuário</h3>
-        <div class="msg">
-            <h6>{{msg}}</h6>
+        {% autoescape false %}
+        {% if msg %}
+        <div class="msg {{msg.message_type.description}}">
+            <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
         </div>
+        {% endif %}
+        {% endautoescape %}
         <form action="/usuario/salvar" method="POST">
             <label for="id">id:</label><input type="text" name="id" id="id">
             <label for="email">email:</label><input type="email" name="email" id="email">
