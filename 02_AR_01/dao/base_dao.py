@@ -15,12 +15,6 @@ class BaseDao:
         with open(self.__caminho_arquivo, 'a') as file:
             file.write(str(model)+"\n")        
         return self.__create_message('Salvo', 'success')
-    
-    def __create_message_text_from_list(self, fields):
-        message_text = 'Faltam os seguintes campos: '
-        for field in fields:
-            message_text += f";{field}"
-        return message_text
 
     #read_by_id
     def __read_by_id(self, id, lines):
@@ -99,6 +93,12 @@ class BaseDao:
                 fields_empty.append(key)
 
         return fields_empty
+
+    def __create_message_text_from_list(self, fields):
+        message_text = 'Faltam os seguintes campos: '
+        for field in fields:
+            message_text += f";{field}"
+        return message_text
 
     def __create_message(self, message_text, message_type):
         code = 1
