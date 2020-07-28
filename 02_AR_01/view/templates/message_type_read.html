@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de mensagem - Editar</title>
     <link rel="stylesheet" href="../static/css/styles.css">
-    <title>Novo Usuario</title>
 </head>
 <body>
     <header>
@@ -19,27 +19,27 @@
                 <li><a href="/pessoa_fisica">Pessoa Física</a></li>
                 <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
                 <li><a href="/produto">Produto</a></li>
-                <li><a href="/message">Message</a></li>
+                <li><a href="/message_type">Tipos de Mensagens</a></li>
             </ul>
         </div>
     </header>
     <div id="conteudo">
-        <h3>Novo Usuário</h3>
+        <h3>Edição de Tipo de Mensagem</h3>
         <div class="msg">
-            <h6>{{msg}}</h6>
+            <h6>{{msg_mt}}</h6>
         </div>
-        <form action="/usuario/salvar" method="POST">
-            <label for="id">id:</label><input type="text" name="id" id="id">
-            <label for="email">email:</label><input type="email" name="email" id="email">
-            <label for="senha">senha:</label><input type="password" name="senha" id="senha">
+
+        <form action="/message_type/edit" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id" value="{{message_type.id}}" readonly>
+            <label for="name">nome:</label><input type="name" name="name" id="name" value="{{message_type.name}}">
+            <label for="description">descrição:</label><input type="description" name="description" id="description" value="{{message_type.description}}">
             <div class='buttons'>
                 <button type="submit" class="salvar">Salvar</button>
-                <button type="reset" class="limpar">Limpar</button>
             </div>
         </form>
         <div class="btn-listagem">
-            <a href="/usuario"> Voltar para listagem</a>
-        </div>
+            <a href="/message_type"> Voltar para listagem</a>
+        </div>  
     </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/styles.css">
-    <title>Usuários</title>
+    <title>message_type</title>
 
 </head>
 <body>
@@ -16,40 +16,37 @@
         </div>
         <div id='menu'>
             <ul>
-                <li><a href="/usuario">Usuários</a></li>
-                <li><a href="/pessoa_fisica">Pessoa Física</a></li>
-                <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
-                <li><a href="/produto">Produto</a></li>
-                <li><a href="/message">Message</a></li>
+                <li><a href="/message">Mensagens</a></li>
+                <li><a href="/message_type">Tipos de Mensagens</a></li>
             </ul>
         </div>
     </header>
     <div id="conteudo">
-        <h3>Usuários cadastrados</h3>
+        <h3>Tipos de Mensagens Cadastrados</h3>
         <div class="msg">
-            <h6>{{msg}}</h6>
+            <h6>{{msg_mt}}</h6>
         </div>
         <div id='novo'>
-            <a href="/usuario/create">Novo</a>    
+            <a href="/message_type/create">Novo</a>    
         </div>
         <table>
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>email</th>
-                    <th>senha</th>
+                    <th>nome</th>
+                    <th>descrição</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {% for u in usuarios %}
+                {% for mt in message_type %}
                 <tr>
-                    <td>{{u.id}}</td>
-                    <td>{{u.email}}</td>
-                    <td>{{u.senha}}</td>
+                    <td>{{mt.id}}</td>
+                    <td>{{mt.name}}</td>
+                    <td>{{mt.description}}</td>
                     <td>
-                        <a href="/usuario/read?id={{u.id}}">Editar</a> |
-                        <a href="/usuario/delete?id={{u.id}}">Deletar</a>
+                        <a href="/message_type/read?id={{mt.id}}">Editar</a> |
+                        <a href="/message_type/delete?id={{mt.id}}">Deletar</a>
                     </td>
                 </tr>
                 {% endfor %}

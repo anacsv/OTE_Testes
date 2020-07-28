@@ -1,13 +1,17 @@
-from .base_model import Base
-from .message_type import MessageType
+import sys
+import os.path
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+)
+from model.base_model import Base
 
 class Message(Base):
-    def __init__(self, code:str, text_message:str, message_type: MessageType, id = None):
+    def __init__(self, code:str = '', text_message:str = '', message_type:str = '', id:int = 0):
         self.__code = code
         self.__text_message = text_message
         self.__message_type =  message_type
         super().__init__(id)
-    
+        
     @property
     def code(self)->str:
         return self.__code
@@ -31,3 +35,13 @@ class Message(Base):
     @message_type.setter
     def message_type(self, message_type:MessageType):
         self.__message_type = message_type
+
+    def message_type(self)->str:
+        return self.__message_type
+
+    @message_type.setter
+    def message_type(self, message_type:str):
+        self.__message_type = message_type
+
+    def __str__(self):
+        return f'{self.id};{self.code};{self.text_message};{self.message_type}'

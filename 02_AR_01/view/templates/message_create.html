@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/styles.css">
-    <title>Produto - Editar</title>
+    <title>Nova Mensagem</title>
 </head>
 <body>
     <header>
-        <div id="logo">
+        <div id='logo'>
             <a href="/">
                 <h2>Olist</h2>
             </a>
         </div>
-        <div id="menu">
+        <div id='menu'>
             <ul>
                 <li><a href="/usuario">Usuários</a></li>
                 <li><a href="/pessoa_fisica">Pessoa Física</a></li>
@@ -24,25 +24,22 @@
         </div>
     </header>
     <div id="conteudo">
-        <h3>Edição de Produto</h3>
+        <h3>Nova Mensagem</h3>
         <div class="msg">
             <h6>{{msg}}</h6>
         </div>
-        <form action="/produto/edit" method="POST">
-            <label for="id">ID:</label>
-            <input type="text" name="id" id="id" value="{{produto.id}}" readonly>
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" value="{{produto.nome}}">
-            <label for="preco">Preco:</label>
-            <input type="number" name="preco" id="preco" value="{{produto.preco}}">
-            <label for="descricao">Descricao:</label>
-            <textarea type="text" name="descricao" id="descricao">{{produto.descricao}}</textarea>
+        <form action="/message/salvar" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id">
+            <label for="code">code:</label><input type="text" name="code" id="code">
+            <label for="text_message">text_message:</label><input type="text" name="text_message" id="text_message">
+            <label for="message_type">message_type:</label><input type="text" name="message_type" id="message_type">
             <div class="buttons">
-                <button type="submit" class="salvar">Salvar</button>
+                <button type="submit">Salvar</button>
+                <button type="reset">Limpar</button>
             </div>
         </form>
         <div class="btn-listagem">
-            <a href="/produto">Voltar a listagem</a>
+            <a href="/message">Voltar para listagem</a>
         </div>
     </div>
 </body>

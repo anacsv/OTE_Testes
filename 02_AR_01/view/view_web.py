@@ -13,6 +13,10 @@ from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.produto_dao import ProdutoDao
 from dao.pessoa_juridica_dao import PessoaJuridicaDao
 from model.pessoa_juridica import PessoaJuridica
+from dao.message_dao import MessageDao
+from model.message import Message
+from model.message_type import MessageType
+from dao.message_type_dao import MessageTypeDao
 
 
 # -- criação de um objeto flask
@@ -137,7 +141,6 @@ def pessoa_fisica_save():
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.create(pf)
     return render_template('pessoa_fisica_create.html', msg_pf = result_pf)
-
 
 #----------- pessoa física fim
 
@@ -264,4 +267,113 @@ def produto_delete():
 # '-'*10 Fim Deletar
 #------------------------------------------- produtos fim
     
+#------------------------------------------- Message
+#----------------Listar
+
+@app.route('/message')
+def message():
+    msg = request.args.get('msg')
+    if not msg:
+        msg = ''
+    dao = MessageDao()
+    lista_message = dao.read()
+    return render_template('message.html', message=lista_message, msg=msg)
+
+#----------------Editar
+@app.route('/message/read')
+def message_read():
+    id = request.args.get('id')
+    dao = MessageDao()
+    msg = dao.read(id)
+    return render_template('message_read.html', message=msg)
+
+@app.route('/message/message_edit', methods=['POST'])
+def message_edit():
+    msg_class = Message()
+    msg_class.id = request.form.get('id')
+    msg_class.code = request.form.get('code')
+    msg_class.text_message = request.form.get('text_message')
+    msg_class.message_type = request.form.get('message_type')
+    dao = MessageDao()
+    result = dao.update(msg_class)
+    return render_template('message_read.html', message=msg_class, msg=result)
+#------------------Fim Editar
+
+#------------------Criar
+@app.route('/message/create')
+def message_create():
+    return render_template('message_create.html')
+
+
+@app.route('/message/salvar', methods=['POST'])
+def message_salvar():
+    msg_class = Message()
+    msg_class.id = request.form.get('id')
+    msg_class.code = request.form.get('code')
+    msg_class.text_message = request.form.get('text_message')
+    msg_class.message_type = request.form.get('message_type')
+    dao = MessageDao()
+    result = dao.create(msg_class)
+    return render_template('message_create.html', msg = result)
+#------------------Fim criar
+
+#------------------Deletar
+@app.route('/message/delete')
+def message_delete():
+    id = request.args.get('id')
+    dao = MessageDao()
+    result = dao.delete(id)
+    return redirect(f'/message?msg={result}')
+
+#----------- Message Type inicio
+@app.route('/message_type')
+def message_type():
+    msg_mt = request.args.get('msg_mt')
+    if not msg_mt:
+        msg_mt = ''
+    dao_mt = MessageTypeDao()
+    lista_mt = dao_mt.read()
+    return render_template("message_type.html", message_type = lista_mt, msg_mt = msg_mt)
+
+@app.route('/message_type/read')
+def message_type_read():
+    #lendo parametros get(url)
+    id = request.args.get('id')
+    dao_mt = MessageTypeDao()
+    mt = dao_mt.read(id)
+    return render_template('message_type_read.html', message_type = mt)
+
+@app.route('/message_type/edit', methods = ["POST"])
+def message_type_edit():
+    #lendo parametros get(url)
+    mt = MessageType()
+    mt.id = request.form.get('id')
+    mt.name = request.form.get('name')
+    mt.description = request.form.get('description')
+    dao_mt = MessageTypeDao()
+    result_mt = dao_mt.update(mt)
+    return render_template("message_type_read.html", message_type = mt, msg_mt = result_mt)
+
+@app.route('/message_type/delete')
+def message_type_delete():
+    #lendo parametros get(url)
+    id = request.args.get('id')
+    dao_mt = MessageTypeDao()
+    result_mt = dao_mt.delete(id)
+    return redirect(f'/message_type?msg_mt={result_mt}')
+
+@app.route('/message_type/create')
+def message_type_create():
+    return render_template('message_type_create.html')
+
+@app.route('/message_type/salvar', methods = ["POST"])
+def message_type_save():
+    mt = MessageType()
+    mt.id = request.form.get('id')
+    mt.name = request.form.get('name')
+    mt.description = request.form.get('description')
+    dao_mt = MessageTypeDao()
+    result_mt = dao_mt.create(mt)
+    return render_template("message_type_create.html", msg_mt = result_mt)
+  
 app.run(debug=True)
