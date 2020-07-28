@@ -54,6 +54,9 @@ class BaseDao:
 
     #update
     def update(self, model):
+        fields_missing = self.__validate_fields(model)
+        if len(fields_missing) > 0:
+            return self.__create_message(fields_missing, 'error')
         lines = self.__read_file()
         if lines:
             index = self.__find_by_id(model.id, lines, model)
@@ -61,8 +64,8 @@ class BaseDao:
             line = str(model)+"\n"
             lines.insert(index, line)
             self.__rewrite_file(lines)
-            return "alterado com sucesso"
-        return 'documento vazio'
+            return self.__create_message('Alterado com sucesso', 'success')
+        return self.__create_message('Documento vazio', 'error')
 
     #delete
     def delete(self, id):
