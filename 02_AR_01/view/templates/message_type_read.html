@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de mensagem - Editar</title>
     <link rel="stylesheet" href="../static/css/styles.css">
-    <title>Pessoa Fisica - Editar</title>
 </head>
 <body>
     <header>
@@ -22,26 +22,24 @@
                 <li><a href="/message_type">Tipos de Mensagens</a></li>
             </ul>
         </div>
-    </header>    
+    </header>
     <div id="conteudo">
-        <h3>Edição de Pessoa Fisica</h3>
+        <h3>Edição de Tipo de Mensagem</h3>
         <div class="msg">
-            <h6>{{msg_pf}}</h6>  
+            <h6>{{msg_mt}}</h6>
         </div>
 
-        <form action="/pessoa_fisica/pessoa_fisica_edit" method="POST">
-            <label for="id">id:</label><input type="text" name="id" id="id" value="{{pessoa_fisica.id}}" readonly>
-            <label for="nome">nome:</label><input type="text" name="nome" id="nome" value="{{pessoa_fisica.nome}}">
-            <label for="data">data:</label><input type="text" name="data" id="data" value="{{pessoa_fisica.data}}">
-            <label for="rg">rg:</label><input type="text" name="rg" id="rg" value="{{pessoa_fisica.rg}}">
-            <label for="cpf">cpf:</label><input type="text" name="cpf" id="cpf" value="{{pessoa_fisica.cpf}}">        
-            <div class="buttons">
+        <form action="/message_type/edit" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id" value="{{message_type.id}}" readonly>
+            <label for="name">nome:</label><input type="name" name="name" id="name" value="{{message_type.name}}">
+            <label for="description">descrição:</label><input type="description" name="description" id="description" value="{{message_type.description}}">
+            <div class='buttons'>
                 <button type="submit" class="salvar">Salvar</button>
-            </div>    
+            </div>
         </form>
         <div class="btn-listagem">
-            <a href="/pessoa_fisica">Voltar a listagem</a>
-        </div>    
+            <a href="/message_type"> Voltar para listagem</a>
+        </div>  
     </div>
 </body>
 </html>
