@@ -11,7 +11,7 @@ class BaseDao:
     def create(self, model):
         fields_missing = self.__validate_fields(model)
         if len(fields_missing) > 0:
-            return self.__create_message('Preencha todos os campos', 'error')
+            return self.__create_message(fields_missing, 'error')
         with open(self.__caminho_arquivo, 'a') as file:
             file.write(str(model)+"\n")        
         return self.__create_message('Salvo', 'success')
@@ -48,6 +48,9 @@ class BaseDao:
 
     #update
     def update(self, model):
+        fields_missing = self.__validate_fields(model)
+        if len(fields_missing) > 0:
+            return self.__create_message(fields_missing, 'error')
         lines = self.__read_file()
         if lines:
             index = self.__find_by_id(model.id, lines, model)
@@ -55,8 +58,8 @@ class BaseDao:
             line = str(model)+"\n"
             lines.insert(index, line)
             self.__rewrite_file(lines)
-            return "alterado com sucesso"
-        return 'documento vazio'
+            return self.__create_message('Alterado com sucesso', 'success')
+        return self.__create_message('Documento vazio', 'error')
 
     #delete
     def delete(self, id):
@@ -91,8 +94,16 @@ class BaseDao:
 
         return fields_empty
 
+    def __create_message_text_from_list(self, fields):
+        message_text = 'Faltam os seguintes campos: '
+        for field in fields:
+            message_text += f";{field}"
+        return message_text
+
     def __create_message(self, message_text, message_type):
         code = 1
         msg_type = MessageType(f'Message {message_type}', message_type)
+        if type(message_text) == list:
+            message_text = self.__create_message_text_from_list(message_text)
         message = Message(code, message_text, msg_type)
         return message
