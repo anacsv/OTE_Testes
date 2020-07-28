@@ -90,12 +90,12 @@ def delete():
 
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    msg_pf = request.args.get('msg_pf')
-    if not msg_pf:
-        msg_pf = ''
+    msg = request.args.get('msg')
+    if not msg:
+        msg = ''
     dao_pf = PessoaFisicaDao()
     lista_pf = dao_pf.read()
-    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg_pf = msg_pf)
+    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg = msg)
 
 @app.route('/pessoa_fisica/read')
 def pessoa_fisica_read():
@@ -116,7 +116,7 @@ def pessoa_fisica_edit():
     pf.cpf = request.form.get('cpf')
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.update(pf)
-    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg_pf = result_pf)
+    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg = result_pf)
 
 @app.route('/pessoa_fisica/delete')
 def pessoa_fisica_delete():
@@ -124,7 +124,7 @@ def pessoa_fisica_delete():
     id = request.args.get('id')
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.delete(id)
-    return redirect(f'/pessoa_fisica?msg_pf={result_pf}')
+    return redirect(f'/pessoa_fisica?msg={result_pf}')
 
 @app.route('/pessoa_fisica/create')
 def pessoa_fisica_create():
@@ -140,7 +140,7 @@ def pessoa_fisica_save():
     pf.cpf = request.form.get('cpf')
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.create(pf)
-    return render_template('pessoa_fisica_create.html', msg_pf = result_pf)
+    return render_template('pessoa_fisica_create.html', msg = result_pf)
 
 #----------- pessoa física fim
 
@@ -328,12 +328,12 @@ def message_delete():
 #----------- Message Type inicio
 @app.route('/message_type')
 def message_type():
-    msg_mt = request.args.get('msg_mt')
-    if not msg_mt:
-        msg_mt = ''
+    msg = request.args.get('msg')
+    if not msg:
+        msg = ''
     dao_mt = MessageTypeDao()
     lista_mt = dao_mt.read()
-    return render_template("message_type.html", message_type = lista_mt, msg_mt = msg_mt)
+    return render_template("message_type.html", message_type = lista_mt, msg = msg)
 
 @app.route('/message_type/read')
 def message_type_read():
@@ -352,7 +352,7 @@ def message_type_edit():
     mt.description = request.form.get('description')
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.update(mt)
-    return render_template("message_type_read.html", message_type = mt, msg_mt = result_mt)
+    return render_template("message_type_read.html", message_type = mt, msg = result_mt)
 
 @app.route('/message_type/delete')
 def message_type_delete():
@@ -360,7 +360,7 @@ def message_type_delete():
     id = request.args.get('id')
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.delete(id)
-    return redirect(f'/message_type?msg_mt={result_mt}')
+    return redirect(f'/message_type?msg={result_mt}')
 
 @app.route('/message_type/create')
 def message_type_create():
@@ -374,6 +374,6 @@ def message_type_save():
     mt.description = request.form.get('description')
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.create(mt)
-    return render_template("message_type_create.html", msg_mt = result_mt)
+    return render_template("message_type_create.html", msg = result_mt)
   
 app.run(debug=True)
