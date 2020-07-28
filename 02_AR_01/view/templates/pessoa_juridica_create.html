@@ -27,7 +27,7 @@
         <h3>Nova Pessoa Jurídica</h3>
         {% autoescape false %}
         {% if msg_pjd %}
-        <div class="msg">
+        <div class="msg {{msg_pjd.message_type.description}}">
             <h6>{{msg_pjd.text_message.replace(';','<br/>')}}</h6>
         </div>
         {% endif %}
