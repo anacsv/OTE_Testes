@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/styles.css">
-    <title>Pessoa_fisica_inicio</title>
+    <title>Message</title>
+
 </head>
 <body>
     <header>
@@ -12,7 +13,7 @@
             <a href="/">
                 <h2>Olist</h2>
             </a>
-        </div>  
+        </div>
         <div id='menu'>
             <ul>
                 <li><a href="/usuario">Usuários</a></li>
@@ -23,36 +24,34 @@
             </ul>
         </div>
     </header>
-    <div id='conteudo'>
-    <h3>Pessoa Fisica - Cadastrados </h3>
-    <div class="msg">
-        <h6>{{msg_pf}}</h6>
-    </div>
-    <div id='novo'>
-       <a href="/pessoa_fisica/create">Novo</a>
-    </div>
+    <div id="conteudo">
+            <h3>Mensagens Cadastradas</h3>
+            <div class="msg">
+                <h6>{{msg}}</h6>
+            </div>
+            <div id='novo'>
+                <a href="/message/create">Novo</a> 
+            </div>
         <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>nome</th>
-                <th>data</th>
-                <th>rg</th>
-                <th>cpf</th>
-                <th></th>
-            </tr>
-        </thead>
-            <tbody>
-            {% for pf in pessoa_fisica %}
+            <thead>
                 <tr>
-                    <td>{{pf.id}}</td>
-                    <td>{{pf.nome}}</td>
-                    <td>{{pf.data}}</td>
-                    <td>{{pf.rg}}</td>
-                    <td>{{pf.cpf}}</td>
+                    <th>id</th>
+                    <th>code</th>
+                    <th>text_message</th>
+                    <th>message_type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in message %}
+                <tr>
+                    <td>{{msg.id}}</td>
+                    <td>{{msg.code}}</td>
+                    <td>{{msg.text_message}}</td>
+                    <td>{{msg.message_type}}</td>
                     <td>
-                        <a href="/pessoa_fisica/read?id={{pf.id}}">Editar</a> |
-                        <a href="/pessoa_fisica/delete?id={{pf.id}}">Deletar</a>
+                        <a href="/message/read?id={{msg.id}}">Editar</a>
+                        <a href="/message/delete?id={{msg.id}}">Deletar</a>
                     </td>
                 </tr>
                 {% endfor %}
