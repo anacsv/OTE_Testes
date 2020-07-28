@@ -1,9 +1,5 @@
-import sys
-import os.path
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
-)
 from model.base_model import Base
+from model.message_type import MessageType
 
 class Message(Base):
     def __init__(self, code:str = '', text_message:str = '', message_type:str = '', id:int = 0):
@@ -34,13 +30,6 @@ class Message(Base):
 
     @message_type.setter
     def message_type(self, message_type:MessageType):
-        self.__message_type = message_type
-
-    def message_type(self)->str:
-        return self.__message_type
-
-    @message_type.setter
-    def message_type(self, message_type:str):
         self.__message_type = message_type
 
     def __str__(self):
