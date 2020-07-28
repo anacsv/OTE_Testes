@@ -25,9 +25,11 @@
     </header>
     <div id="conteudo">
         <h3>Novo Produto</h3>
-        <div class="msg">
-            <h6>{{msg}}</h6>
+        {% if msg %}
+        <div class="msg {{msg.message_type.description}}">
+            <h6>{{msg.text_message}}</h6>
         </div>
+        {% endif %}
         <form action="/produto/salvar" method="POST">
             <label for="id">ID:</label>
             <input type="text" name="id" id="id">

@@ -5,7 +5,7 @@ class MessageType(Base):
         self.__name = name
         self.__description = description
         super().__init__(id)
-        
+
     @property
     def name(self)->str:
         return self.__name
