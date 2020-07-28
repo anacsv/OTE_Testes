@@ -19,15 +19,20 @@
                 <li><a href="/pessoa_fisica">Pessoa Física</a></li>
                 <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
                 <li><a href="/produto">Produto</a></li>
+                <li><a href="/message">Message</a></li>
                 <li><a href="/message_type">Tipos de Mensagens</a></li>
             </ul>
         </div>
     </header>
     <div id="conteudo">
         <h3>Novo Tipo de Mensagem</h3>
-        <div class="msg">
-            <h6>{{msg_mt}}</h6>
+        {% autoescape false %}
+        {% if msg %}
+        <div class="msg {{msg.message_type.description}}">
+            <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
         </div>
+        {% endif %}
+        {% endautoescape %}
         <form action="/message_type/salvar" method="POST">
             <label for="id">id:</label><input type="text" name="id" id="id">
             <label for="name">nome:</label><input type="name" name="name" id="name">

@@ -26,10 +26,13 @@
     </header>    
     <div id="conteudo">
         <h3>Edição de Pessoa Fisica</h3>
-        <div class="msg">
-            <h6>{{msg_pf}}</h6>  
+        {% autoescape false %}
+        {% if msg %}
+        <div class="msg {{msg.message_type.description}}">
+            <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
         </div>
-
+        {% endif %}
+        {% endautoescape %}
         <form action="/pessoa_fisica/pessoa_fisica_edit" method="POST">
             <label for="id">id:</label><input type="text" name="id" id="id" value="{{pessoa_fisica.id}}" readonly>
             <label for="nome">nome:</label><input type="text" name="nome" id="nome" value="{{pessoa_fisica.nome}}">

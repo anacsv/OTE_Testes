@@ -20,15 +20,20 @@
                 <li><a href="/pessoa_juridica">Pessoa Jurídica</a></li>
                 <li><a href="/produto">Produto</a></li>
                 <li><a href="/message">Message</a></li>
+                <li><a href="/message_type">Tipos de Mensagens</a></li>
             </ul>
         </div>
     </header>
     <div id="conteudo"> 
-    <h3>Pessoa Fisica - Novo Usuário</h3>
-    <div class="msg">   
-        <h6>{{msg_pf}}</h6>
-    </div> 
-    <form action="/pessoa_fisica/salvar" method="POST">
+        <h3>Pessoa Fisica - Novo Usuário</h3>
+        {% autoescape false %}
+        {% if msg %}
+        <div class="msg {{msg.message_type.description}}">
+            <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
+        </div>
+        {% endif %}
+        {% endautoescape %}
+        <form action="/pessoa_fisica/salvar" method="POST">
         <label for="id">id:</label><input type="text" name="id" id="id">
         <label for="nome">nome:</label><input type="text" name="nome" id="nome">
         <label for="data">data:</label><input type="text" name="data" id="data">
