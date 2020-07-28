@@ -25,9 +25,13 @@
     </header>
     <div id="conteudo">
         <h3>Nova Pessoa Jurídica</h3>
+        {% autoescape false %}
+        {% if msg_pjd %}
         <div class="msg">
-            <h6>{{msg_pjd}}</h6>
+            <h6>{{msg_pjd.text_message.replace(';','<br/>')}}</h6>
         </div>
+        {% endif %}
+        {% endautoescape %}
         <form action="/pessoa_juridica/salvar" method="POST">
             <label for="id">id:</label><input type="text" name="id" id="id">
             <label for="nome">nome:</label><input type="text" name="nome" id="nome">
