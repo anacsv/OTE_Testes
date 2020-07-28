@@ -1,4 +1,2 @@
-<model.message.Message object at 0x10a9694c0>
-<model.message.Message object at 0x1094d84c0>
-<model.message.Message object at 0x10b4f24c0>
-<model.message.Message object at 0x10430c4c0>
+1;404;not found;not found
+1;404;not found;not found
