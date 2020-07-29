@@ -26,9 +26,13 @@
     </header>
     <div id="conteudo">
         <h3>Usuários cadastrados</h3>
-        <div class="msg">
-            <h6>{{msg}}</h6>
+        {% autoescape false %}
+        {% if msg %}
+        <div class="msg {{msg.message_type.description}}">
+            <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
         </div>
+        {% endif %}
+        {% endautoescape %}
         <div id='novo'>
             <a href="/usuario/create">Novo</a>    
         </div>

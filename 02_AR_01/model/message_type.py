@@ -1,7 +1,7 @@
 from .base_model import Base
 
 class MessageType(Base):
-    def __init__(self, name:str='', description:str='' ,id=None):
+    def __init__(self, name:str='', description:str='' ,id:int = 0):
         self.__name = name
         self.__description = description
         super().__init__(id)
@@ -25,3 +25,7 @@ class MessageType(Base):
     def __str__(self):
         # interpolação de strings
         return f'{self.id};{self.name};{self.description}'
+
+    @property
+    def __dict__(self):
+        return { 'id': self.id,'name': self.name,'description': self.description } 

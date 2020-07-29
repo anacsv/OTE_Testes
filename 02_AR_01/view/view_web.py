@@ -3,7 +3,7 @@ import os.path
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 )
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 
 from model.usuario import Usuario
 from model.produto import Produto
@@ -80,7 +80,7 @@ def delete():
     id = request.args.get('id')
     dao = UsuarioDao()
     result = dao.delete(id)
-    return redirect(f'/usuario?msg={result}')
+    return redirect( url_for('usuario', msg=result)  )
 #------------------------------------------- usuarios fim
 
 @app.route('/pessoa_fisica')
@@ -371,4 +371,4 @@ def message_type_save():
     result_mt = dao_mt.create(mt)
     return render_template("message_type_create.html", msg = result_mt)
   
-app.run(debug=True)
+app.run()

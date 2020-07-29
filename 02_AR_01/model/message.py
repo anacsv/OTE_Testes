@@ -34,3 +34,12 @@ class Message(Base):
 
     def __str__(self):
         return f'{self.id};{self.code};{self.text_message};{self.message_type}'
+    
+    @property  
+    def __dict__(self):
+        return {
+            'id': self.id
+            , 'code':self.code
+            , 'text_message': self.text_message
+            ,'message_type': self.message_type.__dict__
+        }
