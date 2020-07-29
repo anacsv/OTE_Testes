@@ -27,5 +27,13 @@ class MessageType(Base):
         return f'{self.id};{self.name};{self.description}'
 
     @property
-    def __dict__(self):
-        return { 'id': self.id,'name': self.name,'description': self.description } 
+    def __dict__(self) -> dict:
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description
+        }
+    
+    @classmethod
+    def from_json(cls, data: dict):
+        return cls(**data)
