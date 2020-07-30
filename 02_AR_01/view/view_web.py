@@ -93,12 +93,9 @@ def delete():
 
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    msg = request.args.get('msg')
-    if not msg:
-        msg = ''
     dao_pf = PessoaFisicaDao()
     lista_pf = dao_pf.read()
-    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg = msg)
+    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg = session_msg)
 
 @app.route('/pessoa_fisica/read')
 def pessoa_fisica_read():
@@ -126,8 +123,9 @@ def pessoa_fisica_delete():
     #lendo parametros get(url)
     id = request.args.get('id')
     dao_pf = PessoaFisicaDao()
-    result_pf = dao_pf.delete(id)
-    return redirect(f'/pessoa_fisica?msg={result_pf}')
+    result = dao_pf.delete(id)
+    session['msg'] = json.dumps(result.__dict__)
+    return redirect(url_for('pessoa_fisica'))
 
 @app.route('/pessoa_fisica/create')
 def pessoa_fisica_create():

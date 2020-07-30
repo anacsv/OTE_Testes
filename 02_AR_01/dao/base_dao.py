@@ -68,8 +68,8 @@ class BaseDao:
             index = self.__find_by_id(id, lines)
             lines.pop(index)
             self.__rewrite_file(lines)
-            return "deletado com sucesso"
-        return 'documento vazio'
+            return self.__create_message('Deletado com sucesso!', 'success')
+        return self.__create_message('Documento vazio', 'error')
 
     def __rewrite_file(self,lines):
         with open(self.__caminho_arquivo, 'w') as file:
