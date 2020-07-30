@@ -1,0 +1,7 @@
+{% autoescape false %}
+    {% if msg %}
+        <div class="msg {{msg.message_type.description}}">
+            <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
+        </div>
+    {% endif %}
+{% endautoescape %}

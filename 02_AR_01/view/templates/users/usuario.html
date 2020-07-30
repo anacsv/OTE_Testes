@@ -1,0 +1,33 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Usuários cadastrados
+{% endblock %}
+{% block conteudo %}
+    <div id='novo'>
+        <a href="/usuario/create">Novo</a>    
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>senha</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.senha}}</td>
+                <td>
+                    <a href="/usuario/read?id={{u.id}}">Editar</a> |
+                    <a href="/usuario/delete?id={{u.id}}">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+        

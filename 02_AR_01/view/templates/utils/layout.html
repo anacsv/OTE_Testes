@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Olist</title>
+</head>
+<body>
+    {% include "utils/header.html" %}
+    <div id="conteudo">
+        <h3>{% block titulo_pagina %}{% endblock %}</h3>
+        {% block mensagem %}
+            {% include "utils/message_crud.html" %}
+        {% endblock %}
+        {% block conteudo %}
+            <h1>Texto padrao a ser substituido</h1>
+        {% endblock %}
+    </div>
+</body>
+</html>
