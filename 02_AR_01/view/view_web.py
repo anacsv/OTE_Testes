@@ -149,12 +149,9 @@ def pessoa_fisica_save():
 # ----- Listar
 @app.route('/pessoa_juridica')
 def pessoa_juridica():
-    msg_pjd = request.args.get('msg_pjd')
-    if not msg_pjd:
-        msg_pjd = ''
     dao = PessoaJuridicaDao()
     lista_pessoa_juridica = dao.read()
-    return render_template('pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica, msg_pjd=msg_pjd)
+    return render_template('pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica, msg=session_msg())
 
 # ----- Editar
 @app.route('/pessoa_juridica/read')
@@ -202,7 +199,8 @@ def pessoa_juridica_delete():
     id = request.args.get('id')
     dao = PessoaJuridicaDao()
     result = dao.delete(id)
-    return redirect(f'/pessoa_juridica?msg={result}')
+    session['msg'] = json.dumps(result.__dict__)
+    return redirect( url_for('pessoa_juridica'))
 
 #------------------------------------------- pessoa juridica fim
 
@@ -273,12 +271,9 @@ def produto_delete():
 
 @app.route('/message')
 def message():
-    msg = request.args.get('msg')
-    if not msg:
-        msg = ''
     dao = MessageDao()
     lista_message = dao.read()
-    return render_template('message.html', message=lista_message, msg=msg)
+    return render_template('message.html', message=lista_message, msg = session_msg())
 
 #----------------Editar
 @app.route('/message/read')
@@ -324,7 +319,8 @@ def message_delete():
     id = request.args.get('id')
     dao = MessageDao()
     result = dao.delete(id)
-    return redirect(f'/message?msg={result}')
+    session['msg'] = json.dumps(result.__dict__)
+    return redirect( url_for('message'))
 
 #----------- Message Type inicio
 @app.route('/message_type')
