@@ -213,12 +213,11 @@ def pessoa_juridica_delete():
 # '-'*10 Listar
 @app.route('/produto')
 def produto():
-    msg = request.args.get('msg')
-    if not msg:
-        msg = ''
     dao = ProdutoDao()
     lista = dao.read()
-    return render_template('produto.html', produtos = lista, msg = msg)
+    return render_template(
+        'produto.html', produtos = lista, msg = session_msg()
+    )
 
 # '-'*10 Fim Listar
 
@@ -266,7 +265,8 @@ def produto_delete():
     id = request.args.get('id')
     dao = ProdutoDao()
     result = dao.delete(id)
-    return redirect(f'/produto?msg={result}')
+    session['msg'] = json.dumps(result.__dict__)
+    return redirect(url_for('produto'))
 # '-'*10 Fim Deletar
 #------------------------------------------- produtos fim
     
