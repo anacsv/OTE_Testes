@@ -93,12 +93,9 @@ def delete():
 
 @app.route('/pessoa_fisica')
 def pessoa_fisica():
-    msg = request.args.get('msg')
-    if not msg:
-        msg = ''
     dao_pf = PessoaFisicaDao()
     lista_pf = dao_pf.read()
-    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg = msg)
+    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg = session_msg())
 
 @app.route('/pessoa_fisica/read')
 def pessoa_fisica_read():
@@ -126,8 +123,9 @@ def pessoa_fisica_delete():
     #lendo parametros get(url)
     id = request.args.get('id')
     dao_pf = PessoaFisicaDao()
-    result_pf = dao_pf.delete(id)
-    return redirect(f'/pessoa_fisica?msg={result_pf}')
+    result = dao_pf.delete(id)
+    session['msg'] = json.dumps(result.__dict__)
+    return redirect(url_for('pessoa_fisica'))
 
 @app.route('/pessoa_fisica/create')
 def pessoa_fisica_create():
@@ -331,12 +329,9 @@ def message_delete():
 #----------- Message Type inicio
 @app.route('/message_type')
 def message_type():
-    msg = request.args.get('msg')
-    if not msg:
-        msg = ''
     dao_mt = MessageTypeDao()
     lista_mt = dao_mt.read()
-    return render_template("message_type.html", message_type = lista_mt, msg = msg)
+    return render_template("message_type.html", message_type = lista_mt, msg = session_msg())
 
 @app.route('/message_type/read')
 def message_type_read():
@@ -362,8 +357,9 @@ def message_type_delete():
     #lendo parametros get(url)
     id = request.args.get('id')
     dao_mt = MessageTypeDao()
-    result_mt = dao_mt.delete(id)
-    return redirect(f'/message_type?msg={result_mt}')
+    result = dao_mt.delete(id)
+    session['msg'] = json.dumps(result.__dict__)
+    return redirect( url_for('usuario')  )
 
 @app.route('/message_type/create')
 def message_type_create():
