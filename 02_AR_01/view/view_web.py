@@ -3,7 +3,8 @@ import os.path
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 )
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
+import json
 
 from model.usuario import Usuario
 from model.produto import Produto
@@ -21,6 +22,15 @@ from dao.message_type_dao import MessageTypeDao
 
 # -- criação de um objeto flask
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'CALYPSO'
+
+def session_msg():
+    if 'msg' in session:
+        msg = Message.from_json(json.loads(session['msg']))
+        session.pop('msg', None)
+    else:
+        msg = ''
+    return msg
 
 @app.route('/')
 def inicio():
@@ -30,12 +40,9 @@ def inicio():
 # ----- Listar
 @app.route('/usuario')
 def usuario():
-    msg = request.args.get('msg')
-    if not msg:
-        msg = ''
     dao = UsuarioDao()
     lista = dao.read()
-    return render_template("usuario.html", usuarios=lista, msg=msg )
+    return render_template("usuario.html", usuarios = lista, msg = session_msg())
 
 # ----- Editar
 @app.route('/usuario/read')
@@ -80,7 +87,8 @@ def delete():
     id = request.args.get('id')
     dao = UsuarioDao()
     result = dao.delete(id)
-    return redirect( url_for('usuario', msg=result)  )
+    session['msg'] = json.dumps(result.__dict__)
+    return redirect( url_for('usuario')  )
 #------------------------------------------- usuarios fim
 
 @app.route('/pessoa_fisica')
@@ -370,5 +378,5 @@ def message_type_save():
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.create(mt)
     return render_template("message_type_create.html", msg = result_mt)
-  
-app.run()
+
+app.run(debug=True)
