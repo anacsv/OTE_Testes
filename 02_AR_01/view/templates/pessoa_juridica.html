@@ -26,9 +26,13 @@
     </header>
     <div id="conteudo">
             <h3>Pessoas Jurídicas Cadastradas</h3>
-            <div class="msg">
-                <h6>{{msg_pjd}}</h6>
+            {% autoescape false %}
+            {% if msg %}
+            <div class="msg {{msg.message_type.description}}">
+                <h6>{{msg.text_message.replace(';','<br/>')}}</h6>
             </div>
+            {% endif %}
+            {% endautoescape %}
             <div id='novo'>
                 <a href="/pessoa_juridica/create">Novo</a> 
             </div>
