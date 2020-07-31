@@ -273,7 +273,7 @@ def produto_delete():
 def message():
     dao = MessageDao()
     lista_message = dao.read()
-    return render_template('message.html', message=lista_message, msg = session_msg())
+    return render_template('messages/message.html', message=lista_message, msg = session_msg())
 
 #----------------Editar
 @app.route('/message/read')
@@ -281,7 +281,7 @@ def message_read():
     id = request.args.get('id')
     dao = MessageDao()
     msg = dao.read(id)
-    return render_template('message_read.html', message=msg)
+    return render_template('messages/message_read.html', message=msg)
 
 @app.route('/message/message_edit', methods=['POST'])
 def message_edit():
@@ -292,13 +292,13 @@ def message_edit():
     msg_class.message_type = request.form.get('message_type')
     dao = MessageDao()
     result = dao.update(msg_class)
-    return render_template('message_read.html', message=msg_class, msg=result)
+    return render_template('messages/message_read.html', message=msg_class, msg=result)
 #------------------Fim Editar
 
 #------------------Criar
 @app.route('/message/create')
 def message_create():
-    return render_template('message_create.html')
+    return render_template('messages/message_create.html')
 
 
 @app.route('/message/salvar', methods=['POST'])
@@ -310,7 +310,7 @@ def message_salvar():
     msg_class.message_type = request.form.get('message_type')
     dao = MessageDao()
     result = dao.create(msg_class)
-    return render_template('message_create.html', msg = result)
+    return render_template('messages/message_create.html', msg = result)
 #------------------Fim criar
 
 #------------------Deletar
