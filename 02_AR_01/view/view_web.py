@@ -32,18 +32,18 @@ def session_msg():
         msg = ''
     return msg
 
+def obj_from_form(obj_class):
+    obj = obj_class()
+    form_attrs = request.form.items()
+    for i, v in form_attrs:
+        setattr(obj, i, v)
+    return obj
+
 @app.route('/')
 def inicio():
     return render_template('index.html')
 
 #------------------------------------------- usuarios
-def make_user_from_form():
-    user = User()
-    user.id = request.form.get('id')
-    user.email = request.form.get('email')
-    user.password = request.form.get('password')
-    return user
-
 # ----- Listar
 @app.route('/user')
 def user():
@@ -63,7 +63,7 @@ def user_read():
 @app.route('/user/edit', methods=["post"])
 def user_edit():
     # lendo parametros get(url)
-    user = make_user_from_form()
+    user = obj_from_form(User)
     dao = UserDao()
     result = dao.update(user)
     return render_template("users/user_read.html", user = user, msg = result)
@@ -75,7 +75,7 @@ def user_create():
 
 @app.route('/user/save', methods=['post'])
 def user_save():
-    user = make_user_from_form()
+    user = obj_from_form(User)
     dao = UserDao()
     result = dao.create(user)
     return render_template("users/user_create.html", msg = result)
@@ -107,12 +107,7 @@ def pessoa_fisica_read():
 @app.route('/pessoa_fisica/pessoa_fisica_edit', methods = ["POST"])
 def pessoa_fisica_edit():
     #lendo parametros get(url)
-    pf = PessoaFisica()
-    pf.id = request.form.get('id')
-    pf.nome = request.form.get('nome')
-    pf.data = request.form.get('data')
-    pf.rg = request.form.get('rg')
-    pf.cpf = request.form.get('cpf')
+    pf = obj_from_form(PessoaFisica)
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.update(pf)
     return render_template("person/pessoa_fisica_read.html", pessoa_fisica = pf, msg = result_pf)
@@ -132,12 +127,7 @@ def pessoa_fisica_create():
 
 @app.route('/pessoa_fisica/salvar', methods = ["POST"])
 def pessoa_fisica_save():
-    pf = PessoaFisica()
-    pf.id = request.form.get('id')
-    pf.nome = request.form.get('nome')
-    pf.data = request.form.get('data')
-    pf.rg = request.form.get('rg')
-    pf.cpf = request.form.get('cpf')
+    pf = obj_from_form(PessoaFisica)
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.create(pf)
     return render_template('person/pessoa_fisica_create.html', msg = result_pf)
@@ -164,11 +154,7 @@ def pessoa_juridica_read():
 
 @app.route('/pessoa_juridica/pessoa_juridica_edit', methods=["post"])
 def pessoa_juridica_edit():
-    pjd = PessoaJuridica()
-    pjd.id = request.form.get('id')
-    pjd.nome = request.form.get('nome')
-    pjd.data = request.form.get('data')
-    pjd.cnpj = request.form.get('cnpj')
+    pjd = obj_from_form(PessoaJuridica)
     dao = PessoaJuridicaDao()
     result = dao.update(pjd)
     return render_template('pessoa_juridica/pessoa_juridica_read.html', pessoa_juridica=pjd, msg = result)
@@ -182,11 +168,7 @@ def pessoa_juridica_create():
 # ----- Fim Criar
 @app.route('/pessoa_juridica/salvar', methods =["post"])
 def pessoa_juridica_salvar():
-    pjd = PessoaJuridica()
-    pjd.id = request.form.get('id')
-    pjd.nome = request.form.get('nome')
-    pjd.data = request.form.get('data')
-    pjd.cnpj = request.form.get('cnpj')
+    pjd = obj_from_form(PessoaJuridica)
     dao = PessoaJuridicaDao()
     result = dao.create(pjd)
     return render_template('pessoa_juridica/pessoa_juridica_create.html', msg = result)
@@ -226,11 +208,7 @@ def produto_read():
 
 @app.route('/produto/edit', methods = ['post'])
 def produto_edit():
-    p = Produto()
-    p.id = request.form.get('id')
-    p.nome = request.form.get('nome')
-    p.preco = request.form.get('preco')
-    p.descricao = request.form.get('descricao')
+    p = obj_from_form(Produto)
     dao = ProdutoDao()
     result = dao.update(p)
     return render_template('products/produto_read.html', produto = p, msg = result)
@@ -249,13 +227,6 @@ def produto_salvar():
     result = dao.create(p)
     return render_template('products/produto_create.html', msg = result)
 # '-'*10 Fim Criar
-
-def obj_from_form(obj_class):
-    obj = obj_class()
-    form_attrs = request.form.items()
-    for i, v in form_attrs:
-        setattr(obj, i, v)
-    return obj
 
 # '-'*10 Deletar
 @app.route('/produto/delete')
@@ -287,11 +258,7 @@ def message_read():
 
 @app.route('/message/message_edit', methods=['POST'])
 def message_edit():
-    msg_class = Message()
-    msg_class.id = request.form.get('id')
-    msg_class.code = request.form.get('code')
-    msg_class.text_message = request.form.get('text_message')
-    msg_class.message_type = request.form.get('message_type')
+    msg_class = obj_from_form(Message)
     dao = MessageDao()
     result = dao.update(msg_class)
     return render_template('messages/message_read.html', message=msg_class, msg=result)
@@ -305,11 +272,7 @@ def message_create():
 
 @app.route('/message/salvar', methods=['POST'])
 def message_salvar():
-    msg_class = Message()
-    msg_class.id = request.form.get('id')
-    msg_class.code = request.form.get('code')
-    msg_class.text_message = request.form.get('text_message')
-    msg_class.message_type = request.form.get('message_type')
+    msg_class = obj_from_form(Message)
     dao = MessageDao()
     result = dao.create(msg_class)
     return render_template('messages/message_create.html', msg = result)
@@ -342,10 +305,7 @@ def message_type_read():
 @app.route('/message_type/edit', methods = ["POST"])
 def message_type_edit():
     #lendo parametros get(url)
-    mt = MessageType()
-    mt.id = request.form.get('id')
-    mt.name = request.form.get('name')
-    mt.description = request.form.get('description')
+    mt = obj_from_form(MessageType)
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.update(mt)
     return render_template("msg_type/message_type_read.html", message_type = mt, msg = result_mt)
@@ -365,10 +325,7 @@ def message_type_create():
 
 @app.route('/message_type/salvar', methods = ["POST"])
 def message_type_save():
-    mt = MessageType()
-    mt.id = request.form.get('id')
-    mt.name = request.form.get('name')
-    mt.description = request.form.get('description')
+    mt = obj_from_form(MessageType)
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.create(mt)
     return render_template("msg_type/message_type_create.html", msg = result_mt)
