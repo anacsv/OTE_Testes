@@ -1,0 +1,21 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Nova Pessoa Jurídica
+{% endblock %}
+{% block conteudo %}
+
+    <form action="/pessoa_juridica/salvar" method="POST">
+        <label for="id">id:</label><input type="text" name="id" id="id">
+        <label for="nome">nome:</label><input type="text" name="nome" id="nome">
+        <label for="data">data:</label><input type="text" name="data" id="data">
+        <label for="cnpj">cnpj:</label><input type="text" name="cnpj" id="cnpj">
+        <div class="buttons">
+            <button type="submit" class="salvar">Salvar</button>
+            <button type="reset" class="limpar">Limpar</button>
+        </div>
+    </form>
+    <div class="btn-listagem">
+        <a href="/pessoa_juridica">Voltar para listagem</a>
+    </div>
+
+{% endblock %}

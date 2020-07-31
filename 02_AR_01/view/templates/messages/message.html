@@ -1,0 +1,35 @@
+
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Mensagens Cadastradas
+{% endblock %}
+{% block conteudo %}
+<div id='novo'>
+        <a href="/message/create">Novo</a> 
+    </div>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>code</th>
+            <th>text_message</th>
+            <th>message_type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for msg in message %}
+        <tr>
+            <td>{{msg.id}}</td>
+            <td>{{msg.code}}</td>
+            <td>{{msg.text_message}}</td>
+            <td>{{msg.message_type}}</td>
+            <td>
+                <a href="/message/read?id={{msg.id}}">Editar</a> |
+                <a href="/message/delete?id={{msg.id}}">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
