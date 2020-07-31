@@ -5,7 +5,7 @@ sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 )
 
-from model.usuario import Usuario
+from model.user import User
 
 hostname = 'mysql.padawans.dev' 
 username = 'padawans' 
@@ -44,21 +44,21 @@ def delete(cursor, table_name, id):
     cursor.execute(sql_command)
     connection.commit()
 
-u = Usuario('ana_delay@olist.com','delay_russia',123215)
+u = User('ana_delay@olist.com','delay_russia',123215)
 
 sql_command_insert = f'''INSERT INTO users
                     VALUES
                     (
                         0
                         ,'{u.email}'
-                        ,'{u.senha}'
+                        ,'{u.password}'
                     )
                     ;'''
 
 sql_command_update = f'''UPDATE users 
                     set
                     mail = '{u.email}'
-                    ,password = '{u.senha}'
+                    ,password = '{u.password}'
                     where id = {u.id}; '''
 
 cursor = connection.cursor()

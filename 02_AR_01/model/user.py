@@ -1,9 +1,8 @@
-
-class Usuario:
-    def __init__(self, email="", senha="", id=None):
+class User:
+    def __init__(self, email = "", password = "", id = None):
         self.__id = id
         self.__email = email
-        self.__senha = senha
+        self.__password = password
 
     @property
     def id(self):
@@ -22,13 +21,13 @@ class Usuario:
         self.__email = email
 
     @property
-    def senha(self):
-        return self.__senha
+    def password(self):
+        return self.__password
 
-    @senha.setter
-    def senha(self, senha):
-        self.__senha = senha
+    @password.setter
+    def password(self, password):
+        self.__password = password
 
     def __str__(self):
         # interpolação de strings
-        return f'{self.__id};{self.__email};{self.__senha}'
+        return f'{self.__id};{self.__email};{self.__password}'

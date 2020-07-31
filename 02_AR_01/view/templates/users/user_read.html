@@ -1,0 +1,17 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Edição de Usuário
+{% endblock %}
+{% block conteudo %}
+    <form action="/user/edit" method="POST">
+        <label for="id">id:</label><input type="text" name="id" id="id" value="{{user.id}}" readonly>
+        <label for="email">email:</label><input type="email" name="email" id="email" value="{{user.email}}">
+        <label for="password">senha:</label><input type="password" name="password" id="password" value="{{user.password}}">
+        <div class='buttons'>
+            <button type="submit" class="salvar">Salvar</button>
+        </div>
+    </form>
+    <div class="btn-listagem">
+        <a href="/user"> Voltar para listagem</a>
+    </div>
+{% endblock %}
