@@ -13,7 +13,7 @@ from model.message_type import MessageType
 
 from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.pessoa_juridica_dao import PessoaJuridicaDao
-from dao.usuario_dao import UsuarioDao
+from dao.user_dao import UserDao
 from dao.produto_dao import ProdutoDao
 from dao.message_dao import MessageDao
 

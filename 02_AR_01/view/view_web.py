@@ -8,7 +8,7 @@ import json
 
 from model.user import User
 from model.produto import Produto
-from dao.usuario_dao import UsuarioDao
+from dao.user_dao import UserDao
 from model.pessoa_fisica import PessoaFisica
 from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.produto_dao import ProdutoDao
@@ -40,7 +40,7 @@ def inicio():
 # ----- Listar
 @app.route('/user')
 def user():
-    dao = UsuarioDao()
+    dao = UserDao()
     users = dao.read()
     return render_template("users/users.html", users = users, msg = session_msg())
 
@@ -49,7 +49,7 @@ def user():
 def user_read():
     # lendo parametros get(url)
     id = request.args.get('id')
-    dao = UsuarioDao()
+    dao = UserDao()
     user = dao.read(id)
     return render_template("users/user_read.html", user = user) 
 
@@ -60,7 +60,7 @@ def user_edit():
     user.id = request.form.get('id')
     user.email = request.form.get('email')
     user.password = request.form.get('password')
-    dao = UsuarioDao()
+    dao = UserDao()
     result = dao.update(user)
     return render_template("users/user_read.html", user = user, msg = result) 
 
@@ -77,7 +77,7 @@ def user_save():
     user.id = request.form.get('id')
     user.email = request.form.get('email')
     user.password = request.form.get('password')
-    dao = UsuarioDao()
+    dao = UserDao()
     result = dao.create(user)
     return render_template("users/user_create.html", msg = result)
 # ----- Deletar 
@@ -85,7 +85,7 @@ def user_save():
 def user_delete():
     # lendo parametros get(url)
     id = request.args.get('id')
-    dao = UsuarioDao()
+    dao = UserDao()
     result = dao.delete(id)
     session['msg'] = json.dumps(result.__dict__)
     return redirect(url_for('user'))

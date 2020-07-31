@@ -1,8 +1,7 @@
 from model.user import User
-#from dao.base_dao import BaseDao
 from dao.base_dao_sql import BaseDao
 
-class UsuarioDao(BaseDao):
+class UserDao(BaseDao):
 
     def __init__(self):
         self.__table_name = 'users'
