@@ -24,7 +24,7 @@ class UsuarioDao(BaseDao):
                     (
                         0
                         ,'{model.email}'
-                        ,'{model.senha}'
+                        ,'{model.password}'
                     )
                     ;'''
         return super().create(sql_insert)
@@ -34,7 +34,7 @@ class UsuarioDao(BaseDao):
         sql_update = f'''UPDATE {self.__table_name} 
                     SET
                     mail = '{model.email}'
-                    ,password = '{model.senha}'
+                    ,password = '{model.password}'
                     WHERE id = {model.id}; '''
         return super().update(sql_update)
 
@@ -57,5 +57,5 @@ class UsuarioDao(BaseDao):
         model = Usuario()
         model.id = item_tuple[0]
         model.email = item_tuple[1]
-        model.senha = item_tuple[2]
+        model.password = item_tuple[2]
         return model 
