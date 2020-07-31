@@ -1,0 +1,34 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Produtos cadastrados
+{% endblock %}
+{% block conteudo %}
+    <div id="novo">
+        <a href="/produto/create">Novo</a> 
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preco</th>
+                <th>Descricao</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in produtos %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.preco }}</td>
+                <td>{{ p.descricao }}</td>
+                <td>
+                    <a href="/produto/read?id={{p.id}}">Editar</a> |
+                    <a href="/produto/delete?id={{p.id}}">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

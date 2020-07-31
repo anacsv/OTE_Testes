@@ -1,0 +1,22 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Edição de Produto
+{% endblock %}
+{% block conteudo %}
+    <form action="/produto/edit" method="POST">
+        <label for="id">ID:</label>
+        <input type="text" name="id" id="id" value="{{produto.id}}" readonly>
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="{{produto.nome}}">
+        <label for="preco">Preco:</label>
+        <input type="number" name="preco" id="preco" value="{{produto.preco}}">
+        <label for="descricao">Descricao:</label>
+        <textarea type="text" name="descricao" id="descricao">{{produto.descricao}}</textarea>
+        <div class="buttons">
+            <button type="submit" class="salvar">Salvar</button>
+        </div>
+    </form>
+    <div class="btn-listagem">
+        <a href="/produto">Voltar a listagem</a>
+    </div>
+{% endblock %}

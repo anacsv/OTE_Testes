@@ -212,7 +212,7 @@ def produto():
     dao = ProdutoDao()
     lista = dao.read()
     return render_template(
-        'produto.html', produtos = lista, msg = session_msg()
+        'products/produto.html', produtos = lista, msg = session_msg()
     )
 
 # '-'*10 Fim Listar
@@ -223,7 +223,7 @@ def produto_read():
     id = request.args.get('id')
     dao = ProdutoDao()
     p = dao.read(id)
-    return render_template('produto_read.html', produto = p)
+    return render_template('products/produto_read.html', produto = p)
 
 @app.route('/produto/edit', methods = ['post'])
 def produto_edit():
@@ -234,14 +234,14 @@ def produto_edit():
     p.descricao = request.form.get('descricao')
     dao = ProdutoDao()
     result = dao.update(p)
-    return render_template('produto_read.html', produto = p, msg = result)
+    return render_template('products/produto_read.html', produto = p, msg = result)
 
 # '-'*10 Fim Editar
 
 # '-'*10 Criar
 @app.route('/produto/create')
 def produto_create():
-    return render_template('produto_create.html')
+    return render_template('products/produto_create.html')
 
 @app.route('/produto/salvar', methods = ['post'])
 def produto_salvar():
@@ -252,7 +252,7 @@ def produto_salvar():
     p.descricao = request.form.get('descricao')
     dao = ProdutoDao()
     result = dao.create(p)
-    return render_template('produto_create.html', msg = result)
+    return render_template('products/produto_create.html', msg = result)
 # '-'*10 Fim Criar
 
 # '-'*10 Deletar

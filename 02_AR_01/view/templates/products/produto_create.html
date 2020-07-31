@@ -1,0 +1,23 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Novo Produto
+{% endblock %}
+{% block conteudo %}
+    <form action="/produto/salvar" method="POST">
+        <label for="id">ID:</label>
+        <input type="text" name="id" id="id">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome"><br>
+        <label for="preco">Preco:</label>
+        <input type="number" name="preco" id="preco"><br>
+        <label for="descricao">Descricao:</label>
+        <textarea type="text" name="descricao" id="descricao"></textarea><br>
+        <div class="buttons">
+            <button type="submit" class="salvar">Salvar</button>
+            <button type="reset" class="limpar">Limpar</button>
+        </div>
+    </form>
+    <div class="btn-listagem">
+        <a href="/produto">Voltar a listagem</a>
+    </div>
+{% endblock %}
