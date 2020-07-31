@@ -42,7 +42,7 @@ def inicio():
 def user():
     dao = UsuarioDao()
     users = dao.read()
-    return render_template("users/usuario.html", users = users, msg = session_msg())
+    return render_template("users/users.html", users = users, msg = session_msg())
 
 # ----- Editar
 @app.route('/user/read')
@@ -51,7 +51,7 @@ def user_read():
     id = request.args.get('id')
     dao = UsuarioDao()
     user = dao.read(id)
-    return render_template("users/usuario_read.html", user = user) 
+    return render_template("users/user_read.html", user = user) 
 
 @app.route('/user/edit', methods=["post"])
 def user_edit():
@@ -62,14 +62,14 @@ def user_edit():
     user.senha = request.form.get('senha')
     dao = UsuarioDao()
     result = dao.update(user)
-    return render_template("users/usuario_read.html", user = user, msg = result) 
+    return render_template("users/user_read.html", user = user, msg = result) 
 
 # ----- Fim Editar
 
 # ----- Criar
 @app.route('/user/create')
 def user_create():
-    return render_template("users/usuario_create.html")
+    return render_template("users/user_create.html")
 # ----- Fim Criar
 @app.route('/user/save', methods=['post'])
 def user_save():
@@ -79,7 +79,7 @@ def user_save():
     user.senha = request.form.get('senha')
     dao = UsuarioDao()
     result = dao.create(user)
-    return render_template("users/usuario_create.html", msg = result)
+    return render_template("users/user_create.html", msg = result)
 # ----- Deletar 
 @app.route('/user/delete')
 def user_delete():
