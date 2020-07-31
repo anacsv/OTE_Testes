@@ -95,7 +95,7 @@ def delete():
 def pessoa_fisica():
     dao_pf = PessoaFisicaDao()
     lista_pf = dao_pf.read()
-    return render_template("pessoa_fisica.html", pessoa_fisica = lista_pf, msg = session_msg())
+    return render_template("person/pessoa_fisica.html", pessoa_fisica = lista_pf, msg = session_msg())
 
 @app.route('/pessoa_fisica/read')
 def pessoa_fisica_read():
@@ -103,7 +103,7 @@ def pessoa_fisica_read():
     id = request.args.get('id')
     dao_pf = PessoaFisicaDao()
     pf = dao_pf.read(id)
-    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf)
+    return render_template("person/pessoa_fisica_read.html", pessoa_fisica = pf)
 
 @app.route('/pessoa_fisica/pessoa_fisica_edit', methods = ["POST"])
 def pessoa_fisica_edit():
@@ -116,7 +116,7 @@ def pessoa_fisica_edit():
     pf.cpf = request.form.get('cpf')
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.update(pf)
-    return render_template("pessoa_fisica_read.html", pessoa_fisica = pf, msg = result_pf)
+    return render_template("person/pessoa_fisica_read.html", pessoa_fisica = pf, msg = result_pf)
 
 @app.route('/pessoa_fisica/delete')
 def pessoa_fisica_delete():
@@ -125,11 +125,11 @@ def pessoa_fisica_delete():
     dao_pf = PessoaFisicaDao()
     result = dao_pf.delete(id)
     session['msg'] = json.dumps(result.__dict__)
-    return redirect(url_for('pessoa_fisica'))
+    return redirect(url_for('person/pessoa_fisica'))
 
 @app.route('/pessoa_fisica/create')
 def pessoa_fisica_create():
-    return render_template('pessoa_fisica_create.html')
+    return render_template('person/pessoa_fisica_create.html')
 
 @app.route('/pessoa_fisica/salvar', methods = ["POST"])
 def pessoa_fisica_save():
@@ -141,7 +141,7 @@ def pessoa_fisica_save():
     pf.cpf = request.form.get('cpf')
     dao_pf = PessoaFisicaDao()
     result_pf = dao_pf.create(pf)
-    return render_template('pessoa_fisica_create.html', msg = result_pf)
+    return render_template('person/pessoa_fisica_create.html', msg = result_pf)
 
 #----------- pessoa física fim
 
@@ -327,7 +327,7 @@ def message_delete():
 def message_type():
     dao_mt = MessageTypeDao()
     lista_mt = dao_mt.read()
-    return render_template("message_type.html", message_type = lista_mt, msg = session_msg())
+    return render_template("msg_type/message_type.html", message_type = lista_mt, msg = session_msg())
 
 @app.route('/message_type/read')
 def message_type_read():
@@ -335,7 +335,7 @@ def message_type_read():
     id = request.args.get('id')
     dao_mt = MessageTypeDao()
     mt = dao_mt.read(id)
-    return render_template('message_type_read.html', message_type = mt)
+    return render_template('msg_type/message_type_read.html', message_type = mt)
 
 @app.route('/message_type/edit', methods = ["POST"])
 def message_type_edit():
@@ -346,7 +346,7 @@ def message_type_edit():
     mt.description = request.form.get('description')
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.update(mt)
-    return render_template("message_type_read.html", message_type = mt, msg = result_mt)
+    return render_template("msg_type/message_type_read.html", message_type = mt, msg = result_mt)
 
 @app.route('/message_type/delete')
 def message_type_delete():
@@ -355,11 +355,11 @@ def message_type_delete():
     dao_mt = MessageTypeDao()
     result = dao_mt.delete(id)
     session['msg'] = json.dumps(result.__dict__)
-    return redirect( url_for('usuario')  )
+    return redirect( url_for('msg_type/message_type')  )
 
 @app.route('/message_type/create')
 def message_type_create():
-    return render_template('message_type_create.html')
+    return render_template('msg_type/message_type_create.html')
 
 @app.route('/message_type/salvar', methods = ["POST"])
 def message_type_save():
@@ -369,6 +369,6 @@ def message_type_save():
     mt.description = request.form.get('description')
     dao_mt = MessageTypeDao()
     result_mt = dao_mt.create(mt)
-    return render_template("message_type_create.html", msg = result_mt)
+    return render_template("msg_type/message_type_create.html", msg = result_mt)
 
 app.run(debug=True)
