@@ -1,4 +1,4 @@
-from model.usuario import Usuario
+from model.user import User
 #from dao.base_dao import BaseDao
 from dao.base_dao_sql import BaseDao
 
@@ -18,7 +18,7 @@ class UsuarioDao(BaseDao):
         return self.__convert_data_object(data)
 
     #create
-    def create(self, model:Usuario) -> str:
+    def create(self, model: User) -> str:
         sql_insert = f'''INSERT INTO {self.__table_name}
                     VALUES
                     (
@@ -30,7 +30,7 @@ class UsuarioDao(BaseDao):
         return super().create(sql_insert)
 
     #update
-    def update(self, model:Usuario) -> str:
+    def update(self, model: User) -> str:
         sql_update = f'''UPDATE {self.__table_name} 
                     SET
                     mail = '{model.email}'
@@ -53,8 +53,8 @@ class UsuarioDao(BaseDao):
         user = self.__obj_converter(data)
         return user
 
-    def __obj_converter(self, item_tuple:tuple) -> Usuario:
-        model = Usuario()
+    def __obj_converter(self, item_tuple:tuple) -> User:
+        model = User()
         model.id = item_tuple[0]
         model.email = item_tuple[1]
         model.password = item_tuple[2]

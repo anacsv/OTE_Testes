@@ -6,7 +6,7 @@ sys.path.append(
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 
-from model.usuario import Usuario
+from model.user import User
 from model.produto import Produto
 from dao.usuario_dao import UsuarioDao
 from model.pessoa_fisica import PessoaFisica
@@ -56,7 +56,7 @@ def user_read():
 @app.route('/user/edit', methods=["post"])
 def user_edit():
     # lendo parametros get(url)
-    user = Usuario()
+    user = User()
     user.id = request.form.get('id')
     user.email = request.form.get('email')
     user.password = request.form.get('password')
@@ -73,7 +73,7 @@ def user_create():
 # ----- Fim Criar
 @app.route('/user/save', methods=['post'])
 def user_save():
-    user = Usuario()
+    user = User()
     user.id = request.form.get('id')
     user.email = request.form.get('email')
     user.password = request.form.get('password')

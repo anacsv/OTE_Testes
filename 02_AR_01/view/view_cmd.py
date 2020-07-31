@@ -6,7 +6,7 @@ sys.path.append(
 
 from model.pessoa_fisica import PessoaFisica
 from model.pessoa_juridica import PessoaJuridica
-from model.usuario import Usuario
+from model.user import User
 from model.produto import Produto
 from model.message import Message
 from model.message_type import MessageType
