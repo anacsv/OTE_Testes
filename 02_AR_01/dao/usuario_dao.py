@@ -8,7 +8,7 @@ class UsuarioDao(BaseDao):
         super().__init__()
 
     #read
-    def read(self, id=None):
+    def read(self, id = None):
         sql_select = ''
         sql_select = f'SELECT id, mail, password FROM {self.__table_name}'
         if id:
@@ -18,7 +18,7 @@ class UsuarioDao(BaseDao):
         return self.__convert_data_object(data)
 
     #create
-    def create(self, model:Usuario)->str:
+    def create(self, model:Usuario) -> str:
         sql_insert = f'''INSERT INTO {self.__table_name}
                     VALUES
                     (
@@ -30,7 +30,7 @@ class UsuarioDao(BaseDao):
         return super().create(sql_insert)
 
     #update
-    def update(self, model:Usuario)->str:
+    def update(self, model:Usuario) -> str:
         sql_update = f'''UPDATE {self.__table_name} 
                     set
                     mail = '{model.email}'
@@ -53,29 +53,9 @@ class UsuarioDao(BaseDao):
         user = self.__obj_converter(data)
         return user
 
-    def __obj_converter(self, item_tuple:tuple) -> Usuario :
+    def __obj_converter(self, item_tuple:tuple) -> Usuario:
         model = Usuario()
         model.id = item_tuple[0]
         model.email = item_tuple[1]
         model.senha = item_tuple[2]
         return model 
-
-    # def read(self, id = None):
-    #     result = super().read(id)
-    #     if type(result) == list:
-    #         lista_usuario = []
-    #         for item in result:
-    #             u = self.__obj_converter(item)
-    #             lista_usuario.append(u)
-    #         return lista_usuario
-    #     return self.__obj_converter(result)
-
-    # def __obj_converter(self, item_str:str) -> Usuario :
-    #     usuario = Usuario()
-    #     obj_array = item_str.split(';')
-    #     usuario.id = obj_array[0]
-    #     usuario.email = obj_array[1]
-    #     usuario.senha = obj_array[2]
-    #     return usuario
-
-    
