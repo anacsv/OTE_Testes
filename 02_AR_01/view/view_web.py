@@ -36,7 +36,14 @@ def session_msg():
 def inicio():
     return render_template('index.html')
 
-#------------------------------------------- usuarios 
+#------------------------------------------- usuarios
+def make_user_from_form():
+    user = User()
+    user.id = request.form.get('id')
+    user.email = request.form.get('email')
+    user.password = request.form.get('password')
+    return user
+
 # ----- Listar
 @app.route('/user')
 def user():
@@ -56,27 +63,19 @@ def user_read():
 @app.route('/user/edit', methods=["post"])
 def user_edit():
     # lendo parametros get(url)
-    user = User()
-    user.id = request.form.get('id')
-    user.email = request.form.get('email')
-    user.password = request.form.get('password')
+    user = make_user_from_form()
     dao = UserDao()
     result = dao.update(user)
-    return render_template("users/user_read.html", user = user, msg = result) 
-
-# ----- Fim Editar
+    return render_template("users/user_read.html", user = user, msg = result)
 
 # ----- Criar
 @app.route('/user/create')
 def user_create():
     return render_template("users/user_create.html")
-# ----- Fim Criar
+
 @app.route('/user/save', methods=['post'])
 def user_save():
-    user = User()
-    user.id = request.form.get('id')
-    user.email = request.form.get('email')
-    user.password = request.form.get('password')
+    user = make_user_from_form()
     dao = UserDao()
     result = dao.create(user)
     return render_template("users/user_create.html", msg = result)

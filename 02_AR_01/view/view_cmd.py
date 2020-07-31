@@ -20,13 +20,13 @@ from dao.message_dao import MessageDao
 # print(pfd.update('paulo', pf))
 # pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
 #pj = PessoaJuridica('paulo', '05/05/2005', '08471017970', '2')
-u = Usuario('mdg@olist.com','444444',1)
+u = User('mdg@olist.com','444444',1)
 
 from dao.message_type_dao import MessageTypeDao
 
 # print(pfd.update('paulo', pf))
 # pj = PessoaJuridica(1, 'matheus', '22-11-2001', '2222222222')
-#u = Usuario('mdg@olist.com','444444',1)
+#u = User('mdg@olist.com','444444',1)
 
 
 #p = Produto('mouse', 10.0, 'mouse do chines ', 2)
@@ -54,12 +54,12 @@ print(md.read(1))
 
 # pfd = PessoaFisicaDao()
 #pjd = PessoaJuridicaDao()
-# ud = UsuarioDao()
+# ud = UserDao()
 # pd = ProdutoDao()
 # mg = MessageDao()
 # print(mg.create(m))
 # pjd = PessoaJuridicaDao(PessoaJuridica)  ---> ????
-#ud = UsuarioDao()
+#ud = UserDao()
 #pd = ProdutoDao()
 
 #print(pd.create(p))
