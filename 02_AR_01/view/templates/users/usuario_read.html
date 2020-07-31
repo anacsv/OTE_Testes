@@ -3,7 +3,7 @@
     Edição de Usuário
 {% endblock %}
 {% block conteudo %}
-    <form action="/user/usuario_edit" method="POST">
+    <form action="/user/edit" method="POST">
         <label for="id">id:</label><input type="text" name="id" id="id" value="{{usuario.id}}" readonly>
         <label for="email">email:</label><input type="email" name="email" id="email" value="{{usuario.email}}">
         <label for="senha">senha:</label><input type="password" name="senha" id="senha" value="{{usuario.senha}}">
