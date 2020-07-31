@@ -6,9 +6,9 @@ sys.path.append(
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 
-from model.usuario import Usuario
+from model.user import User
 from model.produto import Produto
-from dao.usuario_dao import UsuarioDao
+from dao.user_dao import UserDao
 from model.pessoa_fisica import PessoaFisica
 from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.produto_dao import ProdutoDao
@@ -36,59 +36,58 @@ def session_msg():
 def inicio():
     return render_template('index.html')
 
-#------------------------------------------- usuarios 
+#------------------------------------------- usuarios
+def make_user_from_form():
+    user = User()
+    user.id = request.form.get('id')
+    user.email = request.form.get('email')
+    user.password = request.form.get('password')
+    return user
+
 # ----- Listar
-@app.route('/usuario')
-def usuario():
-    dao = UsuarioDao()
-    lista = dao.read()
-    return render_template("users/usuario.html", usuarios = lista, msg = session_msg())
+@app.route('/user')
+def user():
+    dao = UserDao()
+    users = dao.read()
+    return render_template("users/users.html", users = users, msg = session_msg())
 
 # ----- Editar
-@app.route('/usuario/read')
-def read():
+@app.route('/user/read')
+def user_read():
     # lendo parametros get(url)
     id = request.args.get('id')
-    dao = UsuarioDao()
-    u = dao.read(id)
-    return render_template("users/usuario_read.html", usuario = u ) 
+    dao = UserDao()
+    user = dao.read(id)
+    return render_template("users/user_read.html", user = user) 
 
-@app.route('/usuario/usuario_edit', methods=["post"])
-def usuario_edit():
+@app.route('/user/edit', methods=["post"])
+def user_edit():
     # lendo parametros get(url)
-    u = Usuario()
-    u.id = request.form.get('id')
-    u.email = request.form.get('email')
-    u.senha = request.form.get('senha')
-    dao = UsuarioDao()
-    result = dao.update(u)
-    return render_template("users/usuario_read.html", usuario = u,  msg = result ) 
-
-# ----- Fim Editar
+    user = make_user_from_form()
+    dao = UserDao()
+    result = dao.update(user)
+    return render_template("users/user_read.html", user = user, msg = result)
 
 # ----- Criar
-@app.route('/usuario/create')
-def usuario_create():
-    return render_template("users/usuario_create.html")
-# ----- Fim Criar
-@app.route('/usuario/salvar', methods=['post'])
-def usuario_salvar():
-    u = Usuario()
-    u.id = request.form.get('id')
-    u.email = request.form.get('email')
-    u.senha = request.form.get('senha')
-    dao = UsuarioDao()
-    result = dao.create(u)
-    return render_template("users/usuario_create.html", msg = result)
+@app.route('/user/create')
+def user_create():
+    return render_template("users/user_create.html")
+
+@app.route('/user/save', methods=['post'])
+def user_save():
+    user = make_user_from_form()
+    dao = UserDao()
+    result = dao.create(user)
+    return render_template("users/user_create.html", msg = result)
 # ----- Deletar 
-@app.route('/usuario/delete')
-def delete():
+@app.route('/user/delete')
+def user_delete():
     # lendo parametros get(url)
     id = request.args.get('id')
-    dao = UsuarioDao()
+    dao = UserDao()
     result = dao.delete(id)
     session['msg'] = json.dumps(result.__dict__)
-    return redirect( url_for('usuario')  )
+    return redirect(url_for('user'))
 #------------------------------------------- usuarios fim
 
 @app.route('/pessoa_fisica')
