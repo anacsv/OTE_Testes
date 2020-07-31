@@ -14,7 +14,7 @@ class BaseDao:
             return self.__create_message(fields_missing, 'error')
         with open(self.__caminho_arquivo, 'a') as file:
             file.write(str(model)+"\n")        
-        return self.__create_message('Salvo', 'success')
+        return self.__create_message('Saved', 'success')
 
     #read_by_id
     def __read_by_id(self, id, lines):
@@ -22,7 +22,7 @@ class BaseDao:
         if index >= 0:
             item = lines[index]
             return item.strip()
-        return 'nao encontrado'
+        return 'Not found'
     
     #-- busca um elemento pelo id e retorna o elemento ou uma lista
     def __find_by_id(self, id, lines, model=None):
@@ -58,8 +58,8 @@ class BaseDao:
             line = str(model)+"\n"
             lines.insert(index, line)
             self.__rewrite_file(lines)
-            return self.__create_message('Alterado com sucesso', 'success')
-        return self.__create_message('Documento vazio', 'error')
+            return self.__create_message('Successfully changed', 'success')
+        return self.__create_message('Empty document', 'error')
 
     #delete
     def delete(self, id):
@@ -68,8 +68,8 @@ class BaseDao:
             index = self.__find_by_id(id, lines)
             lines.pop(index)
             self.__rewrite_file(lines)
-            return self.__create_message('Deletado com sucesso!', 'success')
-        return self.__create_message('Documento vazio', 'error')
+            return self.__create_message('Succesfully deleted!', 'success')
+        return self.__create_message('Empty document', 'error')
 
     def __rewrite_file(self,lines):
         with open(self.__caminho_arquivo, 'w') as file:
@@ -95,7 +95,7 @@ class BaseDao:
         return fields_empty
 
     def __create_message_text_from_list(self, fields):
-        message_text = 'Faltam os seguintes campos: '
+        message_text = 'Missing the following fields: '
         for field in fields:
             message_text += f";{field}"
         return message_text

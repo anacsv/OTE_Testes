@@ -12,8 +12,8 @@ from dao.user_dao import UserDao
 from model.pessoa_fisica import PessoaFisica
 from dao.pessoa_fisica_dao import PessoaFisicaDao
 from dao.produto_dao import ProdutoDao
-from dao.pessoa_juridica_dao import PessoaJuridicaDao
-from model.pessoa_juridica import PessoaJuridica
+from dao.legal_person_dao import LegalPersonDao
+from model.legal_person import LegalPerson
 from dao.message_dao import MessageDao
 from model.message import Message
 from model.message_type import MessageType
@@ -109,8 +109,8 @@ def pessoa_fisica_edit():
     #lendo parametros get(url)
     pf = PessoaFisica()
     pf.id = request.form.get('id')
-    pf.nome = request.form.get('nome')
-    pf.data = request.form.get('data')
+    pf.name = request.form.get('name')
+    pf.date = request.form.get('date')
     pf.rg = request.form.get('rg')
     pf.cpf = request.form.get('cpf')
     dao_pf = PessoaFisicaDao()
@@ -124,7 +124,7 @@ def pessoa_fisica_delete():
     dao_pf = PessoaFisicaDao()
     result = dao_pf.delete(id)
     session['msg'] = json.dumps(result.__dict__)
-    return redirect(url_for('person/pessoa_fisica'))
+    return redirect(url_for('pessoa_fisica'))
 
 @app.route('/pessoa_fisica/create')
 def pessoa_fisica_create():
@@ -134,8 +134,8 @@ def pessoa_fisica_create():
 def pessoa_fisica_save():
     pf = PessoaFisica()
     pf.id = request.form.get('id')
-    pf.nome = request.form.get('nome')
-    pf.data = request.form.get('data')
+    pf.name = request.form.get('name')
+    pf.date = request.form.get('date')
     pf.rg = request.form.get('rg')
     pf.cpf = request.form.get('cpf')
     dao_pf = PessoaFisicaDao()
@@ -144,64 +144,64 @@ def pessoa_fisica_save():
 
 #----------- pessoa física fim
 
-#------------------------------------------- pessoa juridica
-# ----- Listar
-@app.route('/pessoa_juridica')
-def pessoa_juridica():
-    dao = PessoaJuridicaDao()
-    lista_pessoa_juridica = dao.read()
-    return render_template('pessoa_juridica/pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica, msg=session_msg())
+#------------------------------------------- legal person
+# ----- List
+@app.route('/legal_person')
+def legal_person():
+    dao = LegalPersonDao()
+    legal_person_list = dao.read()
+    return render_template('legal_person/legal_person.html', legal_persons=legal_person_list, msg=session_msg())
 
-# ----- Editar
-@app.route('/pessoa_juridica/read')
-def pessoa_juridica_read():
-    # lendo parametros get(url)
+# ----- Edit
+@app.route('/legal_person/read')
+def legal_person_read():
+    # reading parameters get(url)
     id = request.args.get('id')
-    dao = PessoaJuridicaDao()
+    dao = LegalPersonDao()
     pjd = dao.read(id)
-    return render_template("pessoa_juridica/pessoa_juridica_read.html", pessoa_juridica = pjd ) 
+    return render_template("legal_person/legal_person_read.html", legal_person = pjd ) 
 
 
-@app.route('/pessoa_juridica/pessoa_juridica_edit', methods=["post"])
-def pessoa_juridica_edit():
-    pjd = PessoaJuridica()
+@app.route('/legal_person/legal_person_edit', methods=["POST"])
+def legal_person_edit():
+    pjd = LegalPerson()
     pjd.id = request.form.get('id')
-    pjd.nome = request.form.get('nome')
-    pjd.data = request.form.get('data')
+    pjd.name = request.form.get('name')
+    pjd.date = request.form.get('date')
     pjd.cnpj = request.form.get('cnpj')
-    dao = PessoaJuridicaDao()
+    dao = LegalPersonDao()
     result = dao.update(pjd)
-    return render_template('pessoa_juridica/pessoa_juridica_read.html', pessoa_juridica=pjd, msg = result)
-# ----- Fim Editar
+    return render_template('legal_person/legal_person_read.html', legal_person=pjd, msg = result)
+# ----- End Edit
 
-# ----- Criar
-@app.route('/pessoa_juridica/create')
-def pessoa_juridica_create():
-    return render_template('pessoa_juridica/pessoa_juridica_create.html')
+# ----- Create
+@app.route('/legal_person/create')
+def legal_person_create():
+    return render_template('legal_person/legal_person_create.html')
 
-# ----- Fim Criar
-@app.route('/pessoa_juridica/salvar', methods =["post"])
-def pessoa_juridica_salvar():
-    pjd = PessoaJuridica()
+# ----- End Create
+@app.route('/legal_person/save', methods =["POST"])
+def legal_person_save():
+    pjd = LegalPerson()
     pjd.id = request.form.get('id')
-    pjd.nome = request.form.get('nome')
-    pjd.data = request.form.get('data')
+    pjd.name = request.form.get('name')
+    pjd.date = request.form.get('date')
     pjd.cnpj = request.form.get('cnpj')
-    dao = PessoaJuridicaDao()
+    dao = LegalPersonDao()
     result = dao.create(pjd)
-    return render_template('pessoa_juridica/pessoa_juridica_create.html', msg = result)
+    return render_template('legal_person/legal_person_create.html', msg = result)
 
-# ----- Deletar 
-@app.route('/pessoa_juridica/delete')
-def pessoa_juridica_delete():
+# ----- Delete 
+@app.route('/legal_person/delete')
+def legal_person_delete():
     # lendo parametros get(url)
     id = request.args.get('id')
-    dao = PessoaJuridicaDao()
+    dao = LegalPersonDao()
     result = dao.delete(id)
     session['msg'] = json.dumps(result.__dict__)
-    return redirect( url_for('pessoa_juridica'))
+    return redirect( url_for('legal_person'))
 
-#------------------------------------------- pessoa juridica fim
+#------------------------------------------- End Legal person
 
 #------------------------------------------- produtos
 

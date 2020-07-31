@@ -1,10 +1,10 @@
-from .pessoa import Pessoa
+from .person import Person
 
-class PessoaFisica(Pessoa):
-    def __init__(self, nome:str = "", data:str = "", rg:str = "", cpf:str = "", id:int = 0):
+class PessoaFisica(Person):
+    def __init__(self, name:str = "", date:str = "", rg:str = "", cpf:str = "", id:int = 0):
         self.__rg = rg
         self.__cpf = cpf
-        super().__init__(nome, data, id)
+        super().__init__(name, date, id)
 
     #inicio RG
     @property
@@ -26,4 +26,4 @@ class PessoaFisica(Pessoa):
 
     #interpolação de strings
     def __str__(self):
-        return f'{self.id};{self.nome};{self.data};{self.rg};{self.cpf}'
+        return f'{self.id};{self.name};{self.date};{self.rg};{self.cpf}'

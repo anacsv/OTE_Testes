@@ -1,32 +1,32 @@
 
 {% extends "utils/layout.html" %}
 {% block titulo_pagina %}
-    Pessoas Jurídicas Cadastradas
+        Registered Legal Persons
 {% endblock %}
 {% block conteudo %}
     <div id='novo'> 
-            <a href="/pessoa_juridica/create">Novo</a> 
+            <a href="/legal_person/create">Novo</a> 
         </div>
     <table>
         <thead>
             <tr>
                 <th>id</th>
-                <th>nome</th>
-                <th>data</th>
+                <th>name</th>
+                <th>date</th>
                 <th>cnpj</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            {% for pjd in pessoas_juridicas %}
+            {% for pjd in legal_persons %}
             <tr>
                 <td>{{pjd.id}}</td>
-                <td>{{pjd.nome}}</td>
-                <td>{{pjd.data}}</td>
+                <td>{{pjd.name}}</td>
+                <td>{{pjd.date}}</td>
                 <td>{{pjd.cnpj}}</td>
                 <td>
-                    <a href="/pessoa_juridica/read?id={{pjd.id}}">Editar</a> |
-                    <a href="/pessoa_juridica/delete?id={{pjd.id}}">Deletar</a>
+                    <a href="/legal_person/read?id={{pjd.id}}">Edit</a> 
+                    <a href="/legal_person/delete?id={{pjd.id}}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
