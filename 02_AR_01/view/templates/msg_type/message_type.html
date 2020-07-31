@@ -1,0 +1,33 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Novo Cadastro
+{% endblock %}
+{% block conteudo %}
+
+<div id="novo">
+    <a href="/message_type/create">Novo</a>
+</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nome</th>
+                    <th>descrição</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mt in message_type %}
+                <tr>
+                    <td>{{mt.id}}</td>
+                    <td>{{mt.name}}</td>
+                    <td>{{mt.description}}</td>
+                    <td>
+                        <a href="/message_type/read?id={{mt.id}}">Editar</a> |
+                        <a href="/message_type/delete?id={{mt.id}}">Deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

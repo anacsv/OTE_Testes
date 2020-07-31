@@ -1,0 +1,19 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Novo Cadastro
+{% endblock %}
+{% block conteudo %}
+
+        <form action="/message_type/salvar" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id">
+            <label for="name">nome:</label><input type="name" name="name" id="name">
+            <label for="description">descrição:</label><input type="description" name="description" id="description">
+            <div class='buttons'>
+                <button type="submit" class="salvar">Salvar</button>
+                <button type="reset" class="limpar">Limpar</button>
+            </div>
+        </form>
+        <div class="btn-listagem">
+            <a href="/message_type"> Voltar para listagem</a>
+        </div>
+{% endblock %}
