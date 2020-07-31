@@ -151,7 +151,7 @@ def pessoa_fisica_save():
 def pessoa_juridica():
     dao = PessoaJuridicaDao()
     lista_pessoa_juridica = dao.read()
-    return render_template('pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica, msg=session_msg())
+    return render_template('pessoa_juridica/pessoa_juridica.html', pessoas_juridicas=lista_pessoa_juridica, msg=session_msg())
 
 # ----- Editar
 @app.route('/pessoa_juridica/read')
@@ -160,7 +160,7 @@ def pessoa_juridica_read():
     id = request.args.get('id')
     dao = PessoaJuridicaDao()
     pjd = dao.read(id)
-    return render_template("pessoa_juridica_read.html", pessoa_juridica = pjd ) 
+    return render_template("pessoa_juridica/pessoa_juridica_read.html", pessoa_juridica = pjd ) 
 
 
 @app.route('/pessoa_juridica/pessoa_juridica_edit', methods=["post"])
@@ -172,13 +172,13 @@ def pessoa_juridica_edit():
     pjd.cnpj = request.form.get('cnpj')
     dao = PessoaJuridicaDao()
     result = dao.update(pjd)
-    return render_template('pessoa_juridica_read.html', pessoa_juridica=pjd, msg_pjd = result)
+    return render_template('pessoa_juridica/pessoa_juridica_read.html', pessoa_juridica=pjd, msg = result)
 # ----- Fim Editar
 
 # ----- Criar
 @app.route('/pessoa_juridica/create')
 def pessoa_juridica_create():
-    return render_template('pessoa_juridica_create.html')
+    return render_template('pessoa_juridica/pessoa_juridica_create.html')
 
 # ----- Fim Criar
 @app.route('/pessoa_juridica/salvar', methods =["post"])
@@ -190,7 +190,7 @@ def pessoa_juridica_salvar():
     pjd.cnpj = request.form.get('cnpj')
     dao = PessoaJuridicaDao()
     result = dao.create(pjd)
-    return render_template('pessoa_juridica_create.html', msg_pjd = result)
+    return render_template('pessoa_juridica/pessoa_juridica_create.html', msg = result)
 
 # ----- Deletar 
 @app.route('/pessoa_juridica/delete')
