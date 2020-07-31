@@ -3,13 +3,13 @@ from model.usuario import Usuario
 from dao.base_dao_sql import BaseDao
 
 class UsuarioDao(BaseDao):
+
     def __init__(self):
         self.__table_name = 'users'
         super().__init__()
 
     #read
     def read(self, id = None):
-        sql_select = ''
         sql_select = f'SELECT id, mail, password FROM {self.__table_name}'
         if id:
             sql_select += f' WHERE id= {id} '
@@ -32,24 +32,24 @@ class UsuarioDao(BaseDao):
     #update
     def update(self, model:Usuario) -> str:
         sql_update = f'''UPDATE {self.__table_name} 
-                    set
+                    SET
                     mail = '{model.email}'
                     ,password = '{model.senha}'
-                    where id = {model.id}; '''
+                    WHERE id = {model.id}; '''
         return super().update(sql_update)
 
     #delete
     def delete(self, id:int)->str:
-        sql_delete = f'DELETE FROM {self.__table_name} where id = {id}'
+        sql_delete = f'DELETE FROM {self.__table_name} WHERE id = {id}'
         return super().delete(sql_delete)
 
     def __convert_data_object(self, data):
         if type(data) == list:
-            list_users = []
+            users = []
             for item in data:
                 user = self.__obj_converter(item)
-                list_users.append(user)
-            return list_users
+                users.append(user)
+            return users
         user = self.__obj_converter(data)
         return user
 
