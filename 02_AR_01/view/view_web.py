@@ -41,8 +41,8 @@ def inicio():
 @app.route('/user')
 def user():
     dao = UsuarioDao()
-    lista = dao.read()
-    return render_template("users/usuario.html", usuarios = lista, msg = session_msg())
+    users = dao.read()
+    return render_template("users/usuario.html", users = users, msg = session_msg())
 
 # ----- Editar
 @app.route('/user/read')
@@ -50,19 +50,19 @@ def user_read():
     # lendo parametros get(url)
     id = request.args.get('id')
     dao = UsuarioDao()
-    u = dao.read(id)
-    return render_template("users/usuario_read.html", usuario = u ) 
+    user = dao.read(id)
+    return render_template("users/usuario_read.html", user = user) 
 
 @app.route('/user/edit', methods=["post"])
 def user_edit():
     # lendo parametros get(url)
-    u = Usuario()
-    u.id = request.form.get('id')
-    u.email = request.form.get('email')
-    u.senha = request.form.get('senha')
+    user = Usuario()
+    user.id = request.form.get('id')
+    user.email = request.form.get('email')
+    user.senha = request.form.get('senha')
     dao = UsuarioDao()
-    result = dao.update(u)
-    return render_template("users/usuario_read.html", usuario = u,  msg = result ) 
+    result = dao.update(user)
+    return render_template("users/usuario_read.html", user = user, msg = result) 
 
 # ----- Fim Editar
 
@@ -73,12 +73,12 @@ def user_create():
 # ----- Fim Criar
 @app.route('/user/save', methods=['post'])
 def user_save():
-    u = Usuario()
-    u.id = request.form.get('id')
-    u.email = request.form.get('email')
-    u.senha = request.form.get('senha')
+    user = Usuario()
+    user.id = request.form.get('id')
+    user.email = request.form.get('email')
+    user.senha = request.form.get('senha')
     dao = UsuarioDao()
-    result = dao.create(u)
+    result = dao.create(user)
     return render_template("users/usuario_create.html", msg = result)
 # ----- Deletar 
 @app.route('/user/delete')
@@ -88,7 +88,7 @@ def user_delete():
     dao = UsuarioDao()
     result = dao.delete(id)
     session['msg'] = json.dumps(result.__dict__)
-    return redirect( url_for('user')  )
+    return redirect(url_for('user'))
 #------------------------------------------- usuarios fim
 
 @app.route('/pessoa_fisica')
