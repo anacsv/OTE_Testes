@@ -4,7 +4,7 @@
 {% endblock %}
 {% block conteudo %}
     <div id='novo'>
-        <a href="/usuario/create">Novo</a>    
+        <a href="/user/create">Novo</a>    
     </div>
     <table>
         <thead>
@@ -22,8 +22,8 @@
                 <td>{{u.email}}</td>
                 <td>{{u.senha}}</td>
                 <td>
-                    <a href="/usuario/read?id={{u.id}}">Editar</a> |
-                    <a href="/usuario/delete?id={{u.id}}">Deletar</a>
+                    <a href="/user/read?id={{u.id}}">Editar</a> |
+                    <a href="/user/delete?id={{u.id}}">Deletar</a>
                 </td>
             </tr>
             {% endfor %}

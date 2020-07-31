@@ -38,14 +38,14 @@ def inicio():
 
 #------------------------------------------- usuarios 
 # ----- Listar
-@app.route('/usuario')
+@app.route('/user')
 def usuario():
     dao = UsuarioDao()
     lista = dao.read()
     return render_template("users/usuario.html", usuarios = lista, msg = session_msg())
 
 # ----- Editar
-@app.route('/usuario/read')
+@app.route('/user/read')
 def read():
     # lendo parametros get(url)
     id = request.args.get('id')
@@ -53,7 +53,7 @@ def read():
     u = dao.read(id)
     return render_template("users/usuario_read.html", usuario = u ) 
 
-@app.route('/usuario/usuario_edit', methods=["post"])
+@app.route('/user/usuario_edit', methods=["post"])
 def usuario_edit():
     # lendo parametros get(url)
     u = Usuario()
@@ -67,11 +67,11 @@ def usuario_edit():
 # ----- Fim Editar
 
 # ----- Criar
-@app.route('/usuario/create')
+@app.route('/user/create')
 def usuario_create():
     return render_template("users/usuario_create.html")
 # ----- Fim Criar
-@app.route('/usuario/salvar', methods=['post'])
+@app.route('/user/salvar', methods=['post'])
 def usuario_salvar():
     u = Usuario()
     u.id = request.form.get('id')
@@ -81,7 +81,7 @@ def usuario_salvar():
     result = dao.create(u)
     return render_template("users/usuario_create.html", msg = result)
 # ----- Deletar 
-@app.route('/usuario/delete')
+@app.route('/user/delete')
 def delete():
     # lendo parametros get(url)
     id = request.args.get('id')

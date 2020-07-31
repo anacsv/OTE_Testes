@@ -3,7 +3,7 @@
     Novo Usuário
 {% endblock %}
 {% block conteudo %}
-    <form action="/usuario/salvar" method="POST">
+    <form action="/user/salvar" method="POST">
         <label for="id">id:</label><input type="text" name="id" id="id">
         <label for="email">email:</label><input type="email" name="email" id="email">
         <label for="senha">senha:</label><input type="password" name="senha" id="senha">
@@ -13,6 +13,6 @@
         </div>
     </form>
     <div class="btn-listagem">
-        <a href="/usuario"> Voltar para listagem</a>
+        <a href="/user"> Voltar para listagem</a>
     </div>
 {% endblock %}
