@@ -245,15 +245,18 @@ def produto_create():
 
 @app.route('/produto/salvar', methods = ['post'])
 def produto_salvar():
-    p = Produto()
-    p.id = request.form.get('id')
-    p.nome = request.form.get('nome')
-    p.preco = request.form.get('preco')
-    p.descricao = request.form.get('descricao')
+    p = obj_from_form(Produto)
     dao = ProdutoDao()
     result = dao.create(p)
     return render_template('products/produto_create.html', msg = result)
 # '-'*10 Fim Criar
+
+def obj_from_form(obj_class):
+    obj = obj_class()
+    form_attrs = request.form.items()
+    for i, v in form_attrs:
+        setattr(obj, i, v)
+    return obj
 
 # '-'*10 Deletar
 @app.route('/produto/delete')
