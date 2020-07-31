@@ -1,0 +1,35 @@
+
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Pessoas Jurídicas Cadastradas
+{% endblock %}
+{% block conteudo %}
+    <div id='novo'> 
+            <a href="/pessoa_juridica/create">Novo</a> 
+        </div>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nome</th>
+                <th>data</th>
+                <th>cnpj</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pjd in pessoas_juridicas %}
+            <tr>
+                <td>{{pjd.id}}</td>
+                <td>{{pjd.nome}}</td>
+                <td>{{pjd.data}}</td>
+                <td>{{pjd.cnpj}}</td>
+                <td>
+                    <a href="/pessoa_juridica/read?id={{pjd.id}}">Editar</a> |
+                    <a href="/pessoa_juridica/delete?id={{pjd.id}}">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Edição de Pessoa Jurídica
+{% endblock %}
+{% block conteudo %}
+        <form action="/pessoa_juridica/pessoa_juridica_edit" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id" value="{{pessoa_juridica.id}}">
+            <label for="nome">nome:</label><input type="text" name="nome" id="nome" value="{{pessoa_juridica.nome}}">
+            <label for="data">data:</label><input type="text" name="data" id="data" value="{{pessoa_juridica.data}}">
+            <label for="cnpj">cnpj:</label><input type="text" name="cnpj" id="cnpj" value="{{pessoa_juridica.cnpj}}">
+            <div class='buttons'>
+                <button type="submit" class="salvar">Salvar</button>
+            </div>
+        </form>
+        <div class="btn-listagem">
+            <a href="/pessoa_juridica">Voltar a Listagem</a>
+        </div>
+{% endblock %}

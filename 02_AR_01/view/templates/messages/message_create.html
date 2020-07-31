@@ -1,0 +1,20 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Nova Mensagem
+{% endblock %}
+{% block conteudo %}
+
+<form action="/message/salvar" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id">
+            <label for="code">code:</label><input type="text" name="code" id="code">
+            <label for="text_message">text_message:</label><input type="text" name="text_message" id="text_message">
+            <label for="message_type">message_type:</label><input type="text" name="message_type" id="message_type">
+            <div class="buttons">
+                <button type="submit" class="salvar">Salvar</button>
+                <button type="reset" class="limpar">Limpar</button>
+            </div>
+        </form>
+        <div class="btn-listagem">
+            <a href="/message">Voltar para listagem</a>
+        </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    Edição de Mensagens
+{% endblock %}
+{% block conteudo %}
+        <form action="/message/message_edit" method="POST">
+            <label for="id">id:</label><input type="text" name="id" id="id" value="{{message.id}}">
+            <label for="code">code:</label><input type="text" name="code" id="code" value="{{message.code}}">
+            <label for="text_message">text_message:</label><input type="text" name="text_message" id="text_message" value="{{message.text_message}}">
+            <label for="message_type">message_type:</label><input type="text" name="message_type" id="message_type" value="{{message.message_type}}">
+            <div class='buttons'>
+                <button type="submit" class="salvar">Salvar</button>
+            </div>
+        </form>
+        <div class="btn-listagem">
+            <a href="/message">Voltar a Listagem</a>
+        </div>
+{% endblock %}
