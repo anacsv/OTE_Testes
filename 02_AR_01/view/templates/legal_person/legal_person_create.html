@@ -1,0 +1,21 @@
+{% extends "utils/layout.html" %}
+{% block titulo_pagina %}
+    New Legal Person
+{% endblock %}
+{% block conteudo %}
+
+    <form action="/legal_person/save" method="POST">
+        <label for="id">id:</label><input type="text" name="id" id="id">
+        <label for="name">name:</label><input type="text" name="name" id="name">
+        <label for="date">date:</label><input type="text" name="date" id="date">
+        <label for="cnpj">cnpj:</label><input type="text" name="cnpj" id="cnpj">
+        <div class="buttons">
+            <button type="submit" class="salvar">Save</button>
+            <button type="reset" class="limpar">Clean</button>
+        </div>
+    </form>
+    <div class="btn-listagem">
+        <a href="/legal_person">Back to the list</a>
+    </div>
+
+{% endblock %}

@@ -1,9 +1,9 @@
-from .pessoa import Pessoa
+from .person import Person
 
-class PessoaJuridica(Pessoa): 
-    def __init__(self, nome:str = '', data:str = '', cnpj:str = '', id:int = 0):
+class LegalPerson(Person): 
+    def __init__(self, name:str = '', date:str = '', cnpj:str = '', id:int = 0):
         self.__cnpj = cnpj
-        super().__init__(nome, data, id)
+        super().__init__(name, date, id)
        
     #--------__cnpj
     @property 
@@ -16,4 +16,4 @@ class PessoaJuridica(Pessoa):
 
     #-----------interpolação de strings
     def __str__(self):
-        return f'{self.id};{self.nome};{self.data};{self.cnpj}'
+        return f'{self.id};{self.name};{self.date};{self.cnpj}'

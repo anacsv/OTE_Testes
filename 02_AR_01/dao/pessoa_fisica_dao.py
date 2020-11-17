@@ -24,8 +24,8 @@ class PessoaFisicaDao(BaseDao):
         pessoa_fisica = PessoaFisica()
         obj_array = item_str.split(';')
         pessoa_fisica.id = obj_array[0]
-        pessoa_fisica.nome = obj_array[1]
-        pessoa_fisica.data = obj_array[2]
+        pessoa_fisica.name = obj_array[1]
+        pessoa_fisica.date = obj_array[2]
         pessoa_fisica.rg = obj_array[3]
         pessoa_fisica.cpf = obj_array[4]
         return pessoa_fisica
